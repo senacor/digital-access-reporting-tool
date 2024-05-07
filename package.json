@@ -5,10 +5,12 @@
   "scripts": {
     "client": "vite --host 0.0.0.0 --port 3000",
     "server": "tsx server/app.ts",
-    "dev": "npm-run-all --parallel server client",
+    "dev": "watch-styles & npm-run-all --parallel server client",
+    "watch-styles": "chokidar 'src/**/*.css' 'src/**/*.tsx' -c 'npm run build-css'",
+    "build-css": "postcss src/index.css -o public/styles.css",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "accessibility-checker": "^3.1.70",
@@ -28,12 +30,17 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "chokidar-cli": "^3.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "esm": "^3.2.25",
     "npm-run-all": "^4.1.5",
+    "postcss-cli": "^11.0.0",
+    "postcss-watch": "^0.1.1",
     "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3",
     "tsx": "^4.9.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"

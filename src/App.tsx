@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 const renderTestChart = () => {
@@ -48,8 +47,8 @@ function App() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-      <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <input
           type="text"
           name="url"
@@ -59,36 +58,36 @@ function App() {
           onKeyDown={(e) => e.key === "Enter" && handleCheckAccessibility()}
         />
 
-        <div style={{ display: "flex", gap: "4px", justifyContent: "center" }}>
+        <div className="flex justify-center gap-2">
           <button onClick={handleCheckAccessibility}>
             Check accessibility
           </button>
           <button onClick={handleCrawlWebsiteUrls}>Crawl website urls</button>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="flex flex-col gap-2">
+          <div className="flex justify-between">
             <h2>Accessibility Results</h2>
             <button onClick={() => setAcsResultsHidden(!acsResultsHidden)}>
               {acsResultsHidden ? "Show" : "Hide"}
             </button>
           </div>
           {!acsResultsHidden && (
-            <pre style={{ textAlign: "left" }}>
+            <pre className="text-left">
               {JSON.stringify(acsResults, null, 2)}
             </pre>
           )}
         </div>
 
-        <div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="flex flex-col gap-2">
+          <div className="flex justify-between">
             <h2>Website Urls</h2>
             <button onClick={() => setWebsiteUrlsHidden(!websiteUrlsHidden)}>
               {websiteUrlsHidden ? "Show" : "Hide"}
             </button>
           </div>
           {!websiteUrlsHidden && (
-            <pre style={{ textAlign: "left" }}>
+            <pre className="text-left">
               {JSON.stringify(websiteUrls, null, 2)}
             </pre>
           )}
