@@ -1,15 +1,66 @@
 import { useState } from "react";
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  Rectangle,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 const renderTestChart = () => {
-  const data = [{ name: "Page A", uv: 400, pv: 2400, amt: 2400 }];
+  const data = [
+    {
+      name: "Page A",
+      violations: 400,
+      potentialViolations: 350,
+    },
+    {
+      name: "Page B",
+      violations: 500,
+      potentialViolations: 550,
+    },
+    {
+      name: "Page C",
+      violations: 300,
+      potentialViolations: 230,
+    },
+    {
+      name: "Page D",
+      violations: 425,
+      potentialViolations: 375,
+    },
+  ];
   return (
-    <LineChart width={600} height={300} data={data}>
-      <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-      <CartesianGrid stroke="#ccc" />
+    <BarChart
+      width={500}
+      height={300}
+      data={data}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
-    </LineChart>
+      <Tooltip />
+      <Legend />
+      <Bar
+        dataKey="violations"
+        fill="red"
+        activeBar={<Rectangle fill="red" stroke="orange" />}
+      />
+      <Bar
+        dataKey="potentialViolations"
+        fill="blue"
+        activeBar={<Rectangle fill="blue" stroke="lightblue" />}
+      />
+    </BarChart>
   );
 };
 
