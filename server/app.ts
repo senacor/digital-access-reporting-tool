@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
 import * as aChecker from "accessibility-checker";
-import * as cheerio from "cheerio";
-import fetch from "node-fetch";
+import { crawlDomainUrls } from "./crawlDomainUrls";
 
 const app = express();
 const port = process.env.PORT || 42069;
@@ -35,46 +34,9 @@ app.post("/crawler", async (req, res) => {
     return res.status(400).send({ error: "URL is required" });
   }
 
-  const URLs: Set<string> = new Set();
-  await crawlUrls(url, URLs);
+  const urls = await crawlDomainUrls(url);
 
-  res.send({ urls: Array.from(URLs) });
+  res.send({ urls });
 });
-
-async function crawlUrls(url: string, crawledUrls: Set<string>) {
-  try {
-    const response = await fetch(url);
-
-    if (response.ok) {
-      if (!crawledUrls.has(url)) {
-        crawledUrls.add(url);
-      }
-
-      const data = await response.text();
-      const $ = cheerio.load(data);
-
-      $("a").each((_, link) => {
-        const href = $(link).attr("href");
-
-        if (!href) {
-          return;
-        }
-
-        // Resolve relative URLs
-        const fullUrl = new URL(href, url);
-        const isSameDomain = fullUrl.hostname === new URL(url).hostname;
-        const hasNotBeenCrawled = !crawledUrls.has(fullUrl.href);
-
-        if (isSameDomain && hasNotBeenCrawled) {
-          crawledUrls.add(fullUrl.href);
-        }
-      });
-    } else {
-      console.error("Error:", response.status);
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
