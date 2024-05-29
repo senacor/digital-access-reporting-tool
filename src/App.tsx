@@ -64,14 +64,34 @@ const renderTestChart = () => {
   );
 };
 
+const copyToClipboard = async (elementId: string) => {
+  try {
+    const node = document.getElementById(elementId);
+
+    if (!node || !node.textContent) {
+      throw new Error("Element not found");
+    }
+
+    if (!node.textContent) {
+      throw new Error("No text content found");
+    }
+
+    await navigator.clipboard.writeText(node.textContent);
+  } catch (error) {
+    console.error("Failed to copy to clipboard", error);
+  }
+};
+
 function App() {
-  const [url, setUrl] = useState("http://www.devk.de/");
+  const [url, setUrl] = useState("https://www.devk.de/");
+  const [formLoading, setFormLoading] = useState(false);
   const [acsResults, setAcsResults] = useState<unknown | null>(null);
   const [acsResultsHidden, setAcsResultsHidden] = useState(false);
   const [websiteUrls, setWebsiteUrls] = useState<string[]>([]);
   const [websiteUrlsHidden, setWebsiteUrlsHidden] = useState(false);
 
   const handleCheckAccessibility = async () => {
+    setFormLoading(true);
     const response = await fetch("/api/achecker", {
       method: "POST",
       headers: {
@@ -80,11 +100,12 @@ function App() {
       body: JSON.stringify({ url }),
     });
     const data = await response.json();
+    setFormLoading(false);
     setAcsResults(data);
-    console.log(data);
   };
 
   const handleCrawlWebsiteUrls = async () => {
+    setFormLoading(true);
     const response = await fetch("/api/crawler", {
       method: "POST",
       headers: {
@@ -93,8 +114,8 @@ function App() {
       body: JSON.stringify({ url }),
     });
     const data = await response.json();
+    setFormLoading(false);
     setWebsiteUrls(data);
-    console.log(data);
   };
 
   return (
@@ -110,21 +131,37 @@ function App() {
         />
 
         <div className="flex justify-center gap-2">
-          <button onClick={handleCheckAccessibility}>
+          <button
+            className="disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={handleCheckAccessibility}
+            disabled={formLoading}
+          >
             Check accessibility
           </button>
-          <button onClick={handleCrawlWebsiteUrls}>Crawl website urls</button>
+          <button
+            className="disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={handleCrawlWebsiteUrls}
+            disabled={formLoading}
+          >
+            Crawl website urls
+          </button>
         </div>
 
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
             <h2>Accessibility Results</h2>
-            <button onClick={() => setAcsResultsHidden(!acsResultsHidden)}>
-              {acsResultsHidden ? "Show" : "Hide"}
-            </button>
+            <div className="flex gap-2">
+              <button onClick={() => setAcsResults(null)}>Clear</button>
+              <button onClick={() => copyToClipboard("acs-results")}>
+                Copy
+              </button>
+              <button onClick={() => setAcsResultsHidden(!acsResultsHidden)}>
+                {acsResultsHidden ? "Show" : "Hide"}
+              </button>
+            </div>
           </div>
           {!acsResultsHidden && (
-            <pre className="text-left">
+            <pre id="acs-results" className="text-left">
               {JSON.stringify(acsResults, null, 2)}
             </pre>
           )}
@@ -133,12 +170,18 @@ function App() {
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
             <h2>Website Urls</h2>
-            <button onClick={() => setWebsiteUrlsHidden(!websiteUrlsHidden)}>
-              {websiteUrlsHidden ? "Show" : "Hide"}
-            </button>
+            <div className="flex gap-2">
+              <button onClick={() => setWebsiteUrls([])}>Clear</button>
+              <button onClick={() => copyToClipboard("website-urls")}>
+                Copy
+              </button>
+              <button onClick={() => setWebsiteUrlsHidden(!websiteUrlsHidden)}>
+                {websiteUrlsHidden ? "Show" : "Hide"}
+              </button>
+            </div>
           </div>
           {!websiteUrlsHidden && (
-            <pre className="text-left">
+            <pre id="website-urls" className="text-left">
               {JSON.stringify(websiteUrls, null, 2)}
             </pre>
           )}
