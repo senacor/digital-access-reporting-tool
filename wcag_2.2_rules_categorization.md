@@ -1,8 +1,10 @@
+WCAG 2.2 Ruleset: https://www.ibm.com/able/requirements/checker-rule-sets/
+
 Kategorien:
 
 - Text Alternatives
 
-  - 1.1.1
+  - 1.1.1 (AA)
     // Violation
 
     - applet_alt_exists
@@ -36,7 +38,7 @@ Kategorien:
     - img_alt_background
     - style_highcontrast_visible
 
-  - 1.2.1
+  - 1.2.1 (A)
     // Potential Violation
 
     - caption_track_exists
@@ -45,13 +47,13 @@ Kategorien:
 
     - media_audio_transcribed
 
-  - 1.2.2
+  - 1.2.2 (A)
     // Potential Violation
     - caption_track_exists
-  - 1.2.3
+  - 1.2.3 (A)
     // Recommendation
     - media_track_available
-  - 1.2.4
+  - 1.2.4 (AA)
     // Potential Violation
 
     - caption_track_exists
@@ -60,13 +62,13 @@ Kategorien:
 
     - media_live_captioned
 
-  - 1.2.5
+  - 1.2.5 (AA)
     // Recommendation
     - media_track_available
 
 - Logical Navigation and Intuitiveness
 
-  - 1.3.2
+  - 1.3.2 (A)
     // Violation
 
     - dir_attribute_valid
@@ -75,23 +77,23 @@ Kategorien:
 
     - text_whitespace_valid
 
-  - 1.3.3
+  - 1.3.3 (A)
     // Potential Violation
     - text_sensory_misuse
-  - 1.3.4
+  - 1.3.4 (AA)
     // Violation
     - element_orientation_unlocked
-  - 1.4.1
+  - 1.4.1 (A)
     // Potential Violation
     - form_font_color
     - style_color_misuse
-  - 1.4.12
+  - 1.4.12 (AA)
     // Violation
     - text_spacing_valid
-  - 1.4.13
+  - 1.4.13 (AA)
     // Potential Violation
     - style_hover_persistent
-  - 2.2.1
+  - 2.2.1 (A)
     // Violation
 
     - meta_redirect_optional
@@ -100,7 +102,7 @@ Kategorien:
 
     - meta_refresh_delay
 
-  - 2.2.2
+  - 2.2.2 (A)
     // Violation
 
     - blink_elem_deprecated
@@ -110,7 +112,7 @@ Kategorien:
 
     - blink_css_review
 
-  - 2.4.1
+  - 2.4.1 (A)
     // Violation
 
     - aria_application_label_unique
@@ -144,7 +146,7 @@ Kategorien:
     - aria_contentinfo_misuse
     - aria_main_label_visible
 
-  - 2.4.2
+  - 2.4.2 (A)
     // Violation
 
     - page_title_exists
@@ -153,28 +155,28 @@ Kategorien:
 
     - page_title_valid
 
-  - 2.4.3
+  - 2.4.3 (A)
     // Potential Violation
     - widget_tabbable_single
-  - 2.4.4
+  - 2.4.4 (A)
     // Violation
     - a_text_purpose
-  - 2.4.6
+  - 2.4.6 (AA)
     // Recommendation
     - heading_content_exists
-  - 2.4.7
+  - 2.4.7 (AA)
     // Potential Violation
     - element_tabbable_visible
     - script_focus_blur_review
     - style_focus_visible
-  - 2.4.11
+  - 2.4.11 (AA)
     // Potential Violation
     - element_tabbable_unobscured
-  - 3.2.1
+  - 3.2.1 (A)
     // Potential Violation
     - script_focus_blur_review
     - script_select_review
-  - 3.2.2
+  - 3.2.2 (A)
     // Potential Violation
 
     - form_interaction_review
@@ -188,7 +190,7 @@ Kategorien:
 
 - Coding Standards
 
-  - 1.3.1
+  - 1.3.1 (A)
     // Violation
 
     - input_checkboxes_grouped
@@ -225,10 +227,10 @@ Kategorien:
     - select_options_grouped
     - table_layout_linearized
 
-  - 1.3.5
+  - 1.3.5 (AA)
     // Violation
     - input_autocomplete_valid
-  - 4.1.2
+  - 4.1.2 (A)
     // Violation
 
     - combobox_popup_reference
@@ -271,15 +273,17 @@ Kategorien:
     - canvas_content_described
 
 - Color Contrast
-  - 1.4.3
+
+  - 1.4.3 (AA)
     // Violation
     - text_contrast_sufficient
+
 - Input Assistance
 
-  - 1.4.2
+  - 1.4.2 (A)
     // Potential Violation
     - media_autostart_controllable
-  - 1.4.4
+  - 1.4.4 (AA)
     // Potential Violation
 
     - style_viewport_resizable
@@ -288,26 +292,26 @@ Kategorien:
 
     - meta_viewport_zoomable
 
-  - 2.5.3
+  - 2.5.3 (A)
     // Violation
     - label_name_visible
-  - 2.5.7
+  - 2.5.7 (AA)
     // Potential Violation
     - draggable_alternative_exists
-  - 2.5.8
+  - 2.5.8 (AA)
     // Violation
     - target_spacing_sufficient
-  - 3.1.1
+  - 3.1.1 (A)
     // Violation
     - html_lang_exists
     - html_lang_valid
-  - 3.1.2
+  - 3.1.2 (AA)
     // Violation
     - element_lang_valid
-  - 3.3.1
+  - 3.3.1 (A)
     // Violation
     - error_message_exists
-  - 3.3.2
+  - 3.3.2 (A)
     // Violation
 
     - fieldset_label_valid
@@ -325,7 +329,7 @@ Kategorien:
 
 - Keyboard Operability
 
-  - 2.1.1
+  - 2.1.1 (A)
     // Violation
 
     - aria_activedescendant_tabindex_valid
@@ -345,6 +349,6 @@ Kategorien:
 
     - element_mouseevent_keyboard
 
-  - 2.1.2
+  - 2.1.2 (A)
     // Recommendation
     - download_keyboard_controllable
