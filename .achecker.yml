@@ -61,11 +61,11 @@ outputFolder: .accessibility-checker/results
 
 # Optional - Should the timestamp be included in the filename of the reports?
 # Default: true
-outputFilenameTimestamp: true
+outputFilenameTimestamp: false
 
 # optional - Where the baseline results should be loaded from
 # Default: baselines
-baselineFolder: test/baselines
+baselineFolder: .accessibility-checker/test/baselines
 
 # optional - Where the tool can read/write cached files (ace-node.js / archive.json)
 # Default: `${os.tmpdir()}/accessibility-checker/`
