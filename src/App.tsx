@@ -10,60 +10,6 @@ import {
   YAxis,
 } from "recharts";
 
-const renderTestChart = () => {
-  const data = [
-    {
-      name: "Page A",
-      violations: 400,
-      potentialViolations: 350,
-    },
-    {
-      name: "Page B",
-      violations: 500,
-      potentialViolations: 550,
-    },
-    {
-      name: "Page C",
-      violations: 300,
-      potentialViolations: 230,
-    },
-    {
-      name: "Page D",
-      violations: 425,
-      potentialViolations: 375,
-    },
-  ];
-  return (
-    <BarChart
-      width={500}
-      height={300}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Bar
-        dataKey="violations"
-        fill="red"
-        activeBar={<Rectangle fill="red" stroke="orange" />}
-      />
-      <Bar
-        dataKey="potentialViolations"
-        fill="blue"
-        activeBar={<Rectangle fill="blue" stroke="lightblue" />}
-      />
-    </BarChart>
-  );
-};
-
 const copyToClipboard = async (elementId: string) => {
   try {
     const node = document.getElementById(elementId);
@@ -92,7 +38,7 @@ function App() {
 
   const handleCheckAccessibility = async () => {
     setFormLoading(true);
-    const response = await fetch("/api/achecker", {
+    const response = await fetch("/api/accessibility-checker", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,7 +52,7 @@ function App() {
 
   const handleCrawlWebsiteUrls = async () => {
     setFormLoading(true);
-    const response = await fetch("/api/crawler", {
+    const response = await fetch("/api/url-crawler", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -148,7 +94,7 @@ function App() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <div className="flex justify-between">
+          <div className="flex items-center justify-between">
             <h2>Accessibility Results</h2>
             <div className="flex gap-2">
               <button onClick={() => setAcsResults(null)}>Clear</button>
@@ -168,7 +114,7 @@ function App() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <div className="flex justify-between">
+          <div className="flex items-center justify-between">
             <h2>Website Urls</h2>
             <div className="flex gap-2">
               <button onClick={() => setWebsiteUrls([])}>Clear</button>
@@ -187,7 +133,57 @@ function App() {
           )}
         </div>
       </div>
-      <div>{renderTestChart()}</div>
+      <div className="flex flex-col gap-4">
+        <h2>Test Chart (Probably suitable for reporting)</h2>
+        <BarChart
+          width={500}
+          height={300}
+          data={[
+            {
+              name: "Page A",
+              violations: 400,
+              potentialViolations: 350,
+            },
+            {
+              name: "Page B",
+              violations: 500,
+              potentialViolations: 550,
+            },
+            {
+              name: "Page C",
+              violations: 300,
+              potentialViolations: 230,
+            },
+            {
+              name: "Page D",
+              violations: 425,
+              potentialViolations: 375,
+            },
+          ]}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar
+            dataKey="violations"
+            fill="red"
+            activeBar={<Rectangle fill="red" stroke="orange" />}
+          />
+          <Bar
+            dataKey="potentialViolations"
+            fill="blue"
+            activeBar={<Rectangle fill="blue" stroke="lightblue" />}
+          />
+        </BarChart>
+      </div>
     </div>
   );
 }
