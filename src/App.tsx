@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { FetchedResultsContainer } from "./components/FetchedResultsContainer";
 import { TestChartForReporting } from "./components/TestChartForReporting";
+import { ReportResult } from "accessibility-checker/lib/api/IChecker";
 
 function App() {
   const [urlInput, setUrlInput] = useState("https://www.devk.de/");
   const [formLoading, setFormLoading] = useState(false);
-  const [acsResults, setAcsResults] = useState<unknown | null>(null);
+  const [accessibilityCheckerResults, setAccessibilityCheckerResults] =
+    useState<ReportResult | null>(null);
   const [websiteUrls, setWebsiteUrls] = useState<string[]>([]);
 
   const handleCheckAccessibility = async () => {
-    let data: unknown | null = null;
+    let data: ReportResult | null = null;
     setFormLoading(true);
 
     try {
@@ -27,7 +29,7 @@ function App() {
     }
 
     setFormLoading(false);
-    setAcsResults(data);
+    setAccessibilityCheckerResults(data);
   };
 
   const handleCrawlWebsiteUrls = async () => {
@@ -85,8 +87,8 @@ function App() {
 
         <FetchedResultsContainer
           id="acs-results"
-          results={acsResults}
-          handleClearResults={() => setAcsResults(null)}
+          results={accessibilityCheckerResults}
+          handleClearResults={() => setAccessibilityCheckerResults(null)}
         />
 
         <FetchedResultsContainer

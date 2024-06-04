@@ -1,4 +1,4 @@
-import * as aChecker from "accessibility-checker";
+import * as accessibilityChecker from "accessibility-checker";
 import { Request, Response } from "express";
 import validateUrlParamAndReturnError from "../utils/validateUrlParamAndReturnError";
 
@@ -13,8 +13,8 @@ export default async function accessibilityCheckerHandler(
     return res.status(400).send({ error: validationError });
   }
 
-  aChecker.getCompliance(url, url, (results) => {
-    aChecker.close();
+  accessibilityChecker.getCompliance(url, url, (results) => {
+    accessibilityChecker.close();
     res.send({ results });
   });
 }
