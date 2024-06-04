@@ -8,7 +8,7 @@ html {
 }
 
 #root {
-  @apply size-full flex flex-col w-full max-w-screen-2xl p-10;
+  @apply size-full flex flex-col max-w-screen-2xl p-10 mx-auto items-center;
 }
 
 input {
@@ -20,5 +20,5 @@ button {
 }
 
 pre {
-  @apply bg-gray-800 text-white font-mono p-4 rounded max-w-4xl max-h-[80vh] overflow-x-auto;
+  @apply bg-gray-800 text-left text-white font-mono p-4 rounded w-full max-h-[80vh] overflow-x-auto;
 }

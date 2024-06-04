@@ -55,8 +55,8 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-6 w-full">
+      <div className="flex flex-col items-center gap-4">
         <input
           className="disabled:opacity-50 disabled:cursor-not-allowed"
           type="text"
