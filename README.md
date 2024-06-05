@@ -40,7 +40,7 @@ Now you're good to go.
 **Note, if you're a developer:**
 When saving code changes applying to files in the
 
-- _server_ folder, the Backend server will automatically restart.
-- _src_ folder, the Frontend server will automatically perform a hot module reload (Reloading the browser page but also keeping the state of the application like user inputs or loaded data).
+- _backend_ folder, the Backend server will automatically restart.
+- _frontend_ folder, the Frontend server will automatically perform a hot module reload (Reloading the browser page but also keeping the state of the application like user inputs or loaded data).
 
 If you want to know more about how this works and what other scripts are available, have a look at `scripts` part in the [package.json](package.json).

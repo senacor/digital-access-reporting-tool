@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  from: "./src/index.css",
+  from: "./frontend/index.css",
   to: "./public/styles.css",
   mode: "jit",
-  content: ["./src/**/*.html", "./src/**/*.tsx"],
+  content: ["./frontend/**/*.html", "./frontend/**/*.tsx"],
   darkMode: "class",
   theme: {
     extend: {},

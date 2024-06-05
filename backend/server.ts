@@ -11,4 +11,6 @@ app.get("/", (_, res) => res.send({ hello: "world" }));
 app.post("/accessibility-checker", accessibilityCheckerHandler);
 app.post("/url-crawler", urlCrawlerHandler);
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () =>
+  console.log(`Backend server is running on port ${port}`),
+);
