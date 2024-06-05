@@ -1,0 +1,6 @@
+# folders
+public
+node_modules
+
+# files
+*.html
