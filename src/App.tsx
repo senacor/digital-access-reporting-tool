@@ -55,7 +55,8 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full">
+    <div className="flex flex-col w-full gap-6">
+      <h1>Digital Access Reporting Tool</h1>
       <div className="flex flex-col items-center gap-4">
         <input
           className="disabled:opacity-50 disabled:cursor-not-allowed"
