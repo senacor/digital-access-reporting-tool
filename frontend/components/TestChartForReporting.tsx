@@ -1,14 +1,5 @@
-import { FC } from "react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  Rectangle,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { FC } from "react"
+import { Bar, BarChart, CartesianGrid, Legend, Rectangle, Tooltip, XAxis, YAxis } from "recharts"
 
 export const TestChartForReporting: FC = () => {
   return (
@@ -51,11 +42,7 @@ export const TestChartForReporting: FC = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar
-          dataKey="violations"
-          fill="red"
-          activeBar={<Rectangle fill="red" stroke="orange" />}
-        />
+        <Bar dataKey="violations" fill="red" activeBar={<Rectangle fill="red" stroke="orange" />} />
         <Bar
           dataKey="potentialViolations"
           fill="blue"
@@ -63,5 +50,5 @@ export const TestChartForReporting: FC = () => {
         />
       </BarChart>
     </div>
-  );
-};
+  )
+}

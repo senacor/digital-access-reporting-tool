@@ -1,13 +1,13 @@
-import getUrlOrNull from "./getUrlOrNull";
+import getUrlOrNull from "./getUrlOrNull"
 
 export default function validateUrlParamAndReturnError(url: string) {
   if (!url) {
-    return "URL is required";
+    return "URL is required"
   }
 
   if (!getUrlOrNull(url)) {
-    return "URL not valid";
+    return "URL not valid"
   }
 
-  return null;
+  return null
 }

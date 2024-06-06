@@ -1,26 +1,24 @@
-import { IBaselineReport as AccessibilityCheckerReport } from "accessibility-checker/lib/common/engine/IReport";
+import { IBaselineReport as AccessibilityCheckerReport } from "accessibility-checker/lib/common/engine/IReport"
 
 export type AggregatedReport = {
-  url: string; // "http://www.example.com"
+  url: string // "http://www.example.com"
   summary: {
-    total: number;
-    totalA: number;
-    totalAA: number;
-    elementsWithNoViolations: number; // 0.93 -> 93%
-  };
+    total: number
+    totalA: number
+    totalAA: number
+    elementsWithNoViolations: number // 0.93 -> 93%
+  }
   categories: {
-    textAlternatives: number;
-    logicalNavigationAndIntuitiveness: number;
-    codingStandards: number;
-    colorContrast: number;
-    inputAssistance: number;
-    keyboardOperability: number;
-  };
-};
+    textAlternatives: number
+    logicalNavigationAndIntuitiveness: number
+    codingStandards: number
+    colorContrast: number
+    inputAssistance: number
+    keyboardOperability: number
+  }
+}
 
-export function aggregateAccessibilityCheckerReport(
-  report: AccessibilityCheckerReport,
-) {
+export function aggregateAccessibilityCheckerReport(report: AccessibilityCheckerReport) {
   // 🚧 WIP: aggregate the missing values
 
   return {
@@ -42,7 +40,7 @@ export function aggregateAccessibilityCheckerReport(
       inputAssistance: 0,
       keyboardOperability: 0,
     },
-  } satisfies AggregatedReport;
+  } satisfies AggregatedReport
 }
 
 /**
@@ -55,9 +53,8 @@ function calculatePercentageOfElementsWithNoViolations(
   elementsWithViolations: number,
 ) {
   // e.g.: (10 items * 100%) / 200 total items = 5%
-  const percentageOfElementsWithViolations =
-    (elementsWithViolations * 100) / totalElements;
+  const percentageOfElementsWithViolations = (elementsWithViolations * 100) / totalElements
 
   // e.g.: (100% - 5%) / 100 = 0.95;
-  return (100 - percentageOfElementsWithViolations) / 100;
+  return (100 - percentageOfElementsWithViolations) / 100
 }

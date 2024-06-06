@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { FetchedResultsContainer } from "./components/FetchedResultsContainer";
-import { TestChartForReporting } from "./components/TestChartForReporting";
-import { ReportResult } from "accessibility-checker/lib/api/IChecker";
+import { useState } from "react"
+import { FetchedResultsContainer } from "./components/FetchedResultsContainer"
+import { TestChartForReporting } from "./components/TestChartForReporting"
+import { ReportResult } from "accessibility-checker/lib/api/IChecker"
 
 function App() {
-  const [urlInput, setUrlInput] = useState("https://www.devk.de/");
-  const [formLoading, setFormLoading] = useState(false);
+  const [urlInput, setUrlInput] = useState("https://www.devk.de/")
+  const [formLoading, setFormLoading] = useState(false)
   const [accessibilityCheckerResults, setAccessibilityCheckerResults] =
-    useState<ReportResult | null>(null);
-  const [websiteUrls, setWebsiteUrls] = useState<string[]>([]);
+    useState<ReportResult | null>(null)
+  const [websiteUrls, setWebsiteUrls] = useState<string[]>([])
 
   const handleCheckAccessibility = async () => {
-    let data: ReportResult | null = null;
-    setFormLoading(true);
+    let data: ReportResult | null = null
+    setFormLoading(true)
 
     try {
       const response = await fetch("/api/accessibility-checker", {
@@ -21,20 +21,20 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ url: urlInput }),
-      });
+      })
 
-      data = await response.json();
+      data = await response.json()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
 
-    setFormLoading(false);
-    setAccessibilityCheckerResults(data);
-  };
+    setFormLoading(false)
+    setAccessibilityCheckerResults(data)
+  }
 
   const handleCrawlWebsiteUrls = async () => {
-    let data: string[] = [];
-    setFormLoading(true);
+    let data: string[] = []
+    setFormLoading(true)
 
     try {
       const response = await fetch("/api/url-crawler", {
@@ -43,16 +43,16 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ url: urlInput }),
-      });
+      })
 
-      data = await response.json();
+      data = await response.json()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
 
-    setFormLoading(false);
-    setWebsiteUrls(data);
-  };
+    setFormLoading(false)
+    setWebsiteUrls(data)
+  }
 
   return (
     <div className="flex flex-col w-full gap-6">
@@ -101,7 +101,7 @@ function App() {
 
       <TestChartForReporting />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
