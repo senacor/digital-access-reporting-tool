@@ -1,6 +1,7 @@
 import * as accessibilityChecker from "accessibility-checker"
 import { Request, Response } from "express"
 import validateUrlParamAndReturnError from "../utils/validateUrlParamAndReturnError"
+import { aggregateAccessibilityCheckerReport } from "../utils/report-aggregation/aggregateAccessibilityCheckerReport"
 
 export default async function accessibilityCheckerHandler(req: Request, res: Response) {
   const url = req.body.url
@@ -10,8 +11,17 @@ export default async function accessibilityCheckerHandler(req: Request, res: Res
     return res.status(400).send({ error: validationError })
   }
 
-  accessibilityChecker.getCompliance(url, url, (results) => {
+  accessibilityChecker.getCompliance(url, url, (result) => {
     accessibilityChecker.close()
-    res.send({ results })
+
+    // TODO: Probably rather create a check with Zod or something similar
+    // https://zod.dev/
+    const isReportError = "details" in result
+    if (isReportError) {
+      return res.status(500).send({ error: result })
+    }
+
+    const aggregatedResult = aggregateAccessibilityCheckerReport(result)
+    return res.send({ result: aggregatedResult })
   })
 }
