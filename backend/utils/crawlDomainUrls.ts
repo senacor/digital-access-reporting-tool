@@ -1,28 +1,34 @@
 import * as cheerio from "cheerio"
 import fetch, { FetchError, Response } from "node-fetch"
-import getUrlOrNull from "./getUrlOrNull"
+import { getValidUrlOrNull } from "./urlValidation"
 
 export default async function crawlDomainUrls(url: string) {
   const urls = new Set<string>()
+  const urlsWithServerError = new Set<string>()
 
-  await crawlDomainUrlsRecursively(url, urls)
+  await crawlDomainUrlsRecursively(url, urls, urlsWithServerError)
 
   return Array.from(urls)
 }
 
-async function crawlDomainUrlsRecursively(url: string, crawledUrls: Set<string>) {
-  if (crawledUrls.has(url)) {
+async function crawlDomainUrlsRecursively(
+  url: string,
+  crawledUrls: Set<string>,
+  urlsWithServerError: Set<string>,
+) {
+  if (crawledUrls.has(url) || urlsWithServerError.has(url)) {
+    return
+  }
+
+  const html = await fetchHtmlFromUrl(url)
+  if (!html) {
+    urlsWithServerError.add(url)
     return
   }
 
   crawledUrls.add(url)
 
-  const html = await fetchHtmlFromUrl(url)
-  if (!html) {
-    return
-  }
-
-  const urls = await findSameDomainUrls(html, url)
+  const urls = await findSameDomainUrls(html, url, crawledUrls, urlsWithServerError)
   const urlsArray = Array.from(urls)
 
   for (let i = 0; i < urlsArray.length; i += 5) {
@@ -30,7 +36,7 @@ async function crawlDomainUrlsRecursively(url: string, crawledUrls: Set<string>)
 
     await Promise.all(
       urlsToCrawl.map(async (url) => {
-        await crawlDomainUrlsRecursively(url, crawledUrls)
+        await crawlDomainUrlsRecursively(url, crawledUrls, urlsWithServerError)
       }),
     )
   }
@@ -40,7 +46,11 @@ const fetchHtmlFromUrl = async (url: string) => {
   let response: Response | null = null
 
   try {
-    response = await fetch(url)
+    // Limit the amount of following redirects to 2 to speed up the crawling process.
+    response = await fetch(url, {
+      redirect: "follow",
+      follow: 2,
+    })
 
     if (!response.ok) {
       console.error(`Failed to fetch ${url}: ${response.status}`)
@@ -60,8 +70,13 @@ const fetchHtmlFromUrl = async (url: string) => {
   }
 }
 
-const findSameDomainUrls = async (html: string, htmlUrl: string) => {
-  const urlsFoundOnSite = new Set<string>()
+const findSameDomainUrls = async (
+  html: string,
+  htmlUrl: string,
+  crawledUrls: Set<string>,
+  urlsWithServerError: Set<string>,
+) => {
+  const urlsFoundOnPage = new Set<string>()
   const $ = cheerio.load(html)
 
   $("a").each((_, link) => {
@@ -70,19 +85,19 @@ const findSameDomainUrls = async (html: string, htmlUrl: string) => {
       return
     }
 
-    // If the href is a relative URL, we skip some common prefixes.
+    // If the href is a relative URL, skip some common prefixes.
     if (excludedPrefixes.some((prefix) => href?.startsWith(prefix))) {
       return
     }
 
-    // We already excluded the anchor as a prefix.
-    // Now we check if the href contains an anchor and simply use the URL without it
+    // The anchor as a prefix was already excluded before.
+    // Check if the href contains an anchor and simply use the URL without it
+    // to avoid crawling the same page multiple times.
     if (href.includes("#")) {
       href = href.split("#")[0]
     }
 
     // For simplicity reasons we remove query parameters to avoid crawling the same page multiple times.
-    // This might lead to some missing pages but is a good trade-off to avoid duplicate pages.
     if (href.includes("?")) {
       href = href.split("?")[0]
     }
@@ -99,21 +114,22 @@ const findSameDomainUrls = async (html: string, htmlUrl: string) => {
       return
     }
 
-    const url = getUrlOrNull(href, htmlUrl)
+    const url = getValidUrlOrNull(href, htmlUrl)
     if (!url) {
       console.log("Invalid URL found:", href)
       return
     }
 
     const isSameDomain = url.hostname === new URL(htmlUrl).hostname
-    const hasNotBeenFoundYet = !urlsFoundOnSite.has(url.href)
+    const hasAlreadyBeenFound = urlsFoundOnPage.has(url.href) || crawledUrls.has(url.href)
+    const hasAlreadyProducedAnError = urlsWithServerError.has(url.href)
 
-    if (isSameDomain && hasNotBeenFoundYet) {
-      urlsFoundOnSite.add(url.href)
+    if (isSameDomain && !hasAlreadyBeenFound && !hasAlreadyProducedAnError) {
+      urlsFoundOnPage.add(url.href)
     }
   })
 
-  return urlsFoundOnSite
+  return urlsFoundOnPage
 }
 
 const excludedPrefixes = [
@@ -133,4 +149,21 @@ const fileExtensions = [
   ".rar",
   ".tar",
   ".ico",
+  ".vcf",
+  ".ics",
+  ".csv",
+  ".doc",
+  ".docx",
+  ".xls",
+  ".xlsx",
+  ".ppt",
+  ".pptx",
+  ".mp3",
+  ".mp4",
+  ".avi",
+  ".mov",
+  ".wmv",
+  ".flv",
+  ".wav",
+  ".xml",
 ]

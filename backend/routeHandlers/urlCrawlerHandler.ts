@@ -1,16 +1,16 @@
 import { Request, Response } from "express"
-import validateUrlParamAndReturnError from "../utils/validateUrlParamAndReturnError"
 import crawlDomainUrls from "../utils/crawlDomainUrls"
+import { validateAndReturnUrlOrError } from "../utils/urlValidation"
 
 export default async function urlCrawlerHandler(req: Request, res: Response) {
-  const url = req.body.url
-  const validationError = validateUrlParamAndReturnError(req.body.url)
+  const urlParam: string | undefined = req.body.url
+  const urlOrError = validateAndReturnUrlOrError(urlParam)
 
-  if (validationError) {
-    return res.status(400).send({ error: validationError })
+  if (urlOrError.error || !urlOrError.url) {
+    return res.status(400).send({ error: urlOrError.error, url: urlParam })
   }
 
-  crawlDomainUrls(url).then((urls) => {
+  crawlDomainUrls(urlOrError.url.href).then((urls) => {
     res.send({ urls })
   })
 }
