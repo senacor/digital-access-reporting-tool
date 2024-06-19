@@ -22,5 +22,11 @@ export function validateAndReturnUrlOrError(url?: string) {
     }
   }
 
+  if (validatedUrl.protocol !== "https:") {
+    return {
+      error: "URL must be HTTPS",
+    }
+  }
+
   return { url: validatedUrl }
 }

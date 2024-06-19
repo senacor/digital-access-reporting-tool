@@ -39,6 +39,9 @@ async function crawlDomainUrlsRecursively(
         await crawlDomainUrlsRecursively(url, crawledUrls, urlsWithServerError)
       }),
     )
+
+    // wait for 250-750ms to avoid getting blocked by the server
+    await new Promise((resolve) => setTimeout(resolve, Math.random() * 250 + 500))
   }
 }
 
@@ -110,7 +113,10 @@ const findSameDomainUrls = async (
     }
 
     // We want to avoid to crawl files like images, PDFs, etc.
-    if (fileExtensions.some((ext) => href.endsWith(ext))) {
+    if (
+      fileExtensionsLowerCase.some((ext) => href.endsWith(ext)) ||
+      fileExtensionsUppercase.some((ext) => href.endsWith(ext))
+    ) {
       return
     }
 
@@ -138,7 +144,7 @@ const excludedPrefixes = [
   "tel:", // Usually followed by a phone number
 ]
 
-const fileExtensions = [
+const fileExtensionsLowerCase = [
   ".pdf",
   ".jpg",
   ".jpeg",
@@ -167,3 +173,5 @@ const fileExtensions = [
   ".wav",
   ".xml",
 ]
+
+const fileExtensionsUppercase = fileExtensionsLowerCase.map((ext) => ext.toUpperCase())
