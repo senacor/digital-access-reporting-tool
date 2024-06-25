@@ -8,7 +8,7 @@ export function getValidUrlOrNull(url: string, baseUrl?: string) {
   }
 }
 
-export function validateAndReturnUrlOrError(url?: string) {
+export function getValidatedUrlOrError(url?: string) {
   if (!url) {
     return {
       error: "URL is required",

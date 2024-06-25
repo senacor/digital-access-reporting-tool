@@ -1,6 +1,7 @@
+import { AccessibilityCheckerReport } from "../types"
 import { calculateElementsWithNoViolationsPercentage } from "./calculateElementsWithNoViolationsPercentage"
 import { createAggregatedSinglePageReport } from "./createAggregatedSinglePageReport"
-import { CategoryCount, LevelCount, MultiPageReport, AccessibilityCheckerReport } from "./types"
+import { CategoryCount, LevelCount, MultiPageReport } from "./types"
 
 export const createAggregatedMultiPageReport = (
   url: URL,
