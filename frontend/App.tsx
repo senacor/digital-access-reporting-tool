@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { FetchedResultsContainer } from "./components/FetchedResultsContainer"
-import { TestChartForReporting } from "./components/TestChartForReporting"
 import { ReportResult } from "accessibility-checker/lib/api/IChecker"
 
 function App() {
@@ -98,8 +97,6 @@ function App() {
           handleClearResults={() => setWebsiteUrls([])}
         />
       </div>
-
-      <TestChartForReporting />
     </div>
   )
 }

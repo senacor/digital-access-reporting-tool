@@ -25,7 +25,6 @@
     "playwright": "^1.45.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "recharts": "^2.12.6",
     "winston": "^3.13.0"
   },
   "devDependencies": {
