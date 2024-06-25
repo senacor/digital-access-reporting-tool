@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { getValidatedUrlOrError } from "../utils/urlValidation"
 import generateAggregatedReport from "../utils/report-generation/generateAggregatedReport"
+import takeScreenshot from "../utils/takeScreenshot"
 
 export default async function accessibilityCheckerHandler(req: Request, res: Response) {
   // We want to have a big timeout for this route, because crawling all domain urls
@@ -15,6 +16,11 @@ export default async function accessibilityCheckerHandler(req: Request, res: Res
 
   if (error || !url) {
     return res.status(400).send({ error, url, urlParam })
+  }
+
+  const screenshotTaken = await takeScreenshot(url)
+  if (!screenshotTaken) {
+    return res.status(500).send({ error: "Failed to create screenshot for URL " + url.href })
   }
 
   const { aggregatedReport } = await generateAggregatedReport(url)

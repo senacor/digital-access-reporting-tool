@@ -1,6 +1,9 @@
 # Accessibility checker
 /.accessibility-checker
 
+# Created screenshots
+/screenshots/*.png 
+
 # Environment variables
 .env
 
