@@ -12,7 +12,15 @@ html {
 }
 
 h1 {
-  @apply text-green-900 text-4xl font-bold text-center;
+  @apply text-green-900 text-4xl font-bold text-center underline w-full;
+}
+
+h2 {
+  @apply text-green-900 text-2xl font-bold text-center w-full;
+}
+
+h3 {
+  @apply text-green-900 text-xl w-full;
 }
 
 input {

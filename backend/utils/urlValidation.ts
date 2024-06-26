@@ -18,13 +18,13 @@ export function getValidatedUrlOrError(url?: string) {
   const validatedUrl = getValidUrlOrNull(url)
   if (!validatedUrl) {
     return {
-      error: "URL not valid",
+      error: "URL is not valid",
     }
   }
 
   if (validatedUrl.protocol !== "https:") {
     return {
-      error: "URL must be HTTPS",
+      error: "URL must start with https://",
     }
   }
 

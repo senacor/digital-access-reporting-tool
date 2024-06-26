@@ -3,7 +3,7 @@ import { getValidatedUrlOrError } from "../utils/urlValidation"
 import generateAggregatedReport from "../utils/report-generation/generateAggregatedReport"
 import takeScreenshot from "../utils/takeScreenshot"
 
-export default async function accessibilityCheckerHandler(req: Request, res: Response) {
+export default async function createAccessibilityReportHandler(req: Request, res: Response) {
   // We want to have a big timeout for this route, because crawling all domain urls
   // and checking them with the accessibility checker can take a long time.
   // 1000ms * 60 * 60 * 1.5 = 5400000ms = 1.5 hours
@@ -24,5 +24,5 @@ export default async function accessibilityCheckerHandler(req: Request, res: Res
   }
 
   const { aggregatedReport } = await generateAggregatedReport(url)
-  return res.send({ result: aggregatedReport })
+  return res.send({ report: aggregatedReport })
 }
