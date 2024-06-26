@@ -18,11 +18,11 @@ export default async function createAccessibilityReportHandler(req: Request, res
     return res.status(400).send({ error, url, urlParam })
   }
 
-  const screenshotTaken = await takeScreenshot(url)
-  if (!screenshotTaken) {
+  const screenshotPath = await takeScreenshot(url)
+  if (!screenshotPath) {
     return res.status(500).send({ error: "Failed to create screenshot for URL " + url.href })
   }
 
   const { aggregatedReport } = await generateAggregatedReport(url)
-  return res.send({ report: aggregatedReport })
+  return res.send({ screenshotPath, report: aggregatedReport })
 }

@@ -2,14 +2,18 @@ import { FC, useState } from "react"
 import { FetchedResultsContainer } from "../components/FetchedResultsContainer"
 import { MultiPageReport } from "../../backend/utils/report-generation/report-aggregation/types"
 
+type CreateAccessibilityReportResult = {
+  report: MultiPageReport
+  screenshotPath: string
+}
+
 export const CheckAccessibilityForm: FC = () => {
   const [url, setUrl] = useState("")
   const [error, setError] = useState("")
   const [formLoading, setFormLoading] = useState(false)
-  const [accessibilityReport, setAccessibilityReport] = useState<MultiPageReport | null>(null)
+  const [results, setResults] = useState<CreateAccessibilityReportResult | null>(null)
 
-  const handleCheckAccessibility = async () => {
-    let report: MultiPageReport | null = null
+  const handleCreateAccessibilityReport = async () => {
     setFormLoading(true)
 
     try {
@@ -24,17 +28,22 @@ export const CheckAccessibilityForm: FC = () => {
       if (!response.ok) {
         const result: { error: string } = await response.json()
         setError(result.error)
-      } else {
-        const result: { report: MultiPageReport } = await response.json()
-        report = result.report
+        setResults(null)
+        setFormLoading(false)
+        return
       }
+
+      const result: CreateAccessibilityReportResult = await response.json()
+
+      setResults(result)
+      setFormLoading(false)
     } catch (error) {
       console.error(error)
-      setError("Failed to create accessibility report")
-    }
 
-    setAccessibilityReport(report)
-    setFormLoading(false)
+      setError("Failed to create accessibility report")
+      setResults(null)
+      setFormLoading(false)
+    }
   }
 
   return (
@@ -52,7 +61,7 @@ export const CheckAccessibilityForm: FC = () => {
             setError("")
             setUrl(e.target.value)
           }}
-          onKeyDown={(e) => e.key === "Enter" && handleCheckAccessibility()}
+          onKeyDown={(e) => e.key === "Enter" && handleCreateAccessibilityReport()}
           disabled={formLoading}
         />
         {error && <span className="w-full px-1 text-sm text-red-600">{error}</span>}
@@ -60,7 +69,7 @@ export const CheckAccessibilityForm: FC = () => {
 
       <button
         className="disabled:opacity-50 disabled:cursor-not-allowed"
-        onClick={handleCheckAccessibility}
+        onClick={handleCreateAccessibilityReport}
         disabled={formLoading}
       >
         Create report
@@ -68,8 +77,8 @@ export const CheckAccessibilityForm: FC = () => {
 
       <FetchedResultsContainer
         id="acs-results"
-        results={accessibilityReport}
-        handleClearResults={() => setAccessibilityReport(null)}
+        results={results}
+        handleClearResults={() => setResults(null)}
       />
     </div>
   )
