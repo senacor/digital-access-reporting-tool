@@ -17,7 +17,7 @@ export const FetchedResultsContainer: FC<FetchedResultsContainerProps> = ({
   return (
     <div className="flex flex-col items-center w-full gap-2">
       <div className="flex items-center justify-between w-full">
-        <h3>Accessibility Results</h3>
+        <h3>Results</h3>
         <div className="flex gap-2">
           <button onClick={handleClear}>Clear</button>
           <button onClick={() => copyToClipboard(id)}>Copy</button>
