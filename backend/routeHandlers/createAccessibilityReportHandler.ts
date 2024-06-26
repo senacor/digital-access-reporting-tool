@@ -2,27 +2,33 @@ import { Request, Response } from "express"
 import { getValidatedUrlOrError } from "../utils/urlValidation"
 import generateAggregatedReport from "../utils/report-generation/generateAggregatedReport"
 import takeScreenshot from "../utils/takeScreenshot"
+import { FormValidationError } from "./types"
+import { MultiPageReport } from "../utils/report-generation/report-aggregation/types"
+
+export type CreateAccessibilityReportResult = {
+  report: MultiPageReport
+  screenshotPath: string
+}
 
 export default async function createAccessibilityReportHandler(req: Request, res: Response) {
-  // We want to have a big timeout for this route, because crawling all domain urls
-  // and checking them with the accessibility checker can take a long time.
-  // 1000ms * 60 * 60 * 1.5 = 5400000ms = 1.5 hours
-  req.setTimeout(5400000, () => {
-    res.status(408).send({ error: "Request timed out" })
-  })
-
+  const formValidationErrors: FormValidationError[] = []
   const urlParam: string | undefined = req.body.url
-  const { url, error } = getValidatedUrlOrError(urlParam)
+  const urlValidation = getValidatedUrlOrError(urlParam)
 
-  if (error || !url) {
-    return res.status(400).send({ error, url, urlParam })
+  if (urlValidation.error || !urlValidation.url) {
+    formValidationErrors.push({ key: "url", message: urlValidation.error })
+    return res.status(400).send({ formValidationErrors })
   }
 
-  const screenshotPath = await takeScreenshot(url)
+  const screenshotPath = await takeScreenshot(urlValidation.url)
   if (!screenshotPath) {
-    return res.status(500).send({ error: "Failed to create screenshot for URL " + url.href })
+    return res
+      .status(500)
+      .send({ error: "Failed to create screenshot for URL " + urlValidation.url.href })
   }
 
-  const { aggregatedReport } = await generateAggregatedReport(url)
-  return res.send({ screenshotPath, report: aggregatedReport })
+  const { aggregatedReport } = await generateAggregatedReport(urlValidation.url)
+  const result = { screenshotPath, report: aggregatedReport }
+
+  return res.send(result)
 }
