@@ -1,28 +1,29 @@
 import { FC, useState } from "react"
 import { FetchedResultsContainer } from "../components/FetchedResultsContainer"
-import { FormValidationError } from "../../backend/routeHandlers/types"
-import { CreateAccessibilityReportResult } from "../../backend/routeHandlers/createAccessibilityReportHandler"
+import {
+  CreateAccessibilityReportRequestBody,
+  CreateAccessibilityReportResponseBody,
+} from "../../backend/routeHandlers/createAccessibilityReportHandler"
+import { mapResponseFormErrorsToFormErrors } from "./mapResponseFormErrorsToFormErrors"
 
-type FormValues = {
-  url: string
-}
-type FormKey = keyof FormValues
-type FormErrors = Record<FormKey, string>
+type FormValues = CreateAccessibilityReportRequestBody
+type FormErrors = Record<keyof FormValues, string>
+type RequestResults = CreateAccessibilityReportResponseBody
 
-function createInitialFormValues(): FormValues {
-  return { url: "" }
+function createEmptyFormValues(): FormValues {
+  return { url: "", title: "" }
 }
-function createInitialFormErrors(): FormErrors {
-  return { url: "" }
+
+function createEmptyFormErrors(): FormErrors {
+  return { url: "", title: "" }
 }
-const formKeys = Object.keys(createInitialFormValues()) as FormKey[]
 
 export const CheckAccessibilityForm: FC = () => {
-  const [formValues, setFormValues] = useState(createInitialFormValues())
-  const [formErrors, setFormErrors] = useState(createInitialFormErrors())
+  const [formValues, setFormValues] = useState(createEmptyFormValues())
+  const [formErrors, setFormErrors] = useState(createEmptyFormErrors())
   const [generalFormError, setGeneralFormError] = useState("")
   const [formLoading, setFormLoading] = useState(false)
-  const [results, setResults] = useState<CreateAccessibilityReportResult | null>(null)
+  const [data, setData] = useState<RequestResults["data"]>(null)
 
   const handleCreateAccessibilityReport = async () => {
     setFormLoading(true)
@@ -36,37 +37,26 @@ export const CheckAccessibilityForm: FC = () => {
         body: JSON.stringify({ ...formValues }),
       })
 
-      if (!response.ok) {
-        const results: { formValidationErrors: FormValidationError[] } = await response.json()
-        const newFormErrors = results.formValidationErrors.reduce(
-          (formErrors, { key, message }) => {
-            const formKey = formKeys.find((formKey) => formKey === key)
-            if (formKey) {
-              formErrors[formKey] = message
-            }
+      const { data, formErrors, serverError }: RequestResults = await response.json()
 
-            return formErrors
-          },
-          createInitialFormErrors(),
-        )
-
-        setFormErrors(newFormErrors)
-        setResults(null)
-        setFormLoading(false)
-        return
+      if (serverError) {
+        setGeneralFormError(serverError.message)
       }
 
-      const result: CreateAccessibilityReportResult = await response.json()
+      if (formErrors) {
+        const newFormErrors = mapResponseFormErrorsToFormErrors(formErrors, createEmptyFormErrors())
+        setFormErrors(newFormErrors)
+      }
 
-      setResults(result)
-      setFormLoading(false)
+      setData(data)
     } catch (error) {
       console.error(error)
 
       setGeneralFormError("Failed to create accessibility report")
-      setResults(null)
-      setFormLoading(false)
+      setData(null)
     }
+
+    setFormLoading(false)
   }
 
   return (
@@ -93,6 +83,29 @@ export const CheckAccessibilityForm: FC = () => {
         )}
       </div>
 
+      <div
+        className={`flex flex-col gap-1 w-full max-w-96 group ${formErrors.title ? "error" : ""}`}
+      >
+        <input
+          className="max-w-96 disabled:opacity-50 disabled:cursor-not-allowed group-[.error]:shadow-sm group-[.error]:shadow-red-600"
+          type="text"
+          name="title"
+          placeholder="Some report title"
+          value={formValues.title}
+          onChange={(e) => {
+            setFormValues({ ...formValues, title: e.target.value })
+            setFormErrors({ ...formErrors, title: "" })
+            setGeneralFormError("")
+          }}
+          onKeyDown={(e) => e.key === "Enter" && handleCreateAccessibilityReport()}
+          disabled={formLoading}
+        />
+
+        {formErrors.title && (
+          <span className="w-full px-1 text-sm text-red-600">{formErrors.title}</span>
+        )}
+      </div>
+
       {generalFormError && (
         <span className="w-full px-2 py-4 font-bold text-center text-red-600 rounded-md shadow-md bg-red-100/50 max-w-96 shadow-red-600">
           {generalFormError}
@@ -109,8 +122,8 @@ export const CheckAccessibilityForm: FC = () => {
 
       <FetchedResultsContainer
         id="create-accessibility-report"
-        results={results}
-        handleClearResults={() => setResults(null)}
+        results={data}
+        handleClearResults={() => setData(null)}
       />
     </div>
   )

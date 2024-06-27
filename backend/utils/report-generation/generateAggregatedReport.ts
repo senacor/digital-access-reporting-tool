@@ -99,18 +99,17 @@ class ReportCreatorSet extends Set<string> {
     this.#queuedReportCreations.push(async () => {
       try {
         console.log(`Creating report for ${url} 📝`)
-        const result = await accessibilityChecker.getCompliance(url, url)
-        const report = result.report
+        const { report } = await accessibilityChecker.getCompliance(url, url)
 
-        // TODO: Probably rather create a check with Zod (https://zod.dev/) or something similar
+        // Sadly there's no better way to check if the report is an error
         const isReportError = "details" in report
-
         if (isReportError) {
           console.error(`Error in report for ${url}:`, report)
           this.#reportCallback(null)
-        } else {
-          this.#reportCallback(report)
+          return
         }
+
+        this.#reportCallback(report)
       } catch (error) {
         console.log(`Error for ${url}:`, error)
         this.#reportCallback(null)

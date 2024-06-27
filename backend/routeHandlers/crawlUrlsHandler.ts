@@ -1,24 +1,38 @@
 import { Request, Response } from "express"
 import crawlDomainUrls from "../utils/report-generation/crawlDomainUrls"
-import { getValidatedUrlOrError } from "../utils/urlValidation"
-import { FormValidationError } from "./types"
+import { getValidUrlOrNull } from "../utils/getValidUrlOrNull"
+import { ResponseBody } from "./utils/types"
+import { z } from "zod"
+import { urlSchema } from "./utils/schemas"
+import mapZodIssuesToFormValidationErrors from "./utils/mapZodIssuesToFormValidationErrors"
 
-export type CrawlWebsiteUrlsResult = {
-  urls: string[]
-}
+const requestBodySchema = z.object({
+  url: urlSchema,
+})
+
+type ReqBody = z.infer<typeof requestBodySchema>
+type Data = { urls: string[] }
+type ResBody = ResponseBody<Data, ReqBody>
+type FormErrors = NonNullable<ResBody["formErrors"]>
+type FormError = FormErrors[number]
+
+export type { ReqBody as CrawlUrlsRequestBody, ResBody as CrawlUrlsResponseBody }
 
 export default async function crawlUrlsHandler(req: Request, res: Response) {
-  const formValidationErrors: FormValidationError[] = []
-  const urlParam: string | undefined = req.body.url
-  const urlValidation = getValidatedUrlOrError(urlParam)
-
-  if (urlValidation.error || !urlValidation.url) {
-    formValidationErrors.push({ key: "url", message: urlValidation.error })
-    return res.status(400).send({ formValidationErrors })
+  const validatedBody = requestBodySchema.safeParse(req.body)
+  if (!validatedBody.success) {
+    const formErrors = mapZodIssuesToFormValidationErrors(validatedBody.error.issues)
+    return res.status(400).send({ data: null, formErrors, serverError: null })
   }
 
-  const urls = await crawlDomainUrls(urlValidation.url)
-  const result: CrawlWebsiteUrlsResult = { urls }
+  const url = getValidUrlOrNull(validatedBody.data.url)
+  if (!url) {
+    const formError: FormError = { key: "url", message: "URL is not valid" }
+    return res.status(400).send({ data: null, formErrors: [formError], serverError: null })
+  }
 
-  return res.send(result)
+  const urls = await crawlDomainUrls(url)
+  const data: Data = { urls }
+
+  return res.send({ data, formErrors: null, serverError: null })
 }

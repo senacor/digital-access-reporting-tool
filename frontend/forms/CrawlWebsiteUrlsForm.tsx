@@ -1,28 +1,28 @@
 import { FC, useState } from "react"
 import { FetchedResultsContainer } from "../components/FetchedResultsContainer"
-import { FormValidationError } from "../../backend/routeHandlers/types"
-import { CrawlWebsiteUrlsResult } from "../../backend/routeHandlers/crawlUrlsHandler"
+import {
+  CrawlUrlsRequestBody,
+  CrawlUrlsResponseBody,
+} from "../../backend/routeHandlers/crawlUrlsHandler"
+import { mapResponseFormErrorsToFormErrors } from "./mapResponseFormErrorsToFormErrors"
 
-type FormValues = {
-  url: string
-}
-type FormKey = keyof FormValues
-type FormErrors = Record<FormKey, string>
+type FormValues = CrawlUrlsRequestBody
+type FormErrors = Record<keyof FormValues, string>
+type RequestResults = CrawlUrlsResponseBody
 
-function createInitialFormValues(): FormValues {
+function createEmptyFormValues(): FormValues {
   return { url: "" }
 }
-function createInitialFormErrors(): FormErrors {
+function createEmptyFormErrors(): FormErrors {
   return { url: "" }
 }
-const formKeys = Object.keys(createInitialFormValues()) as FormKey[]
 
 export const CrawlWebsiteUrlsForm: FC = () => {
-  const [formValues, setFormValues] = useState(createInitialFormValues())
-  const [formErrors, setFormErrors] = useState(createInitialFormErrors())
+  const [formValues, setFormValues] = useState(createEmptyFormValues())
+  const [formErrors, setFormErrors] = useState(createEmptyFormErrors())
   const [generalFormError, setGeneralFormError] = useState("")
   const [formLoading, setFormLoading] = useState(false)
-  const [results, setResults] = useState<CrawlWebsiteUrlsResult | null>(null)
+  const [data, setData] = useState<RequestResults["data"]>(null)
 
   const handleCrawlWebsiteUrls = async () => {
     setFormLoading(true)
@@ -36,33 +36,26 @@ export const CrawlWebsiteUrlsForm: FC = () => {
         body: JSON.stringify({ ...formValues }),
       })
 
-      if (!response.ok) {
-        const result: { formValidationErrors: FormValidationError[] } = await response.json()
-        const newFormErrors = result.formValidationErrors.reduce((formErrors, { key, message }) => {
-          const formKey = formKeys.find((formKey) => formKey === key)
-          if (formKey) {
-            formErrors[formKey] = message
-          }
+      const { data, formErrors, serverError }: RequestResults = await response.json()
 
-          return formErrors
-        }, createInitialFormErrors())
-
-        setFormErrors(newFormErrors)
-        setResults(null)
-        setFormLoading(false)
-        return
+      if (serverError) {
+        setGeneralFormError(serverError.message)
       }
 
-      const results: CrawlWebsiteUrlsResult = await response.json()
-      setResults(results)
-      setFormLoading(false)
+      if (formErrors) {
+        const newFormErrors = mapResponseFormErrorsToFormErrors(formErrors, createEmptyFormErrors())
+        setFormErrors(newFormErrors)
+      }
+
+      setData(data)
     } catch (error) {
       console.log(error)
 
       setGeneralFormError("Failed to crawl website urls")
-      setResults(null)
-      setFormLoading(false)
+      setData(null)
     }
+
+    setFormLoading(false)
   }
 
   return (
@@ -105,8 +98,8 @@ export const CrawlWebsiteUrlsForm: FC = () => {
 
       <FetchedResultsContainer
         id="crawl-website-urls"
-        results={results}
-        handleClearResults={() => setResults(null)}
+        results={data}
+        handleClearResults={() => setData(null)}
       />
     </div>
   )
