@@ -1,4 +1,4 @@
-import { getValidUrlOrNull } from "../utils/getValidUrlOrNull"
+import getValidUrlOrNull from "../utils/getValidUrlOrNull"
 import generateAggregatedReport from "../utils/report-generation/generateAggregatedReport"
 import takeScreenshot from "../utils/takeScreenshot"
 import { ResponseBody, ServerError, TypedExpressRequest, TypedExpressResponse } from "./utils/types"

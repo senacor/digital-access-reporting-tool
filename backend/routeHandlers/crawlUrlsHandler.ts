@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import crawlDomainUrls from "../utils/report-generation/crawlDomainUrls"
-import { getValidUrlOrNull } from "../utils/getValidUrlOrNull"
+import getValidUrlOrNull from "../utils/getValidUrlOrNull"
 import { ResponseBody } from "./utils/types"
 import { z } from "zod"
 import { urlSchema } from "./utils/schemas"

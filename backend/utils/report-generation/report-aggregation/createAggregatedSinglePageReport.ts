@@ -1,3 +1,4 @@
+import { AccessibilityCheckerReport } from "../types"
 import { calculateElementsWithNoViolationsPercentage } from "./calculateElementsWithNoViolationsPercentage"
 import { levelAARuleIdsPerCategory } from "./levelAARuleIdsPerCategory"
 import { levelARuleIdsPerCategory } from "./levelARuleIdsPerCategory"
@@ -5,18 +6,20 @@ import {
   Level,
   Category,
   levels,
-  CategoryCount,
-  LevelCount,
   SinglePageReport,
   categories,
-  AccessibilityCheckerReport,
   RuleIdsPerCategoryPerLevel,
-  RuleCountsPerItem,
+  RuleCountPerLevel,
+  RuleCountPerLevelPerCategory,
+  CategoryCount,
+  LevelCount,
 } from "./types"
 
 export function createAggregatedSinglePageReport(report: AccessibilityCheckerReport) {
-  const ruleCountsPerCategory = createRuleCountPerItem([...categories])
-  const ruleCountsPerLevel = createRuleCountPerItem([...levels])
+  // Temporary variables to store the aggregated data
+  const ruleCountPerLevelPerCategory = createRuleCountPerLevelPerCategory()
+  const pageReportSummaryRuleCountPerLevel = createRuleCountPerLevel()
+
   const pageReport: SinglePageReport = {
     url: report.summary.URL,
     categoryCounts: [],
@@ -46,8 +49,10 @@ export function createAggregatedSinglePageReport(report: AccessibilityCheckerRep
     }
 
     if (associatedCategory && associatedLevel) {
-      ruleCountsPerCategory[associatedCategory]++
-      ruleCountsPerLevel[associatedLevel]++
+      // Increment the values of the temporary variables
+      ruleCountPerLevelPerCategory[associatedCategory][associatedLevel]++
+      pageReportSummaryRuleCountPerLevel[associatedLevel]++
+
       pageReport.summary.totalCount++
       continue
     }
@@ -55,17 +60,28 @@ export function createAggregatedSinglePageReport(report: AccessibilityCheckerRep
     console.error("Couldn't associate any category with ruleId:", ruleId)
   }
 
-  pageReport.categoryCounts = aggregateRuleCountsPerItem(ruleCountsPerCategory)
-  pageReport.summary.levelCounts = aggregateRuleCountsPerItem(ruleCountsPerLevel)
+  pageReport.categoryCounts = mapRuleCountPerLevelPerCategoryToCategoryCounts(
+    ruleCountPerLevelPerCategory,
+  )
+  pageReport.summary.levelCounts = mapRuleCountsPerLevelToLevelCounts(
+    pageReportSummaryRuleCountPerLevel,
+  )
 
   return pageReport
 }
 
-function createRuleCountPerItem<T extends Category | Level>(items: T[]) {
-  return items.reduce((ruleCountPerItem, item) => {
-    ruleCountPerItem[item] = 0
-    return ruleCountPerItem
-  }, {} as RuleCountsPerItem)
+function createRuleCountPerLevel() {
+  return levels.reduce((ruleCountPerLevel, level) => {
+    ruleCountPerLevel[level] = 0
+    return ruleCountPerLevel
+  }, {} as RuleCountPerLevel)
+}
+
+function createRuleCountPerLevelPerCategory() {
+  return categories.reduce((ruleCountPerLevelPerCategory, category) => {
+    ruleCountPerLevelPerCategory[category] = createRuleCountPerLevel()
+    return ruleCountPerLevelPerCategory
+  }, {} as RuleCountPerLevelPerCategory)
 }
 
 const ruleIdsPerCategoryPerLevel: RuleIdsPerCategoryPerLevel = {
@@ -81,10 +97,31 @@ function findAssociatedCategory(ruleId: string, level: Level) {
   }
 }
 
-function aggregateRuleCountsPerItem<T extends CategoryCount | LevelCount>(
-  ruleCountsPerItem: RuleCountsPerItem,
+function mapRuleCountPerLevelPerCategoryToCategoryCounts(
+  ruleCountPerLevelPerCategory: RuleCountPerLevelPerCategory,
 ) {
-  return Object.entries(ruleCountsPerItem).map(([name, count]) => {
-    return { name, count } as T
-  })
+  const categoryCounts: CategoryCount[] = []
+
+  for (const [category, ruleCountPerLevel] of Object.entries(ruleCountPerLevelPerCategory)) {
+    const levelCounts = mapRuleCountsPerLevelToLevelCounts(ruleCountPerLevel)
+    const totalCount = levelCounts.reduce((totalCount, { count }) => totalCount + count, 0)
+
+    categoryCounts.push({
+      name: category as Category,
+      totalCount,
+      levelCounts,
+    })
+  }
+
+  return categoryCounts
+}
+
+function mapRuleCountsPerLevelToLevelCounts(ruleCountsPerLevel: RuleCountPerLevel) {
+  const levelCounts: LevelCount[] = []
+
+  for (const [name, count] of Object.entries(ruleCountsPerLevel)) {
+    levelCounts.push({ name: name as Level, count })
+  }
+
+  return levelCounts
 }

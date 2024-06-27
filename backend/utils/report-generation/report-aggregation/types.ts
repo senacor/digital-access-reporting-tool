@@ -10,7 +10,8 @@ export type Category = (typeof categories)[number]
 export type RuleIdsPerCategory = Record<Category, Set<string>>
 export type CategoryCount = {
   name: Category
-  count: number
+  totalCount: number
+  levelCounts: LevelCount[]
 }
 
 export const levels = ["A", "AA"] as const
@@ -20,8 +21,8 @@ export type LevelCount = {
   name: Level
   count: number
 }
-
-export type RuleCountsPerItem = Record<Category | Level, number>
+export type RuleCountPerLevel = Record<Level, number>
+export type RuleCountPerLevelPerCategory = Record<Category, RuleCountPerLevel>
 
 export type ReportSummary = {
   totalCount: number

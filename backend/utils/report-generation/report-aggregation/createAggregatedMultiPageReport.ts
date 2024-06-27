@@ -1,7 +1,7 @@
 import { AccessibilityCheckerReport } from "../types"
 import { calculateElementsWithNoViolationsPercentage } from "./calculateElementsWithNoViolationsPercentage"
 import { createAggregatedSinglePageReport } from "./createAggregatedSinglePageReport"
-import { CategoryCount, LevelCount, MultiPageReport } from "./types"
+import { LevelCount, MultiPageReport } from "./types"
 
 export const createAggregatedMultiPageReport = (
   url: URL,
@@ -33,8 +33,21 @@ export const createAggregatedMultiPageReport = (
     multiPageReport.summary.elementWithViolationCount +=
       pageReport.summary.elementWithViolationCount
 
-    aggregateItemCounts(multiPageReport.categoryCounts, pageReport.categoryCounts)
-    aggregateItemCounts(multiPageReport.summary.levelCounts, pageReport.summary.levelCounts)
+    for (const categoryCount of pageReport.categoryCounts) {
+      const aggregatedCategory = multiPageReport.categoryCounts.find(
+        (category) => category.name === categoryCount.name,
+      )
+
+      if (!aggregatedCategory) {
+        multiPageReport.categoryCounts.push(categoryCount)
+        continue
+      }
+
+      aggregatedCategory.totalCount += categoryCount.totalCount
+      aggregateLevelCount(aggregatedCategory.levelCounts, categoryCount.levelCounts)
+    }
+
+    aggregateLevelCount(multiPageReport.summary.levelCounts, pageReport.summary.levelCounts)
   }
 
   multiPageReport.summary.elementsWithNoViolationsPercentage =
@@ -46,17 +59,20 @@ export const createAggregatedMultiPageReport = (
   return multiPageReport
 }
 
-const aggregateItemCounts = <T extends CategoryCount | LevelCount>(
-  multiPageReportTarget: T[],
-  itemCounts: T[],
-) => {
-  for (const { name, count } of itemCounts) {
-    const aggregatedItem = multiPageReportTarget.find((item) => item.name === name)
+function aggregateLevelCount(
+  aggregationTargetLevelCounts: LevelCount[],
+  levelCounts: LevelCount[],
+) {
+  for (const levelCount of levelCounts) {
+    const aggregationTargetLevelCount = aggregationTargetLevelCounts.find(
+      (level) => level.name === levelCount.name,
+    )
 
-    if (aggregatedItem) {
-      aggregatedItem.count += count
-    } else {
-      multiPageReportTarget.push({ name, count } as T)
+    if (!aggregationTargetLevelCount) {
+      aggregationTargetLevelCounts.push(levelCount)
+      continue
     }
+
+    aggregationTargetLevelCount.count += levelCount.count
   }
 }

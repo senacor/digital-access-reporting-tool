@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio"
-import { getValidUrlOrNull } from "../getValidUrlOrNull"
+import getValidUrlOrNull from "../getValidUrlOrNull"
 import logger from "../logger"
 import axios, { AxiosError } from "axios"
 
