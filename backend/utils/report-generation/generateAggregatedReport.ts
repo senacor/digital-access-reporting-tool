@@ -18,17 +18,18 @@ export default async function generateAggregatedReport(url: URL, title: string) 
     reportCreationSet.runningReportCreationCount > 0
   ) {
     console.log(
-      `Waiting for report generation to finish... Queued: ${reportCreationSet.queuedReportCreationCount} | Running: ${reportCreationSet.runningReportCreationCount} 🕒`,
+      `🕒 Queued: ${reportCreationSet.queuedReportCreationCount} / Running: ${reportCreationSet.runningReportCreationCount}: Waiting for report generation to finish...`,
     )
     await new Promise((resolve) => setTimeout(resolve, 5000))
   }
 
-  console.log("All reports generated. Aggregating reports... 📊")
+  console.log("🚪 All reports generated. Closing accessibility checker...")
+  await accessibilityChecker.close()
 
+  console.log("📊 Aggregating reports...")
   const aggregatedReport = createAggregatedMultiPageReport(url, title, accessibilityCheckerReports)
 
-  console.log("Aggregation finished. Shipping aggregated report! 🚢")
-
+  console.log("🚢 Shipping aggregated report!")
   return {
     aggregatedReport,
     accessibilityCheckerReports,
@@ -76,6 +77,7 @@ class ReportCreationSet extends Set<string> {
 
   #executeNextReportCreation() {
     if (!this.#queuedReportCreations.length) {
+      accessibilityChecker.close()
       return
     }
 
@@ -101,7 +103,7 @@ class ReportCreationSet extends Set<string> {
 
     this.#queuedReportCreations.push(async () => {
       try {
-        console.log(`Creating report for ${url} 📝`)
+        console.log(`📝 Creating report for ${url}...`)
         const { report } = await accessibilityChecker.getCompliance(url, url)
 
         // Sadly there's no better way to check if the report is an error
@@ -114,7 +116,7 @@ class ReportCreationSet extends Set<string> {
 
         this.#reportCallback(report)
       } catch (error) {
-        console.log(`Error for ${url}:`, error)
+        console.log(`🔥 Error for ${url}: error`)
         this.#reportCallback(null)
       }
     })

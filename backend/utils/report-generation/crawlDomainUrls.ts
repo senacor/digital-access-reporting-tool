@@ -20,7 +20,7 @@ export async function crawlDomainUrlsRecursively(
 ) {
   const url = urlsIterator.next().value
   if (!url) {
-    console.log("Finished crawling URLs 🕷️")
+    console.log("🕷️ Finished crawling URLs")
     return crawledUrls
   }
 

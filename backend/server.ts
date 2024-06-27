@@ -11,4 +11,4 @@ app.get("/", (_, res) => res.send({ hello: "world" }))
 app.post("/create-accessibility-report", createAccessibilityReportHandler)
 app.post("/crawl-urls", crawlUrlsHandler)
 
-app.listen(port, () => console.log(`Backend server is running on port ${port}`))
+app.listen(port, () => console.log(`🚀 Backend server is running on port ${port}`))

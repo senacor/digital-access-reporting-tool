@@ -19,7 +19,7 @@ export default async function takeScreenshot(url: URL) {
     await page.screenshot({ path: screenshotPath, type: screenshotType })
     await browser.close()
 
-    console.log("Screenshot taken 📸")
+    console.log("📸 Screenshot taken")
 
     return screenshotPath
   } catch (error) {
