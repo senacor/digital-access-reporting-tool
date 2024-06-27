@@ -39,6 +39,7 @@ export type SinglePageReport = {
 
 export type MultiPageReport = {
   urlOrigin: string // "https://www.example.com"
+  title: string
   pageCount: number
   pageReports: SinglePageReport[]
   categoryCounts: CategoryCount[]

@@ -3,26 +3,29 @@ import { crawlDomainUrlsRecursively } from "./crawlDomainUrls"
 import { createAggregatedMultiPageReport } from "./report-aggregation/createAggregatedMultiPageReport"
 import { AccessibilityCheckerReport } from "./types"
 
-export default async function generateAggregatedReport(url: URL) {
+export default async function generateAggregatedReport(url: URL, title: string) {
   const accessibilityCheckerReports: AccessibilityCheckerReport[] = []
 
-  const reporterSet = new ReportCreatorSet({
+  const reportCreationSet = new ReportCreationSet({
     url,
     reportCallback: (report) => report && accessibilityCheckerReports.push(report),
   })
 
-  const crawledUrls = await crawlDomainUrlsRecursively(reporterSet)
+  const crawledUrls = await crawlDomainUrlsRecursively(reportCreationSet)
 
-  while (reporterSet.queuedReportCreationCount > 0 || reporterSet.runningReportCreationCount > 0) {
+  while (
+    reportCreationSet.queuedReportCreationCount > 0 ||
+    reportCreationSet.runningReportCreationCount > 0
+  ) {
     console.log(
-      `Waiting for report generation to finish... Queued: ${reporterSet.queuedReportCreationCount} | Running: ${reporterSet.runningReportCreationCount} 🕒`,
+      `Waiting for report generation to finish... Queued: ${reportCreationSet.queuedReportCreationCount} | Running: ${reportCreationSet.runningReportCreationCount} 🕒`,
     )
     await new Promise((resolve) => setTimeout(resolve, 5000))
   }
 
   console.log("All reports generated. Aggregating reports... 📊")
 
-  const aggregatedReport = createAggregatedMultiPageReport(url, accessibilityCheckerReports)
+  const aggregatedReport = createAggregatedMultiPageReport(url, title, accessibilityCheckerReports)
 
   console.log("Aggregation finished. Shipping aggregated report! 🚢")
 
@@ -33,24 +36,24 @@ export default async function generateAggregatedReport(url: URL) {
   }
 }
 
-type ReportCreatorSetArgs = {
+type ReportCreationSetArgs = {
   url: URL
   reportCallback: (report: AccessibilityCheckerReport | null) => void
   parallelCreationsLimit?: number
 }
 
-class ReportCreatorSet extends Set<string> {
-  #reportCallback: ReportCreatorSetArgs["reportCallback"]
+class ReportCreationSet extends Set<string> {
+  #reportCallback: ReportCreationSetArgs["reportCallback"]
   #parallelCreationsLimit: number
   #queuedReportCreations: (() => Promise<void>)[] = []
-  #runningCreationCount = 0
+  #runningReportCreationsCount = 0
 
   get queuedReportCreationCount() {
     return this.#queuedReportCreations.length
   }
 
   get runningReportCreationCount() {
-    return this.#runningCreationCount
+    return this.#runningReportCreationsCount
   }
 
   /**
@@ -59,7 +62,7 @@ class ReportCreatorSet extends Set<string> {
    * @param reportCallback Callback function that is called with the generated report
    * @param parallelCreationsLimit Maximum number of parallel report creations that are being handled at any time
    */
-  constructor({ url, reportCallback, parallelCreationsLimit = 7 }: ReportCreatorSetArgs) {
+  constructor({ url, reportCallback, parallelCreationsLimit = 7 }: ReportCreationSetArgs) {
     super()
     this.#reportCallback = reportCallback
     this.#parallelCreationsLimit = parallelCreationsLimit
@@ -76,16 +79,16 @@ class ReportCreatorSet extends Set<string> {
       return
     }
 
-    if (this.#runningCreationCount < this.#parallelCreationsLimit) {
+    if (this.#runningReportCreationsCount < this.#parallelCreationsLimit) {
       const fun = this.#queuedReportCreations.shift()
       if (!fun) {
         return
       }
 
-      this.#runningCreationCount += 1
+      this.#runningReportCreationsCount += 1
 
       fun().then(() => {
-        this.#runningCreationCount -= 1
+        this.#runningReportCreationsCount -= 1
         this.#executeNextReportCreation()
       })
     }

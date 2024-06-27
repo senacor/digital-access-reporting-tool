@@ -5,10 +5,12 @@ import { CategoryCount, LevelCount, MultiPageReport } from "./types"
 
 export const createAggregatedMultiPageReport = (
   url: URL,
+  title: string,
   reports: AccessibilityCheckerReport[],
 ) => {
   const multiPageReport: MultiPageReport = {
     urlOrigin: url.origin,
+    title,
     pageCount: 0,
     pageReports: [],
     categoryCounts: [],

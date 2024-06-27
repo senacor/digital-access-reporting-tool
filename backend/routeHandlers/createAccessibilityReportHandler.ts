@@ -15,7 +15,7 @@ const requestBodySchema = z.object({
 })
 
 type ReqBody = z.infer<typeof requestBodySchema>
-type Data = { title: string; screenshotPath: string; report: MultiPageReport }
+type Data = { screenshotPath: string; report: MultiPageReport }
 type ResBody = ResponseBody<Data, ReqBody>
 type FormErrors = NonNullable<ResBody["formErrors"]>
 type FormError = FormErrors[number]
@@ -47,8 +47,8 @@ export default async function createAccessibilityReportHandler(
     return res.status(500).send({ data: null, formErrors: null, serverError })
   }
 
-  const { aggregatedReport } = await generateAggregatedReport(url)
-  const data: Data = { title: validatedBody.data.title, screenshotPath, report: aggregatedReport }
+  const { aggregatedReport } = await generateAggregatedReport(url, validatedBody.data.title)
+  const data: Data = { screenshotPath, report: aggregatedReport }
 
   return res.send({ data, formErrors: null, serverError: null })
 }
