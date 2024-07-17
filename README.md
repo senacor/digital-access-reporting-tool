@@ -10,17 +10,12 @@ We're using a [Miro Board](https://miro.com/app/board/uXjVKOZ4DNM=/) to keep tra
 
 The Backend and the Frontend are written in [TypeScript](https://www.typescriptlang.org/) and run on [Node.js](https://nodejs.org/en). For better developer experience [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) are used.
 
-### 🏛️ Backend
+### Important files/folders:
 
-- [Express.js](https://expressjs.com/de/): Used to provide an API for the Frontend.
-- [Playwright](https://playwright.dev/): Used to create the screenshot of the given website.
-- [IBM's Accessibility Checker](https://www.npmjs.com/package/accessibility-checker): Used to check that a source complies with the WCAG.
-- [Cheerio.js](https://cheerio.js.org/): Used for crawling all the URLs of a domain.
-
-### 🏡 Frontend
-
-- [React](https://de.react.dev/): Used to build the UI.
-- [Tailwind CSS](https://tailwindcss.com/): Used for the stying.
+- _[backend/](./backend/)_: Contains all server-related files. For more information about the Backend, continue [here](./backend/README.md).
+- _[frontend/](./frontend/)_: Contains all client-related files. For more information about the Frontend, continue [here](./frontend/README.md).
+- _[screenshots/](./screenshots/)_: Contains the screenshots created by the report generation.
+- _[.achecker.yml](./.achecker.yml)_: Contains the configuration for the [IBM's Accessibility Checker](https://www.npmjs.com/package/accessibility-checker)
 
 ### 🏃🏻‍♂️‍➡️ How to run the tool
 
