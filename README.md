@@ -13,6 +13,7 @@ The Backend and the Frontend are written in [TypeScript](https://www.typescriptl
 ### 🏛️ Backend
 
 - [Express.js](https://expressjs.com/de/): Used to provide an API for the Frontend.
+- [Playwright](https://playwright.dev/): Used to create the screenshot of the given website.
 - [IBM's Accessibility Checker](https://www.npmjs.com/package/accessibility-checker): Used to check that a source complies with the WCAG.
 - [Cheerio.js](https://cheerio.js.org/): Used for crawling all the URLs of a domain.
 
@@ -20,17 +21,28 @@ The Backend and the Frontend are written in [TypeScript](https://www.typescriptl
 
 - [React](https://de.react.dev/): Used to build the UI.
 - [Tailwind CSS](https://tailwindcss.com/): Used for the stying.
-- ([Recharts](https://recharts.org/en-US/): Could be used to depict the aggregated reports from the Accessibility Checker in different charts)
 
 ### 🏃🏻‍♂️‍➡️ How to run the tool
 
 You'll need to install [Node.js (>= 18.19.0)](https://nodejs.org/en) and then run the following commands afterward.
 
-1. Install the node_modules
-   ```
-     npm install
-   ```
-2. With the following command you'll start the Frontend on port 3000 ([localhost:3000](localhost:3000)) and the Backend on port 42069 ([localhost:42069](localhost:42069)).
+1. To set up everything before the first run just do one of the following steps:
+
+   1. Install the node modules via
+      ```
+        npm install
+      ```
+      followed by
+      ```
+        npx playwright install
+      ```
+      which installs the headless browsers for Playwright, so it can take screenshots.
+   2. Or simply use the predefined command from the [package.json](package.json) which executes both of the previous commands
+      ```
+        npm run setup
+      ```
+
+2. With the following command, you'll start the Frontend on port 3000 ([localhost:3000](localhost:3000)) and the Backend on port 42069 ([localhost:42069](localhost:42069)).
    ```
      npm run dev
    ```
