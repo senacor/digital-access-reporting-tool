@@ -7,26 +7,26 @@ export const categories = [
   "keyboardOperability",
 ] as const
 export type Category = (typeof categories)[number]
-export type RuleIdsPerCategory = Record<Category, Set<string>>
-export type CategoryCount = {
+export type RuleIdsByCategory = Record<Category, Set<string>>
+export type CategoryIssueCount = {
   name: Category
-  totalCount: number
-  levelCounts: LevelCount[]
+  totalIssueCount: number
+  levelIssueCounts: LevelIssueCount[]
 }
 
 export const levels = ["A", "AA"] as const
 export type Level = (typeof levels)[number]
-export type RuleIdsPerCategoryPerLevel = Record<Level, RuleIdsPerCategory>
-export type LevelCount = {
+export type RuleIdsByCategoryByLevel = Record<Level, RuleIdsByCategory>
+export type LevelIssueCount = {
   name: Level
-  count: number
+  issueCount: number
 }
-export type RuleCountPerLevel = Record<Level, number>
-export type RuleCountPerLevelPerCategory = Record<Category, RuleCountPerLevel>
+export type RuleCountByLevel = Record<Level, number>
+export type RuleCountByLevelByCategory = Record<Category, RuleCountByLevel>
 
 export type ReportSummary = {
-  totalCount: number
-  levelCounts: LevelCount[]
+  totalIssueCount: number
+  levelIssueCounts: LevelIssueCount[]
   elementCount: number
   elementWithViolationCount: number
   elementsWithNoViolationsPercentage: number // 0.93 -> 93%
@@ -34,15 +34,12 @@ export type ReportSummary = {
 
 export type SinglePageReport = {
   url: string // "https://www.example.com/foo/bar"
-  categoryCounts: CategoryCount[]
+  categoryIssueCounts: CategoryIssueCount[]
   summary: ReportSummary
 }
 
-export type MultiPageReport = {
-  urlOrigin: string // "https://www.example.com"
-  title: string
+export type MultiPageReport = SinglePageReport & {
+  logoUrl: string // "https://www.example.com/logo.png"
   pageCount: number
   pageReports: SinglePageReport[]
-  categoryCounts: CategoryCount[]
-  summary: ReportSummary
 }

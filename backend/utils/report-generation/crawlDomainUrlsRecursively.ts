@@ -3,16 +3,20 @@ import getValidUrlOrNull from "../getValidUrlOrNull"
 import logger from "../logger"
 import axios, { AxiosError } from "axios"
 
-export default async function crawlDomainUrls(url: URL) {
-  const crawledUrls = await crawlDomainUrlsRecursively(new Set([url.href]))
-  return Array.from(crawledUrls.successes)
-}
-
-export type CrawledUrls = {
+type CrawledUrls = {
   successes: Set<string>
   failures: Set<string>
 }
 
+/**
+ * Recursively crawls all URLs from the given Set of URLs.
+ * This can take a long time and should be used with caution since their is no limit on how many URLs are crawled.
+ *
+ * @param urls A Set of URL strings. This should contain at least one URL to start the crawling process.
+ * @param urlsIterator The iterator for the Set of URLs. This is used to recursively crawl the URLs.
+ * @param crawledUrls Contains all crawled URLs by their status (success or failure).
+ * @returns The crawled URLs object.
+ */
 export async function crawlDomainUrlsRecursively(
   urls: Set<string>,
   urlsIterator: Iterator<string, string | undefined> = urls[Symbol.iterator](),
@@ -29,13 +33,15 @@ export async function crawlDomainUrlsRecursively(
     setTimeout(async () => await fetchHtmlFromUrl(url).then(resolve), 100)
   })
 
+  // If the fetched HTML is null, the URL could not be crawled but we still want to continue with the next URLs.
   if (!html) {
     crawledUrls.failures.add(url)
     return crawlDomainUrlsRecursively(urls, urlsIterator, crawledUrls)
+  } else {
+    crawledUrls.successes.add(url)
   }
 
-  crawledUrls.successes.add(url)
-
+  // Find all domain URLs on the page and add them to the Set of URLs to crawl.
   const foundUrls = await findSameDomainUrls(url, html, crawledUrls)
   foundUrls.forEach((url) => urls.add(url))
 

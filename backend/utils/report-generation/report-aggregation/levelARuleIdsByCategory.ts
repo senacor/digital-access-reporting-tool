@@ -1,6 +1,6 @@
-import { RuleIdsPerCategory } from "./types"
+import { RuleIdsByCategory } from "./types"
 
-export const levelARuleIdsPerCategory: RuleIdsPerCategory = {
+export const levelARuleIdsByCategory: RuleIdsByCategory = {
   textAlternatives: new Set([
     /* 1.2.1 */
     // Potential Violation

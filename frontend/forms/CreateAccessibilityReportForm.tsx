@@ -11,14 +11,14 @@ type FormErrors = Record<keyof FormValues, string>
 type RequestResults = CreateAccessibilityReportResponseBody
 
 function createEmptyFormValues(): FormValues {
-  return { url: "", title: "" }
+  return { url: "", logoUrl: "" }
 }
 
 function createEmptyFormErrors(): FormErrors {
-  return { url: "", title: "" }
+  return { url: "", logoUrl: "" }
 }
 
-export const CheckAccessibilityForm: FC = () => {
+export const CreateAccessibilityReportForm: FC = () => {
   const [formValues, setFormValues] = useState(createEmptyFormValues())
   const [formErrors, setFormErrors] = useState(createEmptyFormErrors())
   const [generalFormError, setGeneralFormError] = useState("")
@@ -84,25 +84,25 @@ export const CheckAccessibilityForm: FC = () => {
       </div>
 
       <div
-        className={`flex flex-col gap-1 w-full max-w-96 group ${formErrors.title ? "error" : ""}`}
+        className={`flex flex-col gap-1 w-full max-w-96 group ${formErrors.logoUrl ? "error" : ""}`}
       >
         <input
           className="max-w-96 disabled:opacity-50 disabled:cursor-not-allowed group-[.error]:shadow-sm group-[.error]:shadow-red-600"
           type="text"
-          name="title"
-          placeholder="Some report title"
-          value={formValues.title}
+          name="logoUrl"
+          placeholder="https://www.example.com/logo.png"
+          value={formValues.logoUrl}
           onChange={(e) => {
-            setFormValues({ ...formValues, title: e.target.value })
-            setFormErrors({ ...formErrors, title: "" })
+            setFormValues({ ...formValues, logoUrl: e.target.value })
+            setFormErrors({ ...formErrors, logoUrl: "" })
             setGeneralFormError("")
           }}
           onKeyDown={(e) => e.key === "Enter" && handleCreateAccessibilityReport()}
           disabled={formLoading}
         />
 
-        {formErrors.title && (
-          <span className="w-full px-1 text-sm text-red-600">{formErrors.title}</span>
+        {formErrors.logoUrl && (
+          <span className="w-full px-1 text-sm text-red-600">{formErrors.logoUrl}</span>
         )}
       </div>
 

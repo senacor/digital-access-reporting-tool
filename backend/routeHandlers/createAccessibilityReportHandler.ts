@@ -1,21 +1,19 @@
 import getValidUrlOrNull from "../utils/getValidUrlOrNull"
-import generateAggregatedReport from "../utils/report-generation/generateAggregatedReport"
+import generateMultiPageReport from "../utils/report-generation/generateMultiPageReport"
 import takeScreenshot from "../utils/takeScreenshot"
 import { ResponseBody, ServerError, TypedExpressRequest, TypedExpressResponse } from "./utils/types"
 import { MultiPageReport } from "../utils/report-generation/report-aggregation/types"
 import { z } from "zod"
-import mapZodIssuesToFormValidationErrors from "./utils/mapZodIssuesToFormValidationErrors"
-import { urlSchema } from "./utils/schemas"
+import { securedUrlSchema, urlSchema } from "./utils/schemas"
+import { getFormErrorsFromValidatedRequestBody } from "./utils/getFormErrorsFromValidatedRequestBody"
 
 const requestBodySchema = z.object({
-  url: urlSchema,
-  title: z
-    .string({ required_error: "Report title is required" })
-    .min(1, "Report title is required"),
+  url: securedUrlSchema,
+  logoUrl: urlSchema,
 })
 
 type ReqBody = z.infer<typeof requestBodySchema>
-type Data = { screenshotPath: string; report: MultiPageReport }
+type Data = { screenshotPath: string | null; report: MultiPageReport }
 type ResBody = ResponseBody<Data, ReqBody>
 type FormErrors = NonNullable<ResBody["formErrors"]>
 type FormError = FormErrors[number]
@@ -29,26 +27,33 @@ export default async function createAccessibilityReportHandler(
   req: TypedExpressRequest<ReqBody>,
   res: TypedExpressResponse<ResBody>,
 ) {
-  const validatedBody = requestBodySchema.safeParse(req.body)
-  if (!validatedBody.success) {
-    const formErrors = mapZodIssuesToFormValidationErrors(validatedBody.error.issues)
-    return res.status(400).send({ data: null, formErrors, serverError: null })
+  let serverError: ServerError | null = null
+  const validatedRequestBody = requestBodySchema.safeParse(req.body)
+
+  if (!validatedRequestBody.success) {
+    const formErrors = getFormErrorsFromValidatedRequestBody(validatedRequestBody)
+    return res.status(400).send({ data: null, formErrors, serverError })
   }
 
-  const url = getValidUrlOrNull(validatedBody.data.url)
+  const url = getValidUrlOrNull(validatedRequestBody.data.url)
   if (!url) {
     const formError: FormError = { key: "url", message: "URL is not valid" }
-    return res.status(400).send({ data: null, formErrors: [formError], serverError: null })
+    return res.status(400).send({ data: null, formErrors: [formError], serverError })
+  }
+
+  const logoUrl = getValidUrlOrNull(validatedRequestBody.data.logoUrl)
+  if (!logoUrl) {
+    const formError: FormError = { key: "logoUrl", message: "Logo URL is not valid" }
+    return res.status(400).send({ data: null, formErrors: [formError], serverError })
   }
 
   const screenshotPath = await takeScreenshot(url)
   if (!screenshotPath) {
-    const serverError: ServerError = { message: "Failed to create screenshot for URL " + url.href }
-    return res.status(500).send({ data: null, formErrors: null, serverError })
+    serverError = { message: "Failed to create screenshot for URL " + url.href }
   }
 
-  const { aggregatedReport } = await generateAggregatedReport(url, validatedBody.data.title)
-  const data: Data = { screenshotPath, report: aggregatedReport }
+  const { multiPageReport } = await generateMultiPageReport(url, logoUrl)
+  const data: Data = { screenshotPath, report: multiPageReport }
 
-  return res.send({ data, formErrors: null, serverError: null })
+  return res.send({ data, formErrors: null, serverError })
 }

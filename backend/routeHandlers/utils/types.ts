@@ -5,27 +5,16 @@ export type ServerError = {
   message: string
 }
 
-type FormValidationError<RequestBody> = {
+export type FormValidationError<RequestBody> = {
   key: keyof RequestBody
   message: string
 }
 
-export type ResponseBody<Data, RequestBody> =
-  | {
-      data: Data
-      formErrors: null
-      serverError: null
-    }
-  | {
-      data: null
-      formErrors: FormValidationError<RequestBody>[]
-      serverError: null
-    }
-  | {
-      data: null
-      formErrors: null
-      serverError: ServerError
-    }
+export type ResponseBody<Data, RequestBody> = {
+  data: Data | null
+  formErrors: FormValidationError<RequestBody>[] | null
+  serverError: ServerError | null
+}
 
 export interface TypedExpressRequest<Body> extends Request {
   body: Body

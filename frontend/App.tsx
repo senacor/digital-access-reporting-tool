@@ -1,4 +1,4 @@
-import { CheckAccessibilityForm } from "./forms/CreateAccessibilityReportForm"
+import { CreateAccessibilityReportForm } from "./forms/CreateAccessibilityReportForm"
 import { CrawlWebsiteUrlsForm } from "./forms/CrawlWebsiteUrlsForm"
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
       <h1>Digital Access Reporting Tool</h1>
       <CrawlWebsiteUrlsForm />
       <hr className="w-full border-gray-300" />
-      <CheckAccessibilityForm />
+      <CreateAccessibilityReportForm />
     </div>
   )
 }
