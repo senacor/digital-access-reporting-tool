@@ -3,7 +3,11 @@ import { crawlDomainUrlsRecursively } from "./crawlDomainUrlsRecursively"
 import { createMultiPageReport } from "./report-aggregation/createMultiPageReport"
 import { AccessibilityCheckerReport } from "./types"
 
-export default async function generateMultiPageReport(url: URL, logoUrl: URL) {
+export default async function generateMultiPageReport(
+  url: URL,
+  logoUrl: URL,
+  screenshotPath: string | null,
+) {
   // List of all accessibility checker reports that are generated for each URL
   const accessibilityCheckerReports: AccessibilityCheckerReport[] = []
 
@@ -35,7 +39,12 @@ export default async function generateMultiPageReport(url: URL, logoUrl: URL) {
   await accessibilityChecker.close()
 
   console.log("📊 Aggregating reports...")
-  const multiPageReport = createMultiPageReport(url, logoUrl, accessibilityCheckerReports)
+  const multiPageReport = createMultiPageReport(
+    url,
+    logoUrl,
+    screenshotPath,
+    accessibilityCheckerReports,
+  )
 
   console.log("🚢 Shipping aggregated report!")
   return {

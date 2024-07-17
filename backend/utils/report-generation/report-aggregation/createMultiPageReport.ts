@@ -14,11 +14,13 @@ import { LevelIssueCount, MultiPageReport } from "./types"
 export const createMultiPageReport = (
   url: URL,
   logoUrl: URL,
+  screenshotPath: string | null,
   accessibilityCheckerReports: AccessibilityCheckerReport[],
 ) => {
   const multiPageReport: MultiPageReport = {
     url: url.origin,
     logoUrl: logoUrl.href,
+    screenshotPath,
     pageCount: 0,
     pageReports: [],
     categoryIssueCounts: [],

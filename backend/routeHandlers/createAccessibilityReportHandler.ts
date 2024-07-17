@@ -13,7 +13,7 @@ const requestBodySchema = z.object({
 })
 
 type ReqBody = z.infer<typeof requestBodySchema>
-type Data = { screenshotPath: string | null; report: MultiPageReport }
+type Data = { report: MultiPageReport }
 type ResBody = ResponseBody<Data, ReqBody>
 type FormErrors = NonNullable<ResBody["formErrors"]>
 type FormError = FormErrors[number]
@@ -52,8 +52,8 @@ export default async function createAccessibilityReportHandler(
     serverError = { message: "Failed to create screenshot for URL " + url.href }
   }
 
-  const { multiPageReport } = await generateMultiPageReport(url, logoUrl)
-  const data: Data = { screenshotPath, report: multiPageReport }
+  const { multiPageReport } = await generateMultiPageReport(url, logoUrl, screenshotPath)
+  const data: Data = { report: multiPageReport }
 
   return res.send({ data, formErrors: null, serverError })
 }

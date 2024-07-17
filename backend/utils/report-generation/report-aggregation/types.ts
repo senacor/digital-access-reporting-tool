@@ -40,6 +40,7 @@ export type SinglePageReport = {
 
 export type MultiPageReport = SinglePageReport & {
   logoUrl: string // "https://www.example.com/logo.png"
+  screenshotPath: string | null // "screenshots/1234567890.png"
   pageCount: number
   pageReports: SinglePageReport[]
 }
