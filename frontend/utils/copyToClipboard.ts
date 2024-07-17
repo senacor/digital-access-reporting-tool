@@ -2,7 +2,7 @@ export async function copyToClipboard(elementId: string) {
   try {
     const node = document.getElementById(elementId)
 
-    if (!node || !node.textContent) {
+    if (!node) {
       throw new Error("Element not found")
     }
 
