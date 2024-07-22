@@ -1,6 +1,6 @@
 import express from "express"
-import createAccessibilityReportHandler from "./routeHandlers/createAccessibilityReportHandler"
-import crawlUrlsHandler from "./routeHandlers/crawlUrlsHandler"
+import createAccessibilityReportHandler from "./route-handlers/createAccessibilityReportHandler"
+import crawlUrlsHandler from "./route-handlers/crawlUrlsHandler"
 
 const app = express()
 const port = process.env.PORT || 42069

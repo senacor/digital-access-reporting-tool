@@ -1,4 +1,4 @@
-# Digital Accessibility Reporting Tool
+# ⛑️ Digital Accessibility Reporting Tool
 
 This tool is used to check if websites comply with the [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/).
 

@@ -9,8 +9,8 @@ The Backend uses the following technologies:
 
 ## Important files/folders:
 
-- _[routeHandlers/](./routeHandlers/)_: As the name already suggests, this folder contains the route handlers for the API endpoints defined in the [server.ts](server.ts)
-  - _[utils/](./routeHandlers/utils/)_: Contains basic logic for the form validation for the API endpoints
+- _[route-handlers/](./route-handlers/)_: As the name already suggests, this folder contains the route handlers for the API endpoints defined in the [server.ts](server.ts)
+  - _[utils/](./route-handlers/utils/)_: Contains basic logic for the form validation for the API endpoints
 - _[utils/](./utils/)_: Contains the logic for URL crawling and report generation that's used in the route handlers.
   - _[report-generation/](./utils/report-generation/)_
     - _[crawlDomainUrlsRecursively.ts](./utils/report-generation/crawlDomainUrlsRecursively.ts)_: Recursively crawls all the URLs of a domain. ([Url Crawling](#url-crawling))

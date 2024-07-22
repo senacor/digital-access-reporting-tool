@@ -3,7 +3,7 @@ import { FetchedResultsContainer } from "../components/FetchedResultsContainer"
 import {
   CreateAccessibilityReportRequestBody,
   CreateAccessibilityReportResponseBody,
-} from "../../backend/routeHandlers/createAccessibilityReportHandler"
+} from "../../backend/route-handlers/createAccessibilityReportHandler"
 import { mapResponseFormErrorsToFormErrors } from "./mapResponseFormErrorsToFormErrors"
 
 type FormValues = CreateAccessibilityReportRequestBody

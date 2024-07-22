@@ -3,7 +3,7 @@ import { FetchedResultsContainer } from "../components/FetchedResultsContainer"
 import {
   CrawlUrlsRequestBody,
   CrawlUrlsResponseBody,
-} from "../../backend/routeHandlers/crawlUrlsHandler"
+} from "../../backend/route-handlers/crawlUrlsHandler"
 import { mapResponseFormErrorsToFormErrors } from "./mapResponseFormErrorsToFormErrors"
 
 type FormValues = CrawlUrlsRequestBody
