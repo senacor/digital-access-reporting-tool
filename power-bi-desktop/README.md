@@ -8,3 +8,4 @@ For visualization we're using [Power BI Desktop](https://www.microsoft.com/de-de
 - _[samples/](./samples/)_: Contains some sample reports and their corresponding files.
 - _[report-design-basics/](./report-design-basics/)_: Contains some basic files and templates for the design
   - _[power-bi-custom-report-design.json](./report-design-basics/power-bi-custom-report-design.json)_: A custom design with Google's _Inter Font_ that can be imported in Power BI Desktop. (The Font needs to be pre-installed on the operating system)
+- _[how-to-create-a-report-pdf.pdf](./how-to-create-a-report-pdf.pdf)_: Contains a detailed description in steps on how to manually create a PDF until an automatic pipeline is established. (This file also exists as a .docx file)
