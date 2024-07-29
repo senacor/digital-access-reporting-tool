@@ -14,6 +14,7 @@ The Backend and the Frontend are written in [TypeScript](https://www.typescriptl
 
 - _[backend/](./backend/)_: Contains all server-related files. For more information about the Backend, continue [here](./backend/README.md).
 - _[frontend/](./frontend/)_: Contains all client-related files. For more information about the Frontend, continue [here](./frontend/README.md).
+- _[power-bi-desktop/](./power-bi-desktop/)_: Contains the Power BI related files and some samples. For more information about it, continue [here](./power-bi-desktop//README.md).
 - _[screenshots/](./screenshots/)_: Contains the screenshots created by the report generation.
 - _[.achecker.yml](./.achecker.yml)_: Contains the configuration for the [IBM's Accessibility Checker](https://www.npmjs.com/package/accessibility-checker)
 

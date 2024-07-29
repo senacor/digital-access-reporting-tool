@@ -1,0 +1,719 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"report_summary\",\"category_level_a_counts\",\"category_level_aa_counts\",\"categories\",\"issue_counts\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.131.1126.0 (24.07)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "de-DE",
+    "cultures": [
+      {
+        "name": "de-DE",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "AutoDetected_326d654c-264d-4f6e-88ac-63e41c8e0b30",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "report.categoryIssueCounts.name",
+        "fromTable": "category_level_a_counts",
+        "toColumn": "report.categoryIssueCounts.name",
+        "toTable": "categories"
+      },
+      {
+        "name": "AutoDetected_2bdc65af-06c7-42b4-b2bf-632a774968b6",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "report.categoryIssueCounts.name",
+        "fromTable": "category_level_aa_counts",
+        "toColumn": "report.categoryIssueCounts.name",
+        "toTable": "categories"
+      }
+    ],
+    "sourceQueryCulture": "de-DE",
+    "tables": [
+      {
+        "name": "DateTableTemplate_d245e1d6-7fea-4ec8-9976-af4568f633b7",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "26018b63-51da-4448-8af0-3b7b806afa8b",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Jahr",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "34ccc6ea-8ac7-4cba-9ff8-1a27111c859b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "282a351d-6919-4d27-a602-1bd468fab629",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Monat",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "f04f3c99-c2d1-4806-becc-58170b002e97",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "fb98262c-7b9d-4a9d-8fc2-12d4e2fc510a",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quartal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qrtl \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "91378081-85c2-463c-9e2a-202c37972159",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Tag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "3f2e8445-5e40-461a-b945-c3b1bdbb930f",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Datumshierarchie",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Jahr",
+                "column": "Jahr",
+                "lineageTag": "4abe6a7f-693c-4709-994b-125f63edda57",
+                "ordinal": 0
+              },
+              {
+                "name": "Quartal",
+                "column": "Quartal",
+                "lineageTag": "276212cb-c52b-4d7d-9fc4-e2c1b716d069",
+                "ordinal": 1
+              },
+              {
+                "name": "Monat",
+                "column": "Monat",
+                "lineageTag": "bbe1be2d-31f8-4e6d-b70d-c793a74c3f63",
+                "ordinal": 2
+              },
+              {
+                "name": "Tag",
+                "column": "Tag",
+                "lineageTag": "5e9f07d1-cf59-4bb7-9224-c64f0b522e16",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "1464c851-72bf-47f3-9f10-47c647f167c3"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "487617c4-b24a-4d05-a199-5f63fb1d98cc",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_d245e1d6-7fea-4ec8-9976-af4568f633b7",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "categories",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "report.categoryIssueCounts.name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f76e26e8-aa21-4e7c-b973-734f1b34f368",
+            "sourceColumn": "report.categoryIssueCounts.name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "level_a_issue_counts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e3cf6c4b-128d-4911-995f-844ffe6da392",
+            "sourceColumn": "level_a_issue_counts",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "level_aa_issue_counts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9c57762f-040c-48d6-b085-2ecd74eaed84",
+            "sourceColumn": "level_aa_issue_counts",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Label",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "159ddbb3-67d1-49f3-b3ca-f53b558b2949",
+            "sourceColumn": "Label",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "90d05958-39eb-48e2-9284-3281ebfffe61",
+        "partitions": [
+          {
+            "name": "categories",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
+                "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
+                "    #\"Erweiterte report.categoryIssueCounts1\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryIssueCounts\", \"report.categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.totalIssueCount\", \"report.categoryIssueCounts.levelIssueCounts\"}),",
+                "    #\"Entfernte Spalten1\" = Table.RemoveColumns(#\"Erweiterte report.categoryIssueCounts1\",{\"report.categoryIssueCounts.levelIssueCounts\", \"report.categoryIssueCounts.totalIssueCount\"}),",
+                "    #\"Zusammengeführte Abfragen\" = Table.NestedJoin(#\"Entfernte Spalten1\", {\"report.categoryIssueCounts.name\"}, category_level_a_counts, {\"report.categoryIssueCounts.name\"}, \"category_level_a_counts\", JoinKind.LeftOuter),",
+                "    #\"Erweiterte category_level_a_counts\" = Table.ExpandTableColumn(#\"Zusammengeführte Abfragen\", \"category_level_a_counts\", {\"report.categoryIssueCounts.levelIssueCounts.name\", \"report.categoryIssueCounts.levelIssueCounts.issueCount\"}, {\"category_level_a_counts.report.categoryIssueCounts.levelIssueCounts.name\", \"category_level_a_counts.report.categoryIssueCounts.levelIssueCounts.issueCount\"}),",
+                "    #\"Entfernte Spalten2\" = Table.RemoveColumns(#\"Erweiterte category_level_a_counts\",{\"category_level_a_counts.report.categoryIssueCounts.levelIssueCounts.name\"}),",
+                "    #\"Zusammengeführte Abfragen1\" = Table.NestedJoin(#\"Entfernte Spalten2\", {\"report.categoryIssueCounts.name\"}, category_level_aa_counts, {\"report.categoryIssueCounts.name\"}, \"category_level_aa_counts\", JoinKind.LeftOuter),",
+                "    #\"Erweiterte category_level_aa_counts\" = Table.ExpandTableColumn(#\"Zusammengeführte Abfragen1\", \"category_level_aa_counts\", {\"report.categoryIssueCounts.levelIssueCounts.issueCount\"}, {\"category_level_aa_counts.report.categoryIssueCounts.levelIssueCounts.issueCount\"}),",
+                "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte category_level_aa_counts\",{{\"category_level_a_counts.report.categoryIssueCounts.levelIssueCounts.issueCount\", \"level_a_issue_counts\"}, {\"category_level_aa_counts.report.categoryIssueCounts.levelIssueCounts.issueCount\", \"level_aa_issue_counts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.name\"}}),",
+                "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"level_a_issue_counts\", Int64.Type}, {\"level_aa_issue_counts\", Int64.Type}}),",
+                "    #\"Hinzugefügte bedingte Spalte\" = Table.AddColumn(#\"Geänderter Typ\", \"Benutzerdefiniert\", each if [report.categoryIssueCounts.name] = \"textAlternatives\" then \"Text Alternatives\" else if [report.categoryIssueCounts.name] = \"logicalNavigationAndIntuitiveness\" then \"Logical Navigation And Intuitiveness\" else if [report.categoryIssueCounts.name] = \"codingStandards\" then \"Coding Standards\" else if [report.categoryIssueCounts.name] = \"colorContrast\" then \"Color Contrast\" else if [report.categoryIssueCounts.name] = \"inputAssistance\" then \"Input Assistance\" else if [report.categoryIssueCounts.name] = \"keyboardOperability\" then \"Keyboard Operability\" else null, type text),",
+                "    #\"Umbenannte Spalten1\" = Table.RenameColumns(#\"Hinzugefügte bedingte Spalte\",{{\"Benutzerdefiniert\", \"Label\"}})",
+                "in",
+                "    #\"Umbenannte Spalten1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "category_level_a_counts",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "report.categoryIssueCounts.name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "de9421a7-8727-4fa9-b911-debe9b827df2",
+            "sourceColumn": "report.categoryIssueCounts.name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "report.categoryIssueCounts.levelIssueCounts.name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2da0105d-bb15-4078-bc52-28a84108134e",
+            "sourceColumn": "report.categoryIssueCounts.levelIssueCounts.name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "report.categoryIssueCounts.levelIssueCounts.issueCount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "388e3f6a-c154-4a97-a6b9-c9a6e7706e76",
+            "sourceColumn": "report.categoryIssueCounts.levelIssueCounts.issueCount",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "40028322-9555-4134-8a8e-50a8279b522d",
+        "partitions": [
+          {
+            "name": "category_level_a_counts",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
+                "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
+                "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryCounts\", \"report.categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.totalIssueCount\", \"report.categoryIssueCounts.levelIssueCounts\"}),",
+                "    #\"Erweiterte report.categoryIssueCounts.levelIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report.categoryIssueCounts\", \"report.categoryIssueCounts.levelIssueCounts\"),",
+                "    #\"Erweiterte report.categoryIssueCounts.levelIssueCounts1\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryIssueCounts.levelIssueCounts\", \"report.categoryIssueCounts.levelIssueCounts\", {\"name\", \"issueCount\"}, {\"report.categoryIssueCounts.levelIssueCounts.name\", \"report.categoryIssueCounts.levelIssueCounts.issueCount\"}),",
+                "    #\"Entfernte Spalten1\" = Table.RemoveColumns(#\"Erweiterte report.categoryIssueCounts.levelIssueCounts1\",{\"report.categoryIssueCounts.totalIssueCount\"}),",
+                "    #\"Gefilterte Zeilen\" = Table.SelectRows(#\"Entfernte Spalten1\", each ([report.categoryIssueCounts.levelIssueCounts.name] = \"A\"))",
+                "in",
+                "    #\"Gefilterte Zeilen\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "report_summary",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "element_count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "acece104-b05b-49f6-8372-d3b479e924da",
+            "sourceColumn": "element_count",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "element_with_no_violation_count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "73181942-f931-438f-b1ad-74eba0f1c31b",
+            "sourceColumn": "element_with_no_violation_count",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "elements_with_no_violation_percentage",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.00\\ %;-0.00\\ %;0.00\\ %",
+            "lineageTag": "43c5bef9-9ed1-4334-bb5e-3d992e70bf24",
+            "sourceColumn": "elements_with_no_violation_percentage",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "formatted_percentage",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "FORMAT(report_summary[elements_with_no_violation_percentage], \"Percent\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "9d5ecf0a-04b1-4d75-9b13-bd4467b3ff40",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f33eae92-69fa-4210-95a0-07ff3191677c",
+            "sourceColumn": "url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "logo_url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "ImageUrl",
+            "dataType": "string",
+            "lineageTag": "e462114b-9461-4645-9ba8-53651f4a60d3",
+            "sourceColumn": "logo_url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "screenshot_path",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e9c61d68-41ae-41f2-aa6b-af8377aef0c0",
+            "sourceColumn": "screenshot_path",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "total_issue_count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "518462d6-cc30-4203-8c4b-ed99f3b8770b",
+            "sourceColumn": "total_issue_count",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "1a9a340e-e459-40f3-8beb-12a175818766",
+        "partitions": [
+          {
+            "name": "report_summary",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"url\", \"logoUrl\", \"screenshotPath\", \"summary\"}, {\"report.url\", \"report.logoUrl\", \"report.screenshotPath\", \"report.summary\"}),",
+                "    #\"Erweiterte report.summary1\" = Table.ExpandRecordColumn(#\"Erweiterte report1\", \"report.summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"}, {\"report.summary.totalIssueCount\", \"report.summary.elementCount\", \"report.summary.elementWithViolationCount\", \"report.summary.elementsWithNoViolationsPercentage\"}),",
+                "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte report.summary1\",{{\"report.url\", \"url\"}, {\"report.logoUrl\", \"logo_url\"}, {\"report.screenshotPath\", \"screenshot_path\"}, {\"report.summary.totalIssueCount\", \"total_issue_count\"}, {\"report.summary.elementCount\", \"element_count\"}, {\"report.summary.elementWithViolationCount\", \"element_with_no_violation_count\"}, {\"report.summary.elementsWithNoViolationsPercentage\", \"elements_with_no_violation_percentage\"}}),",
+                "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"logo_url\", type text}})",
+                "in",
+                "    #\"Geänderter Typ\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "issue_counts",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "level",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ae812f8b-68f4-4237-8896-0c5988a036d1",
+            "sourceColumn": "level",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "issue_count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f9307602-d269-46c8-acc2-8826a2ddcec6",
+            "sourceColumn": "issue_count",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "02a5d636-e6e0-4bb8-8cf4-180f900b8cff",
+        "partitions": [
+          {
+            "name": "issue_counts",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
+                "    report = #\"In Tabelle konvertiert\"{0}[report],",
+                "    summary = report[summary],",
+                "    levelIssueCounts = summary[levelIssueCounts],",
+                "    #\"In Tabelle konvertiert1\" = Table.FromList(levelIssueCounts, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    #\"Erweiterte Column1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert1\", \"Column1\", {\"name\", \"issueCount\"}, {\"Column1.name\", \"Column1.issueCount\"}),",
+                "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte Column1\",{{\"Column1.name\", \"level\"}, {\"Column1.issueCount\", \"issue_count\"}}),",
+                "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"issue_count\", Int64.Type}})",
+                "in",
+                "    #\"Geänderter Typ\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "category_level_aa_counts",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "report.categoryIssueCounts.name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "817eef27-c04d-422f-96ee-c22408830123",
+            "sourceColumn": "report.categoryIssueCounts.name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "report.categoryIssueCounts.levelIssueCounts.name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7cc50698-ca7e-4d3b-978d-7fe296889a53",
+            "sourceColumn": "report.categoryIssueCounts.levelIssueCounts.name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "report.categoryIssueCounts.levelIssueCounts.issueCount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "05526091-55f7-451b-8d10-f50f2ec84e9e",
+            "sourceColumn": "report.categoryIssueCounts.levelIssueCounts.issueCount",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "aaef29bc-c645-4d2a-8672-bfab2299c5a7",
+        "partitions": [
+          {
+            "name": "category_level_aa_counts",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
+                "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
+                "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryCounts\", \"report.categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.totalIssueCount\", \"report.categoryIssueCounts.levelIssueCounts\"}),",
+                "    #\"Erweiterte report.categoryIssueCounts.levelIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report.categoryIssueCounts\", \"report.categoryIssueCounts.levelIssueCounts\"),",
+                "    #\"Erweiterte report.categoryIssueCounts.levelIssueCounts1\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryIssueCounts.levelIssueCounts\", \"report.categoryIssueCounts.levelIssueCounts\", {\"name\", \"issueCount\"}, {\"report.categoryIssueCounts.levelIssueCounts.name\", \"report.categoryIssueCounts.levelIssueCounts.issueCount\"}),",
+                "    #\"Entfernte Spalten1\" = Table.RemoveColumns(#\"Erweiterte report.categoryIssueCounts.levelIssueCounts1\",{\"report.categoryIssueCounts.totalIssueCount\"}),",
+                "    #\"Gefilterte Zeilen\" = Table.SelectRows(#\"Entfernte Spalten1\", each ([report.categoryIssueCounts.levelIssueCounts.name] = \"AA\"))",
+                "in",
+                "    #\"Gefilterte Zeilen\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
