@@ -122,4 +122,10 @@ export type MultiPageReport = SinglePageReport & {
   screenshotPath: string | null
   pageCount: number
   pageReports: SinglePageReport[]
+  treePageReport: TreePageReport | null
+}
+
+export type TreePageReport = SinglePageReport & {
+  page: SinglePageReport | null
+  children: TreePageReport[]
 }

@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"report_summary\",\"category_level_a_counts\",\"category_level_aa_counts\",\"categories\",\"issue_counts\"]"
+        "value": "[\"report_summary\",\"category_level_a_counts\",\"category_level_aa_counts\",\"categories\",\"issue_counts\",\"firstLevelPages\",\"report_summary_all\",\"issue_counts_all\",\"categories_all\",\"category_level_a_counts_all\",\"category_level_aa_counts_all\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.131.1126.0 (24.07)"
+        "value": "2.136.1202.0 (24.09)"
       },
       {
         "name": "PBI_ProTooling",
@@ -55,215 +55,75 @@
         "fromTable": "category_level_aa_counts",
         "toColumn": "report.categoryIssueCounts.name",
         "toTable": "categories"
+      },
+      {
+        "name": "AutoDetected_35c77561-486b-4611-9bb5-3f11109d1f0e",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "url",
+        "fromTable": "report_summary_all",
+        "toColumn": "url",
+        "toTable": "firstLevelPages"
+      },
+      {
+        "name": "AutoDetected_c8381853-081e-4275-af29-851c208a5410",
+        "fromColumn": "url",
+        "fromTable": "issue_counts_all",
+        "toColumn": "url",
+        "toTable": "firstLevelPages"
+      },
+      {
+        "name": "AutoDetected_9caf916c-696a-4c6b-b7ba-1ab0fb64fd23",
+        "fromColumn": "level",
+        "fromTable": "issue_counts_all",
+        "toColumn": "level",
+        "toTable": "issue_counts"
+      },
+      {
+        "name": "AutoDetected_499a3be5-95d2-4240-993d-48d071257d8f",
+        "fromColumn": "level_aa_issue_counts",
+        "fromTable": "categories_all",
+        "toColumn": "level_aa_issue_counts",
+        "toTable": "categories"
+      },
+      {
+        "name": "AutoDetected_c3d8c3d3-8f70-4037-9041-c808c8226d0d",
+        "fromColumn": "url",
+        "fromTable": "categories_all",
+        "toColumn": "url",
+        "toTable": "firstLevelPages"
+      },
+      {
+        "name": "AutoDetected_8ae2f320-f254-40c0-b586-e4570d7bc822",
+        "fromColumn": "url",
+        "fromTable": "category_level_a_counts_all",
+        "toColumn": "url",
+        "toTable": "firstLevelPages"
+      },
+      {
+        "name": "AutoDetected_84fa2ba6-6fa2-4637-9105-94842aea908f",
+        "fromColumn": "url",
+        "fromTable": "category_level_aa_counts_all",
+        "toColumn": "url",
+        "toTable": "firstLevelPages"
+      },
+      {
+        "name": "AutoDetected_77f288cb-2354-4175-bc26-52ebfe037476",
+        "fromColumn": "levelName",
+        "fromTable": "category_level_a_counts_all",
+        "toColumn": "level",
+        "toTable": "issue_counts"
+      },
+      {
+        "name": "AutoDetected_3c0ce02e-61db-4bcf-b1c2-d616937afc31",
+        "fromColumn": "levelName",
+        "fromTable": "category_level_aa_counts_all",
+        "toColumn": "level",
+        "toTable": "issue_counts"
       }
     ],
     "sourceQueryCulture": "de-DE",
     "tables": [
-      {
-        "name": "DateTableTemplate_d245e1d6-7fea-4ec8-9976-af4568f633b7",
-        "annotations": [
-          {
-            "name": "__PBI_TemplateDateTable",
-            "value": "true"
-          },
-          {
-            "name": "DefaultItem",
-            "value": "DateHierarchy"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              }
-            ],
-            "dataCategory": "PaddedDateTableDates",
-            "dataType": "dateTime",
-            "isHidden": true,
-            "isNameInferred": true,
-            "lineageTag": "26018b63-51da-4448-8af0-3b7b806afa8b",
-            "sourceColumn": "[Date]",
-            "summarizeBy": "none",
-            "type": "calculatedTableColumn"
-          },
-          {
-            "name": "Jahr",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Year"
-              }
-            ],
-            "dataCategory": "Years",
-            "dataType": "int64",
-            "expression": "YEAR([Date])",
-            "isHidden": true,
-            "lineageTag": "34ccc6ea-8ac7-4cba-9ff8-1a27111c859b",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "MonthNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "MonthNumber"
-              }
-            ],
-            "dataCategory": "MonthOfYear",
-            "dataType": "int64",
-            "expression": "MONTH([Date])",
-            "isHidden": true,
-            "lineageTag": "282a351d-6919-4d27-a602-1bd468fab629",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Monat",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Month"
-              }
-            ],
-            "dataCategory": "Months",
-            "dataType": "string",
-            "expression": "FORMAT([Date], \"MMMM\")",
-            "isHidden": true,
-            "lineageTag": "f04f3c99-c2d1-4806-becc-58170b002e97",
-            "sortByColumn": "MonthNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "QuarterNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "QuarterNumber"
-              }
-            ],
-            "dataCategory": "QuarterOfYear",
-            "dataType": "int64",
-            "expression": "INT(([MonthNo] + 2) / 3)",
-            "isHidden": true,
-            "lineageTag": "fb98262c-7b9d-4a9d-8fc2-12d4e2fc510a",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Quartal",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Quarter"
-              }
-            ],
-            "dataCategory": "Quarters",
-            "dataType": "string",
-            "expression": "\"Qrtl \" & [QuarterNo]",
-            "isHidden": true,
-            "lineageTag": "91378081-85c2-463c-9e2a-202c37972159",
-            "sortByColumn": "QuarterNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Tag",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Day"
-              }
-            ],
-            "dataCategory": "DayOfMonth",
-            "dataType": "int64",
-            "expression": "DAY([Date])",
-            "isHidden": true,
-            "lineageTag": "3f2e8445-5e40-461a-b945-c3b1bdbb930f",
-            "summarizeBy": "none",
-            "type": "calculated"
-          }
-        ],
-        "hierarchies": [
-          {
-            "name": "Datumshierarchie",
-            "annotations": [
-              {
-                "name": "TemplateId",
-                "value": "DateHierarchy"
-              }
-            ],
-            "levels": [
-              {
-                "name": "Jahr",
-                "column": "Jahr",
-                "lineageTag": "4abe6a7f-693c-4709-994b-125f63edda57",
-                "ordinal": 0
-              },
-              {
-                "name": "Quartal",
-                "column": "Quartal",
-                "lineageTag": "276212cb-c52b-4d7d-9fc4-e2c1b716d069",
-                "ordinal": 1
-              },
-              {
-                "name": "Monat",
-                "column": "Monat",
-                "lineageTag": "bbe1be2d-31f8-4e6d-b70d-c793a74c3f63",
-                "ordinal": 2
-              },
-              {
-                "name": "Tag",
-                "column": "Tag",
-                "lineageTag": "5e9f07d1-cf59-4bb7-9224-c64f0b522e16",
-                "ordinal": 3
-              }
-            ],
-            "lineageTag": "1464c851-72bf-47f3-9f10-47c647f167c3"
-          }
-        ],
-        "isHidden": true,
-        "isPrivate": true,
-        "lineageTag": "487617c4-b24a-4d05-a199-5f63fb1d98cc",
-        "partitions": [
-          {
-            "name": "DateTableTemplate_d245e1d6-7fea-4ec8-9976-af4568f633b7",
-            "mode": "import",
-            "source": {
-              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
-              "type": "calculated"
-            }
-          }
-        ]
-      },
       {
         "name": "categories",
         "annotations": [
@@ -298,7 +158,7 @@
             "formatString": "0",
             "lineageTag": "e3cf6c4b-128d-4911-995f-844ffe6da392",
             "sourceColumn": "level_a_issue_counts",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "level_aa_issue_counts",
@@ -312,7 +172,7 @@
             "formatString": "0",
             "lineageTag": "9c57762f-040c-48d6-b085-2ecd74eaed84",
             "sourceColumn": "level_aa_issue_counts",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Label",
@@ -336,7 +196,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
@@ -365,6 +225,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -416,7 +280,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
@@ -438,7 +302,11 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Table"
+            "value": "Exception"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -564,7 +432,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"url\", \"logoUrl\", \"screenshotPath\", \"summary\"}, {\"report.url\", \"report.logoUrl\", \"report.screenshotPath\", \"report.summary\"}),",
                 "    #\"Erweiterte report.summary1\" = Table.ExpandRecordColumn(#\"Erweiterte report1\", \"report.summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"}, {\"report.summary.totalIssueCount\", \"report.summary.elementCount\", \"report.summary.elementWithViolationCount\", \"report.summary.elementsWithNoViolationsPercentage\"}),",
@@ -623,7 +491,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    report = #\"In Tabelle konvertiert\"{0}[report],",
                 "    summary = report[summary],",
@@ -697,7 +565,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"\\\\Mac\\Home\\dev\\dart_files\\devk_report_22_07_2024.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
@@ -708,6 +576,707 @@
                 "    #\"Gefilterte Zeilen\" = Table.SelectRows(#\"Entfernte Spalten1\", each ([report.categoryIssueCounts.levelIssueCounts.name] = \"AA\"))",
                 "in",
                 "    #\"Gefilterte Zeilen\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "firstLevelPages",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "60cb5233-caf1-417b-ba1a-51161c1e0556",
+            "sourceColumn": "url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "summary",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "29558d81-af05-40ba-be08-5a6fc9612265",
+            "sourceColumn": "summary",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "categoryIssueCounts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "db562759-0675-4fc1-9206-a5d8259c388f",
+            "sourceColumn": "categoryIssueCounts",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "page",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "98fadb4e-0a42-43cc-8104-986c702fa555",
+            "sourceColumn": "page",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "b133c800-0d93-4346-a84a-ea27bc2237bd",
+        "partitions": [
+          {
+            "name": "firstLevelPages",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Tree = Quelle,",
+                "    report = Tree[report],",
+                "    treePageReport = report[treePageReport],",
+                "    children = treePageReport[children],",
+                "    children1 = children{0},",
+                "    children2 = children1[children],",
+                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\", \"categoryIssueCounts\", \"page\"}),",
+                "",
+                "    // create issue counts sub table",
+                "    withIssueCounts1 = Table.AddColumn(table2, \"issue_counts\", each [summary]),",
+                "    withIssueCounts2 = Table.ExpandRecordColumn(withIssueCounts1, \"issue_counts\", {\"levelIssueCounts\"}, {\"issue_counts\"}),",
+                "    withIssueCounts3 = Table.TransformColumns(withIssueCounts2, {\"issue_counts\", Table.FromRecords})",
+                "in",
+                "    withIssueCounts3"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "report_summary_all",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "61de5c87-76ce-4beb-9a2f-b9368851a284",
+            "sourceColumn": "url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "totalIssueCount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9b5622f8-7ee9-4939-b988-87b9ea36d211",
+            "sourceColumn": "totalIssueCount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "elementCount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3d60efed-a2fc-4b1b-9da9-f1b2ca2bd998",
+            "sourceColumn": "elementCount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "elementWithViolationCount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "23b92c08-ed43-45b2-a87d-e18e4f68fc1b",
+            "sourceColumn": "elementWithViolationCount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "elementsWithNoViolationsPercentage",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.00\\ %;-0.00\\ %;0.00\\ %",
+            "lineageTag": "0309e4a2-0b1a-4311-a8b6-86fb667835be",
+            "sourceColumn": "elementsWithNoViolationsPercentage",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "2606b19f-7ec7-46bb-aabe-f09c9189434b",
+        "partitions": [
+          {
+            "name": "report_summary_all",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Tree = Quelle,",
+                "    report = Tree[report],",
+                "    treePageReport = report[treePageReport],",
+                "    children = treePageReport[children],",
+                "    children1 = children{0},",
+                "    children2 = children1[children],",
+                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\"}),",
+                "",
+                "    // create summary report",
+                "    summaryReport1 = Table.ExpandRecordColumn(table2, \"summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"})",
+                "in",
+                "    summaryReport1"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "issue_counts_all",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "06f73991-5fa8-46c9-bbdd-221b6f996e04",
+            "sourceColumn": "url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "summary",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1e93098b-2f0e-4d6e-a1b3-a37e2a0f0cac",
+            "sourceColumn": "summary",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "level",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "aecd39c6-4103-46fe-a99f-dd6d7e7e6038",
+            "sourceColumn": "level",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "issue_count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "fdc8bd00-b95b-422d-b305-f2431ffcbd50",
+            "sourceColumn": "issue_count",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "89b55fe2-c632-4a19-bd9f-24dee3220476",
+        "partitions": [
+          {
+            "name": "issue_counts_all",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Tree = Quelle,",
+                "    report = Tree[report],",
+                "    treePageReport = report[treePageReport],",
+                "    children = treePageReport[children],",
+                "    children1 = children{0},",
+                "    children2 = children1[children],",
+                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\"}),",
+                "",
+                "    // create issue counts sub table",
+                "    withIssueCounts1 = Table.AddColumn(table2, \"issue_counts\", each [summary]),",
+                "    withIssueCounts2 = Table.ExpandRecordColumn(withIssueCounts1, \"issue_counts\", {\"levelIssueCounts\"}, {\"issue_counts\"}),",
+                "    withIssueCounts3 = Table.ExpandListColumn(withIssueCounts2, \"issue_counts\"),",
+                "    withIssueCounts4 = Table.ExpandRecordColumn(withIssueCounts3, \"issue_counts\", {\"name\", \"issueCount\"}, {\"level\", \"issue_count\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(withIssueCounts4,{{\"issue_count\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "categories_all",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "23020f46-1682-4c4c-8fa9-85a08bf2159e",
+            "sourceColumn": "url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d9bfa8a3-cb90-4801-8fae-13df08c5395b",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "totalIssueCount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "baf1210f-6ba2-4395-96ff-0804cb560989",
+            "sourceColumn": "totalIssueCount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "levelIssueCounts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3ee98813-45b1-4072-a066-3610f28b2ee4",
+            "sourceColumn": "levelIssueCounts",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "a_levelName",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fcac6fda-8a63-4920-b49d-6c564d4f2288",
+            "sourceColumn": "a_levelName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "level_a_issue_counts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "79822381-adbc-41e8-9679-35c12bb279dd",
+            "sourceColumn": "level_a_issue_counts",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "aa_levelName",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "129a99d7-f891-4e65-ae3c-9f186b04a105",
+            "sourceColumn": "aa_levelName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "level_aa_issue_counts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "aff3c97d-551f-43a7-811e-08093cc9609e",
+            "sourceColumn": "level_aa_issue_counts",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Label",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a2d3b6f4-d03a-4226-be39-ff43b844378d",
+            "sourceColumn": "Label",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "bfe214c1-616f-4956-ac41-a03ba1b3f348",
+        "partitions": [
+          {
+            "name": "categories_all",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Tree = Quelle,",
+                "    report = Tree[report],",
+                "    treePageReport = report[treePageReport],",
+                "    children = treePageReport[children],",
+                "    children1 = children{0},",
+                "    children2 = children1[children],",
+                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
+                "",
+                "    subTable1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
+                "    subTable2 = Table.ExpandRecordColumn(subTable1, \"categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}),",
+                "    subTable3 = Table.ExpandListColumn(subTable2, \"levelIssueCounts\"),",
+                "    subTable4 = Table.ExpandRecordColumn(subTable3, \"levelIssueCounts\", {\"name\", \"issueCount\"}, {\"levelName\", \"levelIssueCount\"}),",
+                "    subTable5 = Table.RemoveColumns(subTable4, \"totalIssueCount\"),",
+                "    categoryLevelA = Table.SelectRows(subTable5, each ([levelName] = \"A\")),",
+                "    categoryLevelAA = Table.SelectRows(subTable5, each ([levelName] = \"AA\")),",
+                "",
+                "    // create categories",
+                "    categories1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
+                "    categories2 = Table.ExpandRecordColumn(categories1, \"categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}),",
+                "    ",
+                "    categories3 = Table.NestedJoin(categories2, {\"url\", \"name\"}, categoryLevelA, {\"url\", \"name\"}, \"category_level_a_counts\", JoinKind.LeftOuter),",
+                "    categories4 = Table.ExpandTableColumn(categories3, \"category_level_a_counts\", {\"levelName\", \"levelIssueCount\"}, {\"a_levelName\", \"level_a_issue_counts\"}),",
+                "    ",
+                "    categories5 = Table.NestedJoin(categories4, {\"url\", \"name\"}, categoryLevelAA, {\"url\", \"name\"}, \"category_level_aa_counts\", JoinKind.LeftOuter),",
+                "    categories6 = Table.ExpandTableColumn(categories5, \"category_level_aa_counts\", {\"levelName\", \"levelIssueCount\"}, {\"aa_levelName\", \"level_aa_issue_counts\"}),",
+                "",
+                "    categories7 = Table.TransformColumnTypes(categories6, {{\"level_a_issue_counts\", Int64.Type}, {\"level_aa_issue_counts\", Int64.Type}}),",
+                "    categories8 = Table.AddColumn(categories7, \"Label\", each if [name] = \"textAlternatives\" then \"Text Alternatives\" else if [name] = \"logicalNavigationAndIntuitiveness\" then \"Logical Navigation And Intuitiveness\" else if [name] = \"codingStandards\" then \"Coding Standards\" else if [name] = \"colorContrast\" then \"Color Contrast\" else if [name] = \"inputAssistance\" then \"Input Assistance\" else if [name] = \"keyboardOperability\" then \"Keyboard Operability\" else null, type text)",
+                "in",
+                "    categories8",
+                "",
+                "   // #\"Erweiterte category_level_a_counts\" = Table.ExpandTableColumn(#\"Zusammengeführte Abfragen\", \"category_level_a_counts\", {\"report.categoryIssueCounts.levelIssueCounts.name\", \"report.categoryIssueCounts.levelIssueCounts.issueCount\"}, {\"category_level_a_counts.report.categoryIssueCounts.levelIssueCounts.name\", \"category_level_a_counts.report.categoryIssueCounts.levelIssueCounts.issueCount\"}),",
+                "   // #\"Entfernte Spalten2\" = Table.RemoveColumns(#\"Erweiterte category_level_a_counts\",{\"category_level_a_counts.report.categoryIssueCounts.levelIssueCounts.name\"}),",
+                "",
+                "   // #\"Zusammengeführte Abfragen1\" = Table.NestedJoin(#\"Entfernte Spalten2\", {\"report.categoryIssueCounts.name\"}, category_level_aa_counts, {\"report.categoryIssueCounts.name\"}, \"category_level_aa_counts\", JoinKind.LeftOuter),",
+                "   // #\"Erweiterte category_level_aa_counts\" = Table.ExpandTableColumn(#\"Zusammengeführte Abfragen1\", \"category_level_aa_counts\", {\"report.categoryIssueCounts.levelIssueCounts.issueCount\"}, {\"category_level_aa_counts.report.categoryIssueCounts.levelIssueCounts.issueCount\"}),",
+                "   ",
+                "   // #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte category_level_aa_counts\",{{\"category_level_a_counts.report.categoryIssueCounts.levelIssueCounts.issueCount\", \"level_a_issue_counts\"}, {\"category_level_aa_counts.report.categoryIssueCounts.levelIssueCounts.issueCount\", \"level_aa_issue_counts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.name\"}}),",
+                "   // #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"level_a_issue_counts\", Int64.Type}, {\"level_aa_issue_counts\", Int64.Type}}),",
+                "   // #\"Hinzugefügte bedingte Spalte\" = Table.AddColumn(#\"Geänderter Typ\", \"Benutzerdefiniert\", each if [report.categoryIssueCounts.name] = \"textAlternatives\" then \"Text Alternatives\" else if [report.categoryIssueCounts.name] = \"logicalNavigationAndIntuitiveness\" then \"Logical Navigation And Intuitiveness\" else if [report.categoryIssueCounts.name] = \"codingStandards\" then \"Coding Standards\" else if [report.categoryIssueCounts.name] = \"colorContrast\" then \"Color Contrast\" else if [report.categoryIssueCounts.name] = \"inputAssistance\" then \"Input Assistance\" else if [report.categoryIssueCounts.name] = \"keyboardOperability\" then \"Keyboard Operability\" else null, type text),",
+                "   // #\"Umbenannte Spalten1\" = Table.RenameColumns(#\"Hinzugefügte bedingte Spalte\",{{\"Benutzerdefiniert\", \"Label\"}})",
+                "//in",
+                " //   #\"Umbenannte Spalten1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "category_level_a_counts_all",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "66a8b9d5-2f12-4b92-8148-dac3bafd31f1",
+            "sourceColumn": "url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "22eb35d5-9c80-48d4-9cb7-c858f079cb74",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "levelName",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "38a8086a-192c-46cd-a694-fec49ec4b907",
+            "sourceColumn": "levelName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "levelIssueCount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3a8d98bd-f388-42b9-ac6b-8275eb13b0be",
+            "sourceColumn": "levelIssueCount",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "adda7f5d-881b-4ea0-a559-0cc0adb654f9",
+        "partitions": [
+          {
+            "name": "category_level_a_counts_all",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Tree = Quelle,",
+                "    report = Tree[report],",
+                "    treePageReport = report[treePageReport],",
+                "    children = treePageReport[children],",
+                "    children1 = children{0},",
+                "    children2 = children1[children],",
+                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
+                "",
+                "    categoryA1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
+                "    categoryA2 = Table.ExpandRecordColumn(categoryA1, \"categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}),",
+                "    categoryA3 = Table.ExpandListColumn(categoryA2, \"levelIssueCounts\"),",
+                "    categoryA4 = Table.ExpandRecordColumn(categoryA3, \"levelIssueCounts\", {\"name\", \"issueCount\"}, {\"levelName\", \"levelIssueCount\"}),",
+                "    categoryA5 = Table.RemoveColumns(categoryA4, \"totalIssueCount\"),",
+                "    categoryA6 = Table.SelectRows(categoryA5, each ([levelName] = \"A\"))",
+                "in",
+                "    categoryA6"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "category_level_aa_counts_all",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "url",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "39ea3e4d-3f81-47d8-8d37-04da2fbbda85",
+            "sourceColumn": "url",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0a1ce69d-1342-4cde-822d-369c1484e48b",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "levelName",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a5950470-a28e-4883-814c-9027102384a5",
+            "sourceColumn": "levelName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "levelIssueCount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f6ccdf6d-502c-466d-9190-830b35c13319",
+            "sourceColumn": "levelIssueCount",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "2842bd7c-01a1-46e7-a4a8-05af7f159a87",
+        "partitions": [
+          {
+            "name": "category_level_aa_counts_all",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Tree = Quelle,",
+                "    report = Tree[report],",
+                "    treePageReport = report[treePageReport],",
+                "    children = treePageReport[children],",
+                "    children1 = children{0},",
+                "    children2 = children1[children],",
+                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
+                "",
+                "    categoryA1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
+                "    categoryA2 = Table.ExpandRecordColumn(categoryA1, \"categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}),",
+                "    categoryA3 = Table.ExpandListColumn(categoryA2, \"levelIssueCounts\"),",
+                "    categoryA4 = Table.ExpandRecordColumn(categoryA3, \"levelIssueCounts\", {\"name\", \"issueCount\"}, {\"levelName\", \"levelIssueCount\"}),",
+                "    categoryA5 = Table.RemoveColumns(categoryA4, \"totalIssueCount\"),",
+                "    categoryA6 = Table.SelectRows(categoryA5, each ([levelName] = \"AA\"))",
+                "in",
+                "    categoryA6"
               ],
               "type": "m"
             }

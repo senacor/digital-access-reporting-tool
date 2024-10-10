@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 2288.3616394153596,
+        "x": 1800,
         "y": 0
       },
       "nodes": [
         {
           "location": {
             "x": 1136.1847511806297,
-            "y": 45.804949095110146
+            "y": 57.804949095110146
           },
           "nodeIndex": "categories",
           "nodeLineageTag": "90d05958-39eb-48e2-9284-3281ebfffe61",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 1420.3616394153598,
-            "y": 59.129941727546367
+            "y": 71.129941727546367
           },
           "nodeIndex": "category_level_a_counts",
           "nodeLineageTag": "40028322-9555-4134-8a8e-50a8279b522d",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 852,
-            "y": 26.870058272453647
+            "y": 38.870058272453647
           },
           "nodeIndex": "category_level_aa_counts",
           "nodeLineageTag": "71d86d0f-1770-4263-92d1-a2b87668d190",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 3094.3616394153596,
-            "y": 0
+            "y": 12
           },
           "nodeIndex": "report_summary",
           "nodeLineageTag": "1a9a340e-e459-40f3-8beb-12a175818766",
@@ -63,11 +63,88 @@
         {
           "location": {
             "x": 3368.3616394153596,
-            "y": 60
+            "y": 72
           },
           "nodeIndex": "issue_counts",
           "size": {
             "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2800.3616394153596,
+            "y": 48
+          },
+          "nodeIndex": "firstLevelPages",
+          "nodeLineageTag": "b133c800-0d93-4346-a84a-ea27bc2237bd",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2800.3616394153596,
+            "y": 60
+          },
+          "nodeIndex": "issue_counts_all",
+          "nodeLineageTag": "89b55fe2-c632-4a19-bd9f-24dee3220476",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2800.3616394153596,
+            "y": 12
+          },
+          "nodeIndex": "report_summary_all",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2800.3616394153596,
+            "y": 0
+          },
+          "nodeIndex": "categories_all",
+          "nodeLineageTag": "bfe214c1-616f-4956-ac41-a03ba1b3f348",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3084.3616394153596,
+            "y": 60
+          },
+          "nodeIndex": "category_level_a_counts_all",
+          "nodeLineageTag": "adda7f5d-881b-4ea0-a559-0cc0adb654f9",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3368.3616394153596,
+            "y": 60
+          },
+          "nodeIndex": "category_level_aa_counts_all",
+          "nodeLineageTag": "2842bd7c-01a1-46e7-a4a8-05af7f159a87",
+          "size": {
+            "height": 176,
             "width": 234
           },
           "zIndex": 0

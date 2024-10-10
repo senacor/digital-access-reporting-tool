@@ -1,7 +1,7 @@
 import { AccessibilityCheckerReport } from "../types"
 import { calculateElementsWithNoViolationsPercentage } from "./calculateElementsWithNoViolationsPercentage"
 import { createSinglePageReport } from "./createSinglePageReport"
-import { LevelIssueCount, MultiPageReport } from "./types"
+import { LevelIssueCount, MultiPageReport, SinglePageReport, TreePageReport } from "./types"
 
 /**
  * Aggregates multiple single page reports into a joined multi page report.
@@ -31,6 +31,7 @@ export const createMultiPageReport = (
       elementWithViolationCount: 0,
       elementsWithNoViolationsPercentage: 0,
     },
+    treePageReport: null,
   }
 
   for (const accessibilityCheckerReport of accessibilityCheckerReports) {
@@ -84,6 +85,8 @@ export const createMultiPageReport = (
       multiPageReport.summary.elementWithViolationCount,
     )
 
+  multiPageReport.treePageReport = createTreePageReport(multiPageReport.pageReports)
+
   return multiPageReport
 }
 
@@ -107,4 +110,110 @@ function aggregateLevelIssueCounts(
 
     aggregatedLevelIssueCount.issueCount += levelIssueCountToAggregate.issueCount
   }
+}
+
+function createTreePageReport(pages: SinglePageReport[]) {
+
+  const base: TreePageReport = emptyTreePageReport("/")
+
+  for (const page of pages) {
+
+    const path = page.url.match(/\/[^/]+/g)
+
+    if (!path) continue
+
+    const fullPath = path?.join("")
+    let curr = base
+
+    path?.forEach((_e, i) => {
+      const currPath = path?.slice(0, i+1).join("")
+      const child = curr.children.find(e => e.url === currPath)
+
+      if (child) {
+        curr = child
+      } else {
+        const treeReport = emptyTreePageReport(currPath)
+        curr.children.push(treeReport)
+        curr = curr.children[curr.children.length-1]
+        curr.children = curr.children.sort((a,b) => a.url.localeCompare(b.url))
+      }
+      if (fullPath === currPath) {
+        curr.page = page
+      }
+    })
+  }
+
+  // calculate sums
+  calculateStats(base)
+
+  return base
+}
+
+function emptyTreePageReport(url: string): TreePageReport {
+  return {
+    url: url,
+    page: null,
+    children: [],
+    categoryIssueCounts: [],
+    summary: {
+      totalIssueCount: 0,
+      levelIssueCounts: [],
+      elementCount: 0,
+      elementWithViolationCount: 0,
+      elementsWithNoViolationsPercentage: 0
+    },
+  }
+}
+
+function calculateStats(treePage: TreePageReport) {
+  if (treePage.page !== null) {
+    treePage.summary = treePage.page.summary
+    treePage.categoryIssueCounts = treePage.page.categoryIssueCounts
+  }
+
+  for (const child of treePage.children) {
+    calculateStats(child)
+
+    for (const singlePageCategoryIssueCounts of child.categoryIssueCounts) {
+      const multiPageCategoryIssueCount = treePage.categoryIssueCounts.find(
+        (category) => category.name === singlePageCategoryIssueCounts.name,
+      )
+
+      // If we can't find the category in the multi page report, we copy the current one
+      if (!multiPageCategoryIssueCount) {
+        treePage.categoryIssueCounts.push({
+          name: singlePageCategoryIssueCounts.name,
+          totalIssueCount: singlePageCategoryIssueCounts.totalIssueCount,
+          levelIssueCounts: singlePageCategoryIssueCounts.levelIssueCounts.map((level) => ({
+            ...level,
+          })),
+        })
+        continue
+      }
+
+      multiPageCategoryIssueCount.totalIssueCount += singlePageCategoryIssueCounts.totalIssueCount
+      aggregateLevelIssueCounts(
+        multiPageCategoryIssueCount.levelIssueCounts,
+        singlePageCategoryIssueCounts.levelIssueCounts,
+      )
+    }
+
+    // Here we aggregate the simpler values of the multi page report
+    treePage.summary.totalIssueCount += child.summary.totalIssueCount
+
+    aggregateLevelIssueCounts(
+      treePage.summary.levelIssueCounts,
+      child.summary.levelIssueCounts,
+    )
+
+    treePage.summary.elementCount += child.summary.elementCount
+    treePage.summary.elementWithViolationCount +=
+      child.summary.elementWithViolationCount
+  }
+
+  treePage.summary.elementsWithNoViolationsPercentage =
+    calculateElementsWithNoViolationsPercentage(
+      treePage.summary.elementCount,
+      treePage.summary.elementWithViolationCount,
+    )
 }
