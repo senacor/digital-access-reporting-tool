@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.136.1202.0 (24.09)"
+        "value": "2.137.751.0 (24.10)"
       },
       {
         "name": "PBI_ProTooling",
@@ -80,13 +80,6 @@
         "toTable": "issue_counts"
       },
       {
-        "name": "AutoDetected_499a3be5-95d2-4240-993d-48d071257d8f",
-        "fromColumn": "level_aa_issue_counts",
-        "fromTable": "categories_all",
-        "toColumn": "level_aa_issue_counts",
-        "toTable": "categories"
-      },
-      {
         "name": "AutoDetected_c3d8c3d3-8f70-4037-9041-c808c8226d0d",
         "fromColumn": "url",
         "fromTable": "categories_all",
@@ -130,6 +123,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -158,7 +155,7 @@
             "formatString": "0",
             "lineageTag": "e3cf6c4b-128d-4911-995f-844ffe6da392",
             "sourceColumn": "level_a_issue_counts",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "level_aa_issue_counts",
@@ -172,7 +169,7 @@
             "formatString": "0",
             "lineageTag": "9c57762f-040c-48d6-b085-2ecd74eaed84",
             "sourceColumn": "level_aa_issue_counts",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Label",
@@ -196,7 +193,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
@@ -280,7 +277,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
@@ -302,7 +299,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           },
           {
             "name": "PBI_NavigationStepName",
@@ -432,7 +429,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"url\", \"logoUrl\", \"screenshotPath\", \"summary\"}, {\"report.url\", \"report.logoUrl\", \"report.screenshotPath\", \"report.summary\"}),",
                 "    #\"Erweiterte report.summary1\" = Table.ExpandRecordColumn(#\"Erweiterte report1\", \"report.summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"}, {\"report.summary.totalIssueCount\", \"report.summary.elementCount\", \"report.summary.elementWithViolationCount\", \"report.summary.elementsWithNoViolationsPercentage\"}),",
@@ -452,6 +449,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -491,7 +492,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    report = #\"In Tabelle konvertiert\"{0}[report],",
                 "    summary = report[summary],",
@@ -514,6 +515,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -565,7 +570,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
@@ -656,7 +661,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    Tree = Quelle,",
                 "    report = Tree[report],",
                 "    treePageReport = report[treePageReport],",
@@ -771,7 +776,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    Tree = Quelle,",
                 "    report = Tree[report],",
                 "    treePageReport = report[treePageReport],",
@@ -866,7 +871,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    Tree = Quelle,",
                 "    report = Tree[report],",
                 "    treePageReport = report[treePageReport],",
@@ -1036,7 +1041,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    Tree = Quelle,",
                 "    report = Tree[report],",
                 "    treePageReport = report[treePageReport],",
@@ -1161,7 +1166,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    Tree = Quelle,",
                 "    report = Tree[report],",
                 "    treePageReport = report[treePageReport],",
@@ -1259,7 +1264,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree.json\")),",
+                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
                 "    Tree = Quelle,",
                 "    report = Tree[report],",
                 "    treePageReport = report[treePageReport],",
