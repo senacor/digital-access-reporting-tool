@@ -117,16 +117,17 @@ function createTreePageReport(pages: SinglePageReport[]) {
   const base: TreePageReport = emptyTreePageReport("/")
 
   for (const page of pages) {
-
+    const protocol = new URL(page.url).protocol
     const path = page.url.match(/\/[^/]+/g)
 
     if (!path) continue
 
-    const fullPath = path?.join("")
+    const fullPath = protocol + "/" + path?.join("")
     let curr = base
 
     path?.forEach((_e, i) => {
-      const currPath = path?.slice(0, i+1).join("")
+      // prepend the protocl (e.g. https: and '/' to the current path)
+      const currPath = protocol + "/" + path?.slice(0, i+1).join("")
       const child = curr.children.find(e => e.url === currPath)
 
       if (child) {
