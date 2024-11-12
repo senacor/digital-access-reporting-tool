@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"report_summary\",\"category_level_a_counts\",\"category_level_aa_counts\",\"categories\",\"issue_counts\",\"firstLevelPages\",\"report_summary_all\",\"issue_counts_all\",\"categories_all\",\"category_level_a_counts_all\",\"category_level_aa_counts_all\"]"
+        "value": "[\"Source\",\"SourceTable\",\"report_summary\",\"category_level_a_counts\",\"category_level_aa_counts\",\"categories\",\"issue_counts\",\"firstLevelPages\",\"report_summary_all\",\"issue_counts_all\",\"categories_all\",\"category_level_a_counts_all\",\"category_level_aa_counts_all\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.137.751.0 (24.10)"
+        "value": "2.137.1102.0 (24.10)"
       },
       {
         "name": "PBI_ProTooling",
@@ -193,9 +193,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
-                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
                 "    #\"Erweiterte report.categoryIssueCounts1\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryIssueCounts\", \"report.categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.totalIssueCount\", \"report.categoryIssueCounts.levelIssueCounts\"}),",
                 "    #\"Entfernte Spalten1\" = Table.RemoveColumns(#\"Erweiterte report.categoryIssueCounts1\",{\"report.categoryIssueCounts.levelIssueCounts\", \"report.categoryIssueCounts.totalIssueCount\"}),",
@@ -221,7 +219,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           },
           {
             "name": "PBI_NavigationStepName",
@@ -277,9 +275,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
-                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
                 "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryCounts\", \"report.categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.totalIssueCount\", \"report.categoryIssueCounts.levelIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryIssueCounts.levelIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report.categoryIssueCounts\", \"report.categoryIssueCounts.levelIssueCounts\"),",
@@ -347,25 +343,10 @@
               }
             ],
             "dataType": "double",
-            "formatString": "0.00\\ %;-0.00\\ %;0.00\\ %",
+            "formatString": "0.0\\ %;-0.0\\ %;0.0\\ %",
             "lineageTag": "43c5bef9-9ed1-4334-bb5e-3d992e70bf24",
             "sourceColumn": "elements_with_no_violation_percentage",
             "summarizeBy": "none"
-          },
-          {
-            "name": "formatted_percentage",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "expression": "FORMAT(report_summary[elements_with_no_violation_percentage], \"Percent\")",
-            "isDataTypeInferred": true,
-            "lineageTag": "9d5ecf0a-04b1-4d75-9b13-bd4467b3ff40",
-            "summarizeBy": "none",
-            "type": "calculated"
           },
           {
             "name": "url",
@@ -429,9 +410,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
-                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"url\", \"logoUrl\", \"screenshotPath\", \"summary\"}, {\"report.url\", \"report.logoUrl\", \"report.screenshotPath\", \"report.summary\"}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"url\", \"logoUrl\", \"screenshotPath\", \"summary\"}, {\"report.url\", \"report.logoUrl\", \"report.screenshotPath\", \"report.summary\"}),",
                 "    #\"Erweiterte report.summary1\" = Table.ExpandRecordColumn(#\"Erweiterte report1\", \"report.summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"}, {\"report.summary.totalIssueCount\", \"report.summary.elementCount\", \"report.summary.elementWithViolationCount\", \"report.summary.elementsWithNoViolationsPercentage\"}),",
                 "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte report.summary1\",{{\"report.url\", \"url\"}, {\"report.logoUrl\", \"logo_url\"}, {\"report.screenshotPath\", \"screenshot_path\"}, {\"report.summary.totalIssueCount\", \"total_issue_count\"}, {\"report.summary.elementCount\", \"element_count\"}, {\"report.summary.elementWithViolationCount\", \"element_with_no_violation_count\"}, {\"report.summary.elementsWithNoViolationsPercentage\", \"elements_with_no_violation_percentage\"}}),",
                 "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"logo_url\", type text}})",
@@ -492,11 +471,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
-                "    report = #\"In Tabelle konvertiert\"{0}[report],",
-                "    summary = report[summary],",
-                "    levelIssueCounts = summary[levelIssueCounts],",
+                "    levelIssueCounts = SourceTable{0}[report][summary][levelIssueCounts],",
                 "    #\"In Tabelle konvertiert1\" = Table.FromList(levelIssueCounts, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
                 "    #\"Erweiterte Column1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert1\", \"Column1\", {\"name\", \"issueCount\"}, {\"Column1.name\", \"Column1.issueCount\"}),",
                 "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte Column1\",{{\"Column1.name\", \"level\"}, {\"Column1.issueCount\", \"issue_count\"}}),",
@@ -514,7 +489,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           },
           {
             "name": "PBI_NavigationStepName",
@@ -570,9 +545,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    #\"In Tabelle konvertiert\" = Table.FromRecords({Quelle}),",
-                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
                 "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryCounts\", \"report.categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.totalIssueCount\", \"report.categoryIssueCounts.levelIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryIssueCounts.levelIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report.categoryIssueCounts\", \"report.categoryIssueCounts.levelIssueCounts\"),",
@@ -661,14 +634,8 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    Tree = Quelle,",
-                "    report = Tree[report],",
-                "    treePageReport = report[treePageReport],",
-                "    children = treePageReport[children],",
-                "    children1 = children{0},",
-                "    children2 = children1[children],",
-                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    children = Source[report][treePageReport][children]{0}[children],",
+                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
                 "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\", \"categoryIssueCounts\", \"page\"}),",
                 "",
                 "    // create issue counts sub table",
@@ -776,20 +743,15 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    Tree = Quelle,",
-                "    report = Tree[report],",
-                "    treePageReport = report[treePageReport],",
-                "    children = treePageReport[children],",
-                "    children1 = children{0},",
-                "    children2 = children1[children],",
-                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    children = Source[report][treePageReport][children]{0}[children],",
+                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
                 "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\"}),",
                 "",
                 "    // create summary report",
-                "    summaryReport1 = Table.ExpandRecordColumn(table2, \"summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"})",
+                "    summaryReport1 = Table.ExpandRecordColumn(table2, \"summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"}),",
+                "    #\"Sorted Rows\" = Table.Sort(summaryReport1,{{\"url\", Order.Ascending}})",
                 "in",
-                "    summaryReport1"
+                "    #\"Sorted Rows\""
               ],
               "type": "m"
             }
@@ -871,13 +833,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    Tree = Quelle,",
-                "    report = Tree[report],",
-                "    treePageReport = report[treePageReport],",
-                "    children = treePageReport[children],",
-                "    children1 = children{0},",
-                "    children2 = children1[children],",
+                "    children2 = Source[report][treePageReport][children]{0}[children],",
                 "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
                 "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\"}),",
                 "",
@@ -1041,14 +997,8 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    Tree = Quelle,",
-                "    report = Tree[report],",
-                "    treePageReport = report[treePageReport],",
-                "    children = treePageReport[children],",
-                "    children1 = children{0},",
-                "    children2 = children1[children],",
-                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    children = Source[report][treePageReport][children]{0}[children],",
+                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
                 "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
                 "",
                 "    subTable1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
@@ -1166,14 +1116,8 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    Tree = Quelle,",
-                "    report = Tree[report],",
-                "    treePageReport = report[treePageReport],",
-                "    children = treePageReport[children],",
-                "    children1 = children{0},",
-                "    children2 = children1[children],",
-                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    children = Source[report][treePageReport][children]{0}[children],",
+                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
                 "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
                 "",
                 "    categoryA1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
@@ -1264,14 +1208,8 @@
             "source": {
               "expression": [
                 "let",
-                "    Quelle = Json.Document(File.Contents(\"Z:\\power-bi-report-project\\test_tree_devk.json\")),",
-                "    Tree = Quelle,",
-                "    report = Tree[report],",
-                "    treePageReport = report[treePageReport],",
-                "    children = treePageReport[children],",
-                "    children1 = children{0},",
-                "    children2 = children1[children],",
-                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    children = Source[report][treePageReport][children]{0}[children],",
+                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
                 "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
                 "",
                 "    categoryA1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
@@ -1282,6 +1220,107 @@
                 "    categoryA6 = Table.SelectRows(categoryA5, each ([levelName] = \"AA\"))",
                 "in",
                 "    categoryA6"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Source",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Record"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a351d35e-9bc0-4efe-a1de-a513595c6609",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "38264343-8556-48df-b4f5-46c6612a9473",
+            "sourceColumn": "Value",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "898d1c47-eb7d-43bf-b91e-f91b570d8251",
+        "partitions": [
+          {
+            "name": "Source",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Json.Document(SharePoint.Files(\"https://senacor.sharepoint.com/teams/Team-Low-Code-No-Code-Chapter\", [ApiVersion = 15]){[Name=\"accessibility-report.json\"]}[Content], 65001)",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SourceTable",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "report",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "03986447-ecca-4d4b-aa78-842beb966e01",
+            "sourceColumn": "report",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "155e5f03-9662-4de8-9c28-317daee63f74",
+        "partitions": [
+          {
+            "name": "SourceTable",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    SourceTable = Table.Buffer(Table.FromRecords({Source}))",
+                "in",
+                "    SourceTable"
               ],
               "type": "m"
             }
