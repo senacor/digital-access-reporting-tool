@@ -1,0 +1,97 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU06",
+      "reportVersionAtImport": "5.55",
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Custom94141061247791.json",
+      "reportVersionAtImport": "5.55",
+      "type": "RegisteredResources"
+    }
+  },
+  "layoutOptimization": "None",
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Custom94141061247791.json",
+          "path": "Custom94141061247791.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "Header214415074633298.png",
+          "path": "Header214415074633298.png",
+          "type": "Image"
+        },
+        {
+          "name": "screenshot5306011529060841.png",
+          "path": "screenshot5306011529060841.png",
+          "type": "Image"
+        },
+        {
+          "name": "senacor_logo9564582744104178.png",
+          "path": "senacor_logo9564582744104178.png",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU06",
+          "path": "BaseThemes/CY24SU06.json",
+          "type": "BaseTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}

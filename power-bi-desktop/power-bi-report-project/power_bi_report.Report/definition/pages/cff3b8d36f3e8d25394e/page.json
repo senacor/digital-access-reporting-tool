@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.2.0/schema.json",
+  "name": "cff3b8d36f3e8d25394e",
+  "displayName": "Details",
+  "displayOption": "ActualSize",
+  "height": 1123,
+  "width": 794,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "929db1b856ce0f9f8eef",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "firstLevelPages"
+              }
+            },
+            "Property": "url"
+          }
+        },
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "fce7e800c910d965451f",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "77cb5a024034f6dbf683",
+        "boundFilter": "929db1b856ce0f9f8eef",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "firstLevelPages"
+              }
+            },
+            "Property": "url"
+          }
+        }
+      }
+    ]
+  },
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "197L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "655535d29dbc5760dd54",
+      "target": "672aaffac743f2c93ba9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "655535d29dbc5760dd54",
+      "target": "1df102f4d50ab033b9fc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "655535d29dbc5760dd54",
+      "target": "de0c46f1693da41fc850",
+      "type": "NoFilter"
+    },
+    {
+      "source": "655535d29dbc5760dd54",
+      "target": "331775a4a4b2903755db",
+      "type": "NoFilter"
+    },
+    {
+      "source": "655535d29dbc5760dd54",
+      "target": "914ce2067e60d9d0aa67",
+      "type": "NoFilter"
+    },
+    {
+      "source": "655535d29dbc5760dd54",
+      "target": "4ae0ca9e432019517100",
+      "type": "NoFilter"
+    }
+  ]
+}

@@ -219,7 +219,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           },
           {
             "name": "PBI_NavigationStepName",
@@ -489,7 +489,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           },
           {
             "name": "PBI_NavigationStepName",
