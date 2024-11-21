@@ -73,7 +73,7 @@ const fetchHtmlFromUrl = async (url: string) => {
             // http.ClientRequest in node.js
             logger.print(
               "error",
-              `${JSON.stringify({ message: error.message, cause: error.cause, code: error.code, status: error.status }, null, 2)}`,
+              `On URL: ${url}: ${JSON.stringify({ message: error.message, cause: error.cause, code: error.code, status: error.status }, null, 2)}`,
             )
           } else {
             // Something happened in setting up the request that triggered an Error

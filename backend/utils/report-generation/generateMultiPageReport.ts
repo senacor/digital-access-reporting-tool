@@ -24,11 +24,11 @@ export default async function generateMultiPageReport(
   // The ReportCreationSet throttles the report creation and only a certain number of reports are generated in parallel.
   // This means when the crawling is finished, the report generation might still be running and we wait until all reports are created.
   while (
-    reportCreationSet.queuedReportCreationCount > 0 ||
-    reportCreationSet.runningReportCreationCount > 0
+    reportCreationSet.queuedReportCreationsCount > 0 ||
+    reportCreationSet.runningReportCreationsCount > 0
   ) {
     console.log(
-      `🕒 Queued: ${reportCreationSet.queuedReportCreationCount} / Running: ${reportCreationSet.runningReportCreationCount}: Waiting for report generation to finish...`,
+      `🕒 Queued: ${reportCreationSet.queuedReportCreationsCount} / Running: ${reportCreationSet.runningReportCreationsCount}: Waiting for report generation to finish...`,
     )
 
     // Wait for 5 seconds before checking again
@@ -66,11 +66,11 @@ class ReportCreationSet extends Set<string> {
   #queuedReportCreations: (() => Promise<void>)[] = []
   #runningReportCreationsCount = 0
 
-  get queuedReportCreationCount() {
+  get queuedReportCreationsCount() {
     return this.#queuedReportCreations.length
   }
 
-  get runningReportCreationCount() {
+  get runningReportCreationsCount() {
     return this.#runningReportCreationsCount
   }
 
@@ -112,6 +112,7 @@ class ReportCreationSet extends Set<string> {
 
     // Create the report creation for the passed URL
     const reportCreation = async () => {
+      ++this.#runningReportCreationsCount
       try {
         console.log(`📝 Creating report for ${url}...`)
         const { report } = await accessibilityChecker.getCompliance(url, url)
@@ -123,11 +124,12 @@ class ReportCreationSet extends Set<string> {
           this.#reportCallback(null)
           return
         }
-
         this.#reportCallback(report)
       } catch (error) {
-        console.log(`🔥 Error for ${url}: error`)
+        console.log(`🔥 Error for ${url}: ${error}`)
         this.#reportCallback(null)
+      } finally {
+        --this.#runningReportCreationsCount
       }
     }
 
@@ -147,11 +149,7 @@ class ReportCreationSet extends Set<string> {
       if (!fun) {
         return
       }
-
-      this.#runningReportCreationsCount += 1
-
       fun().then(() => {
-        this.#runningReportCreationsCount -= 1
         this.#executeNextReportCreation()
       })
     }

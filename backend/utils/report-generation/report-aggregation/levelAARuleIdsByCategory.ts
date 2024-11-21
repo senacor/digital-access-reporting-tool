@@ -15,6 +15,7 @@ export const levelAARuleIdsByCategory: RuleIdsByCategory = {
     "img_alt_decorative",
     "img_alt_null",
     "object_text_exists",
+    "svg_graphics_labelled",
     // Potential Violation
     "img_alt_misuse",
     "img_ismap_misuse",

@@ -69,3 +69,7 @@ baselineFolder: .accessibility-checker/test/baselines
 # optional - Where the tool can read/write cached files (ace-node.js / archive.json)
 # Default: `${os.tmpdir()}/accessibility-checker/`
 cacheFolder: .accessibility-checker/tmp
+
+headless: "shell"
+maxTabs: 7
+perfMetrics: false

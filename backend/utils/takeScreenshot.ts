@@ -1,4 +1,5 @@
-import { chromium } from "playwright"
+import { chromium } from "playwright-extra"
+import StealthPlugin from "puppeteer-extra-plugin-stealth"
 import logger from "./logger"
 
 const screenshotPath = "screenshots/"
@@ -8,11 +9,15 @@ const createScreenshotPath = (url: URL) => {
   return screenshotPath + url.hostname + "." + screenshotType
 }
 
+// register the Stealth plugin in Playwright
+chromium.use(StealthPlugin())
+
 export default async function takeScreenshot(url: URL) {
   try {
     const browser = await chromium.launch()
-    const page = await browser.newPage()
     const screenshotPath = createScreenshotPath(url)
+    const page = await browser.newPage()
+    page.on('dialog', async dialog => { await dialog.dismiss() })
 
     await page.setViewportSize({ width: 1920, height: 1080 })
     await page.goto(url.href)
