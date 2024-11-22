@@ -40,14 +40,14 @@
               {
                 "textRuns": [
                   {
-                    "value": "This Management Summary shows a \"Web Content Accessibility - fulfillment\" (WCAG2.1) of overall xx%."
+                    "value": "This Management Summary shows a \"Web Content Accessibility - fulfillment\" (WCAG 2.2) of overall xx%."
                   }
                 ]
               },
               {
                 "textRuns": [
                   {
-                    "value": "The WCAG 2.1 (BarrierefreiheitsGesetz) requires different areas of compliance; and as you can see below, there are overall some bigger non-fulflillments in the are of \"Logical Navigation and Intuitivness\" as well as in \"Coding Standards\". "
+                    "value": "The WCAG 2.2 (BarrierefreiheitsGesetz) requires different areas of compliance; and as you can see below, there are overall some bigger non-fulflillments in the are of \"Logical Navigation and Intuitivness\" as well as in \"Coding Standards\". "
                   }
                 ]
               },

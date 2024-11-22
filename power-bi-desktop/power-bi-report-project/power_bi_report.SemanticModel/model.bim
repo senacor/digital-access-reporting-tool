@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.138.782.0 (24.11)"
+        "value": "2.138.1004.0 (24.11)"
       },
       {
         "name": "PBI_ProTooling",
@@ -383,6 +383,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "ImageUrl",
             "dataType": "string",
             "lineageTag": "e9c61d68-41ae-41f2-aa6b-af8377aef0c0",
             "sourceColumn": "screenshot_path",
@@ -413,7 +414,7 @@
                 "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"url\", \"logoUrl\", \"screenshotPath\", \"summary\"}, {\"report.url\", \"report.logoUrl\", \"report.screenshotPath\", \"report.summary\"}),",
                 "    #\"Erweiterte report.summary1\" = Table.ExpandRecordColumn(#\"Erweiterte report1\", \"report.summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"}, {\"report.summary.totalIssueCount\", \"report.summary.elementCount\", \"report.summary.elementWithViolationCount\", \"report.summary.elementsWithNoViolationsPercentage\"}),",
                 "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte report.summary1\",{{\"report.url\", \"url\"}, {\"report.logoUrl\", \"logo_url\"}, {\"report.screenshotPath\", \"screenshot_path\"}, {\"report.summary.totalIssueCount\", \"total_issue_count\"}, {\"report.summary.elementCount\", \"element_count\"}, {\"report.summary.elementWithViolationCount\", \"element_with_no_violation_count\"}, {\"report.summary.elementsWithNoViolationsPercentage\", \"elements_with_no_violation_percentage\"}}),",
-                "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"logo_url\", type text}})",
+                "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"logo_url\", type text}, {\"screenshot_path\", type text}})",
                 "in",
                 "    #\"Geänderter Typ\""
               ],
@@ -472,8 +473,8 @@
               "expression": [
                 "let",
                 "    levelIssueCounts = SourceTable{0}[report][summary][levelIssueCounts],",
-                "    #\"In Tabelle konvertiert1\" = Table.FromList(levelIssueCounts, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
-                "    #\"Erweiterte Column1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert1\", \"Column1\", {\"name\", \"issueCount\"}, {\"Column1.name\", \"Column1.issueCount\"}),",
+                "    #\"In Tabelle konvertiert\" = Table.FromList(levelIssueCounts, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    #\"Erweiterte Column1\" = Table.ExpandRecordColumn(#\"In Tabelle konvertiert\", \"Column1\", {\"name\", \"issueCount\"}, {\"Column1.name\", \"Column1.issueCount\"}),",
                 "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte Column1\",{{\"Column1.name\", \"level\"}, {\"Column1.issueCount\", \"issue_count\"}}),",
                 "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"issue_count\", Int64.Type}})",
                 "in",
@@ -545,8 +546,8 @@
             "source": {
               "expression": [
                 "let",
-                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
-                "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report1\", \"report.categoryIssueCounts\"),",
+                "    #\"Erweiterte report\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"categoryIssueCounts\"}, {\"report.categoryIssueCounts\"}),",
+                "    #\"Erweiterte report.categoryCounts\" = Table.ExpandListColumn(#\"Erweiterte report\", \"report.categoryIssueCounts\"),",
                 "    #\"Erweiterte report.categoryIssueCounts\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryCounts\", \"report.categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}, {\"report.categoryIssueCounts.name\", \"report.categoryIssueCounts.totalIssueCount\", \"report.categoryIssueCounts.levelIssueCounts\"}),",
                 "    #\"Erweiterte report.categoryIssueCounts.levelIssueCounts\" = Table.ExpandListColumn(#\"Erweiterte report.categoryIssueCounts\", \"report.categoryIssueCounts.levelIssueCounts\"),",
                 "    #\"Erweiterte report.categoryIssueCounts.levelIssueCounts1\" = Table.ExpandRecordColumn(#\"Erweiterte report.categoryIssueCounts.levelIssueCounts\", \"report.categoryIssueCounts.levelIssueCounts\", {\"name\", \"issueCount\"}, {\"report.categoryIssueCounts.levelIssueCounts.name\", \"report.categoryIssueCounts.levelIssueCounts.issueCount\"}),",
@@ -635,8 +636,10 @@
               "expression": [
                 "let",
                 "    children = Source[report][treePageReport][children]{0}[children],",
-                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
-                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\", \"categoryIssueCounts\", \"page\"}),",
+                "    rawTable = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    // handles single page applications",
+                "    table = if(Table.IsEmpty(rawTable)) then Table.AddColumn(rawTable, \"Column1\", each null) else rawTable,",
+                "    table2 = Table.ExpandRecordColumn(table, \"Column1\", {\"url\", \"summary\", \"categoryIssueCounts\", \"page\"}),",
                 "",
                 "    // create issue counts sub table",
                 "    withIssueCounts1 = Table.AddColumn(table2, \"issue_counts\", each [summary]),",
@@ -744,8 +747,10 @@
               "expression": [
                 "let",
                 "    children = Source[report][treePageReport][children]{0}[children],",
-                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
-                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\"}),",
+                "    rawTable = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    // handles single page applications",
+                "    table = if(Table.IsEmpty(rawTable)) then Table.AddColumn(rawTable, \"Column1\", each null) else rawTable,",
+                "    table2 = Table.ExpandRecordColumn(table, \"Column1\", {\"url\", \"summary\"}),",
                 "",
                 "    // create summary report",
                 "    summaryReport1 = Table.ExpandRecordColumn(table2, \"summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"}),",
@@ -833,9 +838,11 @@
             "source": {
               "expression": [
                 "let",
-                "    children2 = Source[report][treePageReport][children]{0}[children],",
-                "    table1 = Table.FromList(children2, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
-                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"summary\"}),",
+                "    children = Source[report][treePageReport][children]{0}[children],",
+                "    rawTable = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    // handles single page applications",
+                "    table = if(Table.IsEmpty(rawTable)) then Table.AddColumn(rawTable, \"Column1\", each null) else rawTable,",
+                "    table2 = Table.ExpandRecordColumn(table, \"Column1\", {\"url\", \"summary\"}),",
                 "",
                 "    // create issue counts sub table",
                 "    withIssueCounts1 = Table.AddColumn(table2, \"issue_counts\", each [summary]),",
@@ -998,8 +1005,10 @@
               "expression": [
                 "let",
                 "    children = Source[report][treePageReport][children]{0}[children],",
-                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
-                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
+                "    rawTable = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    // handles single page applications",
+                "    table = if(Table.IsEmpty(rawTable)) then Table.AddColumn(rawTable, \"Column1\", each null) else rawTable,",
+                "    table2 = Table.ExpandRecordColumn(table, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
                 "",
                 "    subTable1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
                 "    subTable2 = Table.ExpandRecordColumn(subTable1, \"categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}),",
@@ -1117,8 +1126,10 @@
               "expression": [
                 "let",
                 "    children = Source[report][treePageReport][children]{0}[children],",
-                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
-                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
+                "    rawTable = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    // handles single page applications",
+                "    table = if(Table.IsEmpty(rawTable)) then Table.AddColumn(rawTable, \"Column1\", each null) else rawTable,",
+                "    table2 = Table.ExpandRecordColumn(table, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
                 "",
                 "    categoryA1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
                 "    categoryA2 = Table.ExpandRecordColumn(categoryA1, \"categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}),",
@@ -1209,8 +1220,10 @@
               "expression": [
                 "let",
                 "    children = Source[report][treePageReport][children]{0}[children],",
-                "    table1 = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
-                "    table2 = Table.ExpandRecordColumn(table1, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
+                "    rawTable = Table.FromList(children, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+                "    // handles single page applications",
+                "    table = if(Table.IsEmpty(rawTable)) then Table.AddColumn(rawTable, \"Column1\", each null) else rawTable,",
+                "    table2 = Table.ExpandRecordColumn(table, \"Column1\", {\"url\", \"categoryIssueCounts\"}),",
                 "",
                 "    categoryA1 = Table.ExpandListColumn(table2, \"categoryIssueCounts\"),",
                 "    categoryA2 = Table.ExpandRecordColumn(categoryA1, \"categoryIssueCounts\", {\"name\", \"totalIssueCount\", \"levelIssueCounts\"}),",
