@@ -1,0 +1,46 @@
+parameters:
+  # unique name of the job
+  job_name: deploy_report
+  # friendly name of the job
+  display_name: Upload Accessibility Report to SharePoint Site
+  # name of target environment deploying to
+  target_environment: ''
+  variable_group_name: ''
+jobs:
+  - deployment: ${{ parameters.job_name }}
+    displayName: ${{ parameters.display_name }}
+    pool:
+      vmImage: 'ubuntu-latest'
+    uses:
+      repositories: [senacor-screenshots]
+    environment: ${{ parameters.target_environment }}
+    variables:
+      - group: ${{ parameters.variable_group_name }} # m365_client_id, m365_user_login, m365_user_password, m365_site_url, m365_reports_folder
+      - name: screenshots.branch
+        value: $[ resources.repositories['senacor-screenshots'].ref ]
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - script: sudo npm install --global @pnp/cli-microsoft365
+              displayName: 'Install Microsoft Office365 CLI'
+            - script: m365 login --authType password --userName $(m365_user_login) --password $(m365_user_password) --appId $(m365_client_id)
+              displayName: 'Login to Microsoft Office365'
+            - script: m365 spo file add --path $(Pipeline.Workspace)/reports/accessibility-report.json --webUrl $(m365_site_url) --folder '$(m365_reports_folder)'
+              displayName: 'Upload Accessibility Report to SharePoint'
+            - script: m365 logout
+              displayName: 'Logout from Microsoft Office365'
+            - checkout: senacor-screenshots
+              clean: true
+              persistCredentials: true
+            - script: |
+                git config user.email "$(m365_user_login)"
+                git config user.name "$(echo $(m365_user_login) | sed -r 's/(.*)\.(.*)\@.*/\u\1 \u\2/')"
+              displayName: 'Configure Git'
+            - script: |
+                git switch -c feature/screenshots
+                cp -r ../screenshots .
+                git add screenshots/*
+                git commit -m "feat(add-screenshots): added screenshot after scraping '$(URL)' [skip ci]"
+                git push origin HEAD:$(screenshots.branch)
+              displayName: 'Checkin Screenshot'

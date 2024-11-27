@@ -6,7 +6,7 @@ import getValidUrlOrNull from "../utils/getValidUrlOrNull"
 import takeScreenshot from "../utils/takeScreenshot"
 import generateMultiPageReport from "../utils/report-generation/generateMultiPageReport"
 
-const SCREENSHOT_BASE_URL = "https://raw.githubusercontent.com/senacor/digital-access-reporting-tool/refs/heads/feat/screenshots"
+const SCREENSHOT_BASE_URL = "https://raw.githubusercontent.com/pan-senacor/digital-access-reporting-tool/refs/heads/feature/screenshots"
 let url: URL | null
 let logoUrl: URL | null
 

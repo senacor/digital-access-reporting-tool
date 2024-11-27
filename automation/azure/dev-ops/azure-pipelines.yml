@@ -1,0 +1,35 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+resources:
+  repositories:
+    - repository: self
+    - repository: senacor-main
+      type: github
+      endpoint: senacor
+      ref: test/add-2-pipeline
+      name: senacor/digital-access-reporting-tool
+    - repository: senacor-screenshots
+      type: github
+      endpoint: pan-senacor
+      ref: feature/screenshots
+      name: pan-senacor/digital-access-reporting-tool
+
+trigger:
+  branches:
+    include:
+      - main
+
+stages:
+  - stage: build
+    displayName: build
+    jobs:
+      - template: ./templates/azure-pipelines-build-template.yml
+        parameters:
+          name: 'create_WCAG_report'
+  - stage: deploy
+    dependsOn: build
+    jobs:
+      - template: ./templates/azure-pipelines-deploy-template.yml
+        parameters:
+          job_name: kick_off_power_bi
+          target_environment: 'qa'
+          variable_group_name: m365

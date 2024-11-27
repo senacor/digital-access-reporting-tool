@@ -16,7 +16,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prettier:check": "npx prettier . --check",
     "prettier:fix": "npx prettier . --write",
-    "gen": "npx tsc && DEBUG=mocha:cli:mocha mocha backend/gen/*.ts",
+    "gen": "npx tsc && mocha backend/gen/*.ts",
     "setup": "npm install && npx playwright install"
   },
   "dependencies": {
