@@ -28,11 +28,6 @@ You'll need to install [Node.js (>= 18.19.0)](https://nodejs.org/en) and then ru
       ```
         npm install
       ```
-      followed by
-      ```
-        npx playwright install
-      ```
-      which installs the headless browsers for Playwright, so it can take screenshots.
    2. Or simply use the predefined command from the [package.json](package.json) which executes both of the previous commands
       ```
         npm run setup

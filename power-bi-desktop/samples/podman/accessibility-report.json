@@ -2,15 +2,15 @@
   "report": {
     "url": "https://podman.io",
     "logoUrl": "https://podman.io/images/raw/podman-selkie-385w-358h.png",
-    "screenshotPath": "screenshots/podman.io.png",
+    "screenshotUrl": "https://raw.githubusercontent.com/senacor/digital-access-reporting-tool/refs/heads/feature/screenshots/screenshots/podman.io.png",
     "pageCount": 7,
     "pageReports": [
       {
-        "url": "https://podman.io/features",
+        "url": "https://podman.io/",
         "categoryIssueCounts": [
           {
             "name": "textAlternatives",
-            "totalIssueCount": 18,
+            "totalIssueCount": 61,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -18,31 +18,31 @@
               },
               {
                 "name": "AA",
-                "issueCount": 14
+                "issueCount": 57
               }
             ]
           },
           {
             "name": "logicalNavigationAndIntuitiveness",
-            "totalIssueCount": 40,
+            "totalIssueCount": 414,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 36
+                "issueCount": 280
               },
               {
                 "name": "AA",
-                "issueCount": 4
+                "issueCount": 134
               }
             ]
           },
           {
             "name": "codingStandards",
-            "totalIssueCount": 19,
+            "totalIssueCount": 82,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 19
+                "issueCount": 82
               },
               {
                 "name": "AA",
@@ -52,7 +52,7 @@
           },
           {
             "name": "colorContrast",
-            "totalIssueCount": 17,
+            "totalIssueCount": 320,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -60,17 +60,17 @@
               },
               {
                 "name": "AA",
-                "issueCount": 17
+                "issueCount": 320
               }
             ]
           },
           {
             "name": "inputAssistance",
-            "totalIssueCount": 1,
+            "totalIssueCount": 99,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 1
+                "issueCount": 99
               },
               {
                 "name": "AA",
@@ -94,20 +94,20 @@
           }
         ],
         "summary": {
-          "totalIssueCount": 99,
+          "totalIssueCount": 980,
           "levelIssueCounts": [
             {
               "name": "A",
-              "issueCount": 64
+              "issueCount": 469
             },
             {
               "name": "AA",
-              "issueCount": 35
+              "issueCount": 511
             }
           ],
-          "elementCount": 72,
-          "elementWithViolationCount": 12,
-          "elementsWithNoViolationsPercentage": 0.83
+          "elementCount": 715,
+          "elementWithViolationCount": 283,
+          "elementsWithNoViolationsPercentage": 0.6
         }
       },
       {
@@ -115,7 +115,7 @@
         "categoryIssueCounts": [
           {
             "name": "textAlternatives",
-            "totalIssueCount": 2,
+            "totalIssueCount": 3,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -123,7 +123,7 @@
               },
               {
                 "name": "AA",
-                "issueCount": 2
+                "issueCount": 3
               }
             ]
           },
@@ -199,7 +199,7 @@
           }
         ],
         "summary": {
-          "totalIssueCount": 45,
+          "totalIssueCount": 46,
           "levelIssueCounts": [
             {
               "name": "A",
@@ -207,7 +207,7 @@
             },
             {
               "name": "AA",
-              "issueCount": 17
+              "issueCount": 18
             }
           ],
           "elementCount": 32,
@@ -216,11 +216,11 @@
         }
       },
       {
-        "url": "https://podman.io/",
+        "url": "https://podman.io/features",
         "categoryIssueCounts": [
           {
             "name": "textAlternatives",
-            "totalIssueCount": 42,
+            "totalIssueCount": 25,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -228,31 +228,31 @@
               },
               {
                 "name": "AA",
-                "issueCount": 38
+                "issueCount": 21
               }
             ]
           },
           {
             "name": "logicalNavigationAndIntuitiveness",
-            "totalIssueCount": 402,
+            "totalIssueCount": 51,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 270
+                "issueCount": 45
               },
               {
                 "name": "AA",
-                "issueCount": 132
+                "issueCount": 6
               }
             ]
           },
           {
             "name": "codingStandards",
-            "totalIssueCount": 84,
+            "totalIssueCount": 21,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 84
+                "issueCount": 21
               },
               {
                 "name": "AA",
@@ -262,7 +262,7 @@
           },
           {
             "name": "colorContrast",
-            "totalIssueCount": 307,
+            "totalIssueCount": 23,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -270,17 +270,17 @@
               },
               {
                 "name": "AA",
-                "issueCount": 307
+                "issueCount": 23
               }
             ]
           },
           {
             "name": "inputAssistance",
-            "totalIssueCount": 99,
+            "totalIssueCount": 1,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 99
+                "issueCount": 1
               },
               {
                 "name": "AA",
@@ -304,20 +304,20 @@
           }
         ],
         "summary": {
-          "totalIssueCount": 938,
+          "totalIssueCount": 125,
           "levelIssueCounts": [
             {
               "name": "A",
-              "issueCount": 461
+              "issueCount": 75
             },
             {
               "name": "AA",
-              "issueCount": 477
+              "issueCount": 50
             }
           ],
-          "elementCount": 697,
-          "elementWithViolationCount": 267,
-          "elementsWithNoViolationsPercentage": 0.62
+          "elementCount": 91,
+          "elementWithViolationCount": 20,
+          "elementsWithNoViolationsPercentage": 0.78
         }
       },
       {
@@ -325,7 +325,7 @@
         "categoryIssueCounts": [
           {
             "name": "textAlternatives",
-            "totalIssueCount": 8,
+            "totalIssueCount": 14,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -333,7 +333,7 @@
               },
               {
                 "name": "AA",
-                "issueCount": 8
+                "issueCount": 14
               }
             ]
           },
@@ -409,7 +409,7 @@
           }
         ],
         "summary": {
-          "totalIssueCount": 123,
+          "totalIssueCount": 129,
           "levelIssueCounts": [
             {
               "name": "A",
@@ -417,7 +417,7 @@
             },
             {
               "name": "AA",
-              "issueCount": 39
+              "issueCount": 45
             }
           ],
           "elementCount": 99,
@@ -430,7 +430,7 @@
         "categoryIssueCounts": [
           {
             "name": "textAlternatives",
-            "totalIssueCount": 5,
+            "totalIssueCount": 7,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -438,7 +438,7 @@
               },
               {
                 "name": "AA",
-                "issueCount": 5
+                "issueCount": 7
               }
             ]
           },
@@ -472,7 +472,7 @@
           },
           {
             "name": "colorContrast",
-            "totalIssueCount": 47,
+            "totalIssueCount": 52,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -480,7 +480,7 @@
               },
               {
                 "name": "AA",
-                "issueCount": 47
+                "issueCount": 52
               }
             ]
           },
@@ -514,7 +514,7 @@
           }
         ],
         "summary": {
-          "totalIssueCount": 116,
+          "totalIssueCount": 123,
           "levelIssueCounts": [
             {
               "name": "A",
@@ -522,12 +522,12 @@
             },
             {
               "name": "AA",
-              "issueCount": 62
+              "issueCount": 69
             }
           ],
           "elementCount": 92,
-          "elementWithViolationCount": 18,
-          "elementsWithNoViolationsPercentage": 0.8
+          "elementWithViolationCount": 24,
+          "elementsWithNoViolationsPercentage": 0.74
         }
       },
       {
@@ -535,7 +535,7 @@
         "categoryIssueCounts": [
           {
             "name": "textAlternatives",
-            "totalIssueCount": 6,
+            "totalIssueCount": 9,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -543,7 +543,7 @@
               },
               {
                 "name": "AA",
-                "issueCount": 6
+                "issueCount": 9
               }
             ]
           },
@@ -563,11 +563,11 @@
           },
           {
             "name": "codingStandards",
-            "totalIssueCount": 35,
+            "totalIssueCount": 31,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 35
+                "issueCount": 31
               },
               {
                 "name": "AA",
@@ -619,20 +619,20 @@
           }
         ],
         "summary": {
-          "totalIssueCount": 520,
+          "totalIssueCount": 519,
           "levelIssueCounts": [
             {
               "name": "A",
-              "issueCount": 208
+              "issueCount": 204
             },
             {
               "name": "AA",
-              "issueCount": 312
+              "issueCount": 315
             }
           ],
-          "elementCount": 372,
+          "elementCount": 368,
           "elementWithViolationCount": 216,
-          "elementsWithNoViolationsPercentage": 0.42
+          "elementsWithNoViolationsPercentage": 0.41
         }
       },
       {
@@ -640,7 +640,7 @@
         "categoryIssueCounts": [
           {
             "name": "textAlternatives",
-            "totalIssueCount": 2,
+            "totalIssueCount": 3,
             "levelIssueCounts": [
               {
                 "name": "A",
@@ -648,7 +648,7 @@
               },
               {
                 "name": "AA",
-                "issueCount": 2
+                "issueCount": 3
               }
             ]
           },
@@ -668,11 +668,11 @@
           },
           {
             "name": "codingStandards",
-            "totalIssueCount": 19,
+            "totalIssueCount": 17,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 19
+                "issueCount": 17
               },
               {
                 "name": "AA",
@@ -724,18 +724,18 @@
           }
         ],
         "summary": {
-          "totalIssueCount": 396,
+          "totalIssueCount": 395,
           "levelIssueCounts": [
             {
               "name": "A",
-              "issueCount": 135
+              "issueCount": 133
             },
             {
               "name": "AA",
-              "issueCount": 261
+              "issueCount": 262
             }
           ],
-          "elementCount": 289,
+          "elementCount": 287,
           "elementWithViolationCount": 199,
           "elementsWithNoViolationsPercentage": 0.31
         }
@@ -744,7 +744,7 @@
     "categoryIssueCounts": [
       {
         "name": "textAlternatives",
-        "totalIssueCount": 42,
+        "totalIssueCount": 61,
         "levelIssueCounts": [
           {
             "name": "A",
@@ -752,31 +752,31 @@
           },
           {
             "name": "AA",
-            "issueCount": 38
+            "issueCount": 57
           }
         ]
       },
       {
         "name": "logicalNavigationAndIntuitiveness",
-        "totalIssueCount": 402,
+        "totalIssueCount": 414,
         "levelIssueCounts": [
           {
             "name": "A",
-            "issueCount": 270
+            "issueCount": 280
           },
           {
             "name": "AA",
-            "issueCount": 132
+            "issueCount": 134
           }
         ]
       },
       {
         "name": "codingStandards",
-        "totalIssueCount": 84,
+        "totalIssueCount": 82,
         "levelIssueCounts": [
           {
             "name": "A",
-            "issueCount": 84
+            "issueCount": 82
           },
           {
             "name": "AA",
@@ -786,7 +786,7 @@
       },
       {
         "name": "colorContrast",
-        "totalIssueCount": 307,
+        "totalIssueCount": 320,
         "levelIssueCounts": [
           {
             "name": "A",
@@ -794,7 +794,7 @@
           },
           {
             "name": "AA",
-            "issueCount": 307
+            "issueCount": 320
           }
         ]
       },
@@ -828,20 +828,20 @@
       }
     ],
     "summary": {
-      "totalIssueCount": 938,
+      "totalIssueCount": 980,
       "levelIssueCounts": [
         {
           "name": "A",
-          "issueCount": 461
+          "issueCount": 469
         },
         {
           "name": "AA",
-          "issueCount": 477
+          "issueCount": 511
         }
       ],
-      "elementCount": 697,
-      "elementWithViolationCount": 267,
-      "elementsWithNoViolationsPercentage": 0.62
+      "elementCount": 715,
+      "elementWithViolationCount": 283,
+      "elementsWithNoViolationsPercentage": 0.6
     },
     "treePageReport": {
       "url": "/",
@@ -854,7 +854,7 @@
             "categoryIssueCounts": [
               {
                 "name": "textAlternatives",
-                "totalIssueCount": 42,
+                "totalIssueCount": 61,
                 "levelIssueCounts": [
                   {
                     "name": "A",
@@ -862,31 +862,31 @@
                   },
                   {
                     "name": "AA",
-                    "issueCount": 38
+                    "issueCount": 57
                   }
                 ]
               },
               {
                 "name": "logicalNavigationAndIntuitiveness",
-                "totalIssueCount": 402,
+                "totalIssueCount": 414,
                 "levelIssueCounts": [
                   {
                     "name": "A",
-                    "issueCount": 270
+                    "issueCount": 280
                   },
                   {
                     "name": "AA",
-                    "issueCount": 132
+                    "issueCount": 134
                   }
                 ]
               },
               {
                 "name": "codingStandards",
-                "totalIssueCount": 84,
+                "totalIssueCount": 82,
                 "levelIssueCounts": [
                   {
                     "name": "A",
-                    "issueCount": 84
+                    "issueCount": 82
                   },
                   {
                     "name": "AA",
@@ -896,7 +896,7 @@
               },
               {
                 "name": "colorContrast",
-                "totalIssueCount": 307,
+                "totalIssueCount": 320,
                 "levelIssueCounts": [
                   {
                     "name": "A",
@@ -904,7 +904,7 @@
                   },
                   {
                     "name": "AA",
-                    "issueCount": 307
+                    "issueCount": 320
                   }
                 ]
               },
@@ -938,234 +938,23 @@
               }
             ],
             "summary": {
-              "totalIssueCount": 938,
+              "totalIssueCount": 980,
               "levelIssueCounts": [
                 {
                   "name": "A",
-                  "issueCount": 461
+                  "issueCount": 469
                 },
                 {
                   "name": "AA",
-                  "issueCount": 477
+                  "issueCount": 511
                 }
               ],
-              "elementCount": 697,
-              "elementWithViolationCount": 267,
-              "elementsWithNoViolationsPercentage": 0.62
+              "elementCount": 715,
+              "elementWithViolationCount": 283,
+              "elementsWithNoViolationsPercentage": 0.6
             }
           },
           "children": [
-            {
-              "url": "https://podman.io/features",
-              "page": {
-                "url": "https://podman.io/features",
-                "categoryIssueCounts": [
-                  {
-                    "name": "textAlternatives",
-                    "totalIssueCount": 18,
-                    "levelIssueCounts": [
-                      {
-                        "name": "A",
-                        "issueCount": 4
-                      },
-                      {
-                        "name": "AA",
-                        "issueCount": 14
-                      }
-                    ]
-                  },
-                  {
-                    "name": "logicalNavigationAndIntuitiveness",
-                    "totalIssueCount": 40,
-                    "levelIssueCounts": [
-                      {
-                        "name": "A",
-                        "issueCount": 36
-                      },
-                      {
-                        "name": "AA",
-                        "issueCount": 4
-                      }
-                    ]
-                  },
-                  {
-                    "name": "codingStandards",
-                    "totalIssueCount": 19,
-                    "levelIssueCounts": [
-                      {
-                        "name": "A",
-                        "issueCount": 19
-                      },
-                      {
-                        "name": "AA",
-                        "issueCount": 0
-                      }
-                    ]
-                  },
-                  {
-                    "name": "colorContrast",
-                    "totalIssueCount": 17,
-                    "levelIssueCounts": [
-                      {
-                        "name": "A",
-                        "issueCount": 0
-                      },
-                      {
-                        "name": "AA",
-                        "issueCount": 17
-                      }
-                    ]
-                  },
-                  {
-                    "name": "inputAssistance",
-                    "totalIssueCount": 1,
-                    "levelIssueCounts": [
-                      {
-                        "name": "A",
-                        "issueCount": 1
-                      },
-                      {
-                        "name": "AA",
-                        "issueCount": 0
-                      }
-                    ]
-                  },
-                  {
-                    "name": "keyboardOperability",
-                    "totalIssueCount": 4,
-                    "levelIssueCounts": [
-                      {
-                        "name": "A",
-                        "issueCount": 4
-                      },
-                      {
-                        "name": "AA",
-                        "issueCount": 0
-                      }
-                    ]
-                  }
-                ],
-                "summary": {
-                  "totalIssueCount": 99,
-                  "levelIssueCounts": [
-                    {
-                      "name": "A",
-                      "issueCount": 64
-                    },
-                    {
-                      "name": "AA",
-                      "issueCount": 35
-                    }
-                  ],
-                  "elementCount": 72,
-                  "elementWithViolationCount": 12,
-                  "elementsWithNoViolationsPercentage": 0.83
-                }
-              },
-              "children": [],
-              "categoryIssueCounts": [
-                {
-                  "name": "textAlternatives",
-                  "totalIssueCount": 18,
-                  "levelIssueCounts": [
-                    {
-                      "name": "A",
-                      "issueCount": 4
-                    },
-                    {
-                      "name": "AA",
-                      "issueCount": 14
-                    }
-                  ]
-                },
-                {
-                  "name": "logicalNavigationAndIntuitiveness",
-                  "totalIssueCount": 40,
-                  "levelIssueCounts": [
-                    {
-                      "name": "A",
-                      "issueCount": 36
-                    },
-                    {
-                      "name": "AA",
-                      "issueCount": 4
-                    }
-                  ]
-                },
-                {
-                  "name": "codingStandards",
-                  "totalIssueCount": 19,
-                  "levelIssueCounts": [
-                    {
-                      "name": "A",
-                      "issueCount": 19
-                    },
-                    {
-                      "name": "AA",
-                      "issueCount": 0
-                    }
-                  ]
-                },
-                {
-                  "name": "colorContrast",
-                  "totalIssueCount": 17,
-                  "levelIssueCounts": [
-                    {
-                      "name": "A",
-                      "issueCount": 0
-                    },
-                    {
-                      "name": "AA",
-                      "issueCount": 17
-                    }
-                  ]
-                },
-                {
-                  "name": "inputAssistance",
-                  "totalIssueCount": 1,
-                  "levelIssueCounts": [
-                    {
-                      "name": "A",
-                      "issueCount": 1
-                    },
-                    {
-                      "name": "AA",
-                      "issueCount": 0
-                    }
-                  ]
-                },
-                {
-                  "name": "keyboardOperability",
-                  "totalIssueCount": 4,
-                  "levelIssueCounts": [
-                    {
-                      "name": "A",
-                      "issueCount": 4
-                    },
-                    {
-                      "name": "AA",
-                      "issueCount": 0
-                    }
-                  ]
-                }
-              ],
-              "summary": {
-                "totalIssueCount": 99,
-                "levelIssueCounts": [
-                  {
-                    "name": "A",
-                    "issueCount": 64
-                  },
-                  {
-                    "name": "AA",
-                    "issueCount": 35
-                  }
-                ],
-                "elementCount": 72,
-                "elementWithViolationCount": 12,
-                "elementsWithNoViolationsPercentage": 0.83
-              }
-            },
             {
               "url": "https://podman.io/docs",
               "page": {
@@ -1173,7 +962,7 @@
                 "categoryIssueCounts": [
                   {
                     "name": "textAlternatives",
-                    "totalIssueCount": 6,
+                    "totalIssueCount": 9,
                     "levelIssueCounts": [
                       {
                         "name": "A",
@@ -1181,7 +970,7 @@
                       },
                       {
                         "name": "AA",
-                        "issueCount": 6
+                        "issueCount": 9
                       }
                     ]
                   },
@@ -1201,11 +990,11 @@
                   },
                   {
                     "name": "codingStandards",
-                    "totalIssueCount": 35,
+                    "totalIssueCount": 31,
                     "levelIssueCounts": [
                       {
                         "name": "A",
-                        "issueCount": 35
+                        "issueCount": 31
                       },
                       {
                         "name": "AA",
@@ -1257,20 +1046,20 @@
                   }
                 ],
                 "summary": {
-                  "totalIssueCount": 520,
+                  "totalIssueCount": 519,
                   "levelIssueCounts": [
                     {
                       "name": "A",
-                      "issueCount": 208
+                      "issueCount": 204
                     },
                     {
                       "name": "AA",
-                      "issueCount": 312
+                      "issueCount": 315
                     }
                   ],
-                  "elementCount": 372,
+                  "elementCount": 368,
                   "elementWithViolationCount": 216,
-                  "elementsWithNoViolationsPercentage": 0.42
+                  "elementsWithNoViolationsPercentage": 0.41
                 }
               },
               "children": [
@@ -1281,7 +1070,7 @@
                     "categoryIssueCounts": [
                       {
                         "name": "textAlternatives",
-                        "totalIssueCount": 2,
+                        "totalIssueCount": 3,
                         "levelIssueCounts": [
                           {
                             "name": "A",
@@ -1289,7 +1078,7 @@
                           },
                           {
                             "name": "AA",
-                            "issueCount": 2
+                            "issueCount": 3
                           }
                         ]
                       },
@@ -1365,7 +1154,7 @@
                       }
                     ],
                     "summary": {
-                      "totalIssueCount": 45,
+                      "totalIssueCount": 46,
                       "levelIssueCounts": [
                         {
                           "name": "A",
@@ -1373,7 +1162,7 @@
                         },
                         {
                           "name": "AA",
-                          "issueCount": 17
+                          "issueCount": 18
                         }
                       ],
                       "elementCount": 32,
@@ -1385,7 +1174,7 @@
                   "categoryIssueCounts": [
                     {
                       "name": "textAlternatives",
-                      "totalIssueCount": 2,
+                      "totalIssueCount": 3,
                       "levelIssueCounts": [
                         {
                           "name": "A",
@@ -1393,7 +1182,7 @@
                         },
                         {
                           "name": "AA",
-                          "issueCount": 2
+                          "issueCount": 3
                         }
                       ]
                     },
@@ -1469,7 +1258,7 @@
                     }
                   ],
                   "summary": {
-                    "totalIssueCount": 45,
+                    "totalIssueCount": 46,
                     "levelIssueCounts": [
                       {
                         "name": "A",
@@ -1477,7 +1266,7 @@
                       },
                       {
                         "name": "AA",
-                        "issueCount": 17
+                        "issueCount": 18
                       }
                     ],
                     "elementCount": 32,
@@ -1492,7 +1281,7 @@
                     "categoryIssueCounts": [
                       {
                         "name": "textAlternatives",
-                        "totalIssueCount": 2,
+                        "totalIssueCount": 3,
                         "levelIssueCounts": [
                           {
                             "name": "A",
@@ -1500,7 +1289,7 @@
                           },
                           {
                             "name": "AA",
-                            "issueCount": 2
+                            "issueCount": 3
                           }
                         ]
                       },
@@ -1520,11 +1309,11 @@
                       },
                       {
                         "name": "codingStandards",
-                        "totalIssueCount": 19,
+                        "totalIssueCount": 17,
                         "levelIssueCounts": [
                           {
                             "name": "A",
-                            "issueCount": 19
+                            "issueCount": 17
                           },
                           {
                             "name": "AA",
@@ -1576,18 +1365,18 @@
                       }
                     ],
                     "summary": {
-                      "totalIssueCount": 396,
+                      "totalIssueCount": 395,
                       "levelIssueCounts": [
                         {
                           "name": "A",
-                          "issueCount": 135
+                          "issueCount": 133
                         },
                         {
                           "name": "AA",
-                          "issueCount": 261
+                          "issueCount": 262
                         }
                       ],
-                      "elementCount": 289,
+                      "elementCount": 287,
                       "elementWithViolationCount": 199,
                       "elementsWithNoViolationsPercentage": 0.31
                     }
@@ -1596,7 +1385,7 @@
                   "categoryIssueCounts": [
                     {
                       "name": "textAlternatives",
-                      "totalIssueCount": 2,
+                      "totalIssueCount": 3,
                       "levelIssueCounts": [
                         {
                           "name": "A",
@@ -1604,7 +1393,7 @@
                         },
                         {
                           "name": "AA",
-                          "issueCount": 2
+                          "issueCount": 3
                         }
                       ]
                     },
@@ -1624,11 +1413,11 @@
                     },
                     {
                       "name": "codingStandards",
-                      "totalIssueCount": 19,
+                      "totalIssueCount": 17,
                       "levelIssueCounts": [
                         {
                           "name": "A",
-                          "issueCount": 19
+                          "issueCount": 17
                         },
                         {
                           "name": "AA",
@@ -1680,18 +1469,18 @@
                     }
                   ],
                   "summary": {
-                    "totalIssueCount": 396,
+                    "totalIssueCount": 395,
                     "levelIssueCounts": [
                       {
                         "name": "A",
-                        "issueCount": 135
+                        "issueCount": 133
                       },
                       {
                         "name": "AA",
-                        "issueCount": 261
+                        "issueCount": 262
                       }
                     ],
-                    "elementCount": 289,
+                    "elementCount": 287,
                     "elementWithViolationCount": 199,
                     "elementsWithNoViolationsPercentage": 0.31
                   }
@@ -1700,7 +1489,7 @@
               "categoryIssueCounts": [
                 {
                   "name": "textAlternatives",
-                  "totalIssueCount": 6,
+                  "totalIssueCount": 9,
                   "levelIssueCounts": [
                     {
                       "name": "A",
@@ -1708,7 +1497,7 @@
                     },
                     {
                       "name": "AA",
-                      "issueCount": 6
+                      "issueCount": 9
                     }
                   ]
                 },
@@ -1728,11 +1517,11 @@
                 },
                 {
                   "name": "codingStandards",
-                  "totalIssueCount": 35,
+                  "totalIssueCount": 31,
                   "levelIssueCounts": [
                     {
                       "name": "A",
-                      "issueCount": 35
+                      "issueCount": 31
                     },
                     {
                       "name": "AA",
@@ -1784,20 +1573,231 @@
                 }
               ],
               "summary": {
-                "totalIssueCount": 520,
+                "totalIssueCount": 519,
                 "levelIssueCounts": [
                   {
                     "name": "A",
-                    "issueCount": 208
+                    "issueCount": 204
                   },
                   {
                     "name": "AA",
-                    "issueCount": 312
+                    "issueCount": 315
                   }
                 ],
-                "elementCount": 372,
+                "elementCount": 368,
                 "elementWithViolationCount": 216,
-                "elementsWithNoViolationsPercentage": 0.42
+                "elementsWithNoViolationsPercentage": 0.41
+              }
+            },
+            {
+              "url": "https://podman.io/features",
+              "page": {
+                "url": "https://podman.io/features",
+                "categoryIssueCounts": [
+                  {
+                    "name": "textAlternatives",
+                    "totalIssueCount": 25,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 4
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 21
+                      }
+                    ]
+                  },
+                  {
+                    "name": "logicalNavigationAndIntuitiveness",
+                    "totalIssueCount": 51,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 45
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 6
+                      }
+                    ]
+                  },
+                  {
+                    "name": "codingStandards",
+                    "totalIssueCount": 21,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 21
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "colorContrast",
+                    "totalIssueCount": 23,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 23
+                      }
+                    ]
+                  },
+                  {
+                    "name": "inputAssistance",
+                    "totalIssueCount": 1,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 1
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "keyboardOperability",
+                    "totalIssueCount": 4,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 4
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  }
+                ],
+                "summary": {
+                  "totalIssueCount": 125,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 75
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 50
+                    }
+                  ],
+                  "elementCount": 91,
+                  "elementWithViolationCount": 20,
+                  "elementsWithNoViolationsPercentage": 0.78
+                }
+              },
+              "children": [],
+              "categoryIssueCounts": [
+                {
+                  "name": "textAlternatives",
+                  "totalIssueCount": 25,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 4
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 21
+                    }
+                  ]
+                },
+                {
+                  "name": "logicalNavigationAndIntuitiveness",
+                  "totalIssueCount": 51,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 45
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "codingStandards",
+                  "totalIssueCount": 21,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 21
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "colorContrast",
+                  "totalIssueCount": 23,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 23
+                    }
+                  ]
+                },
+                {
+                  "name": "inputAssistance",
+                  "totalIssueCount": 1,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 1
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "keyboardOperability",
+                  "totalIssueCount": 4,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 4
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                }
+              ],
+              "summary": {
+                "totalIssueCount": 125,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 75
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 50
+                  }
+                ],
+                "elementCount": 91,
+                "elementWithViolationCount": 20,
+                "elementsWithNoViolationsPercentage": 0.78
               }
             },
             {
@@ -1807,7 +1807,7 @@
                 "categoryIssueCounts": [
                   {
                     "name": "textAlternatives",
-                    "totalIssueCount": 8,
+                    "totalIssueCount": 14,
                     "levelIssueCounts": [
                       {
                         "name": "A",
@@ -1815,7 +1815,7 @@
                       },
                       {
                         "name": "AA",
-                        "issueCount": 8
+                        "issueCount": 14
                       }
                     ]
                   },
@@ -1891,7 +1891,7 @@
                   }
                 ],
                 "summary": {
-                  "totalIssueCount": 123,
+                  "totalIssueCount": 129,
                   "levelIssueCounts": [
                     {
                       "name": "A",
@@ -1899,7 +1899,7 @@
                     },
                     {
                       "name": "AA",
-                      "issueCount": 39
+                      "issueCount": 45
                     }
                   ],
                   "elementCount": 99,
@@ -1911,7 +1911,7 @@
               "categoryIssueCounts": [
                 {
                   "name": "textAlternatives",
-                  "totalIssueCount": 8,
+                  "totalIssueCount": 14,
                   "levelIssueCounts": [
                     {
                       "name": "A",
@@ -1919,7 +1919,7 @@
                     },
                     {
                       "name": "AA",
-                      "issueCount": 8
+                      "issueCount": 14
                     }
                   ]
                 },
@@ -1995,7 +1995,7 @@
                 }
               ],
               "summary": {
-                "totalIssueCount": 123,
+                "totalIssueCount": 129,
                 "levelIssueCounts": [
                   {
                     "name": "A",
@@ -2003,7 +2003,7 @@
                   },
                   {
                     "name": "AA",
-                    "issueCount": 39
+                    "issueCount": 45
                   }
                 ],
                 "elementCount": 99,
@@ -2018,7 +2018,7 @@
                 "categoryIssueCounts": [
                   {
                     "name": "textAlternatives",
-                    "totalIssueCount": 5,
+                    "totalIssueCount": 7,
                     "levelIssueCounts": [
                       {
                         "name": "A",
@@ -2026,7 +2026,7 @@
                       },
                       {
                         "name": "AA",
-                        "issueCount": 5
+                        "issueCount": 7
                       }
                     ]
                   },
@@ -2060,7 +2060,7 @@
                   },
                   {
                     "name": "colorContrast",
-                    "totalIssueCount": 47,
+                    "totalIssueCount": 52,
                     "levelIssueCounts": [
                       {
                         "name": "A",
@@ -2068,7 +2068,7 @@
                       },
                       {
                         "name": "AA",
-                        "issueCount": 47
+                        "issueCount": 52
                       }
                     ]
                   },
@@ -2102,7 +2102,7 @@
                   }
                 ],
                 "summary": {
-                  "totalIssueCount": 116,
+                  "totalIssueCount": 123,
                   "levelIssueCounts": [
                     {
                       "name": "A",
@@ -2110,19 +2110,19 @@
                     },
                     {
                       "name": "AA",
-                      "issueCount": 62
+                      "issueCount": 69
                     }
                   ],
                   "elementCount": 92,
-                  "elementWithViolationCount": 18,
-                  "elementsWithNoViolationsPercentage": 0.8
+                  "elementWithViolationCount": 24,
+                  "elementsWithNoViolationsPercentage": 0.74
                 }
               },
               "children": [],
               "categoryIssueCounts": [
                 {
                   "name": "textAlternatives",
-                  "totalIssueCount": 5,
+                  "totalIssueCount": 7,
                   "levelIssueCounts": [
                     {
                       "name": "A",
@@ -2130,7 +2130,7 @@
                     },
                     {
                       "name": "AA",
-                      "issueCount": 5
+                      "issueCount": 7
                     }
                   ]
                 },
@@ -2164,7 +2164,7 @@
                 },
                 {
                   "name": "colorContrast",
-                  "totalIssueCount": 47,
+                  "totalIssueCount": 52,
                   "levelIssueCounts": [
                     {
                       "name": "A",
@@ -2172,7 +2172,7 @@
                     },
                     {
                       "name": "AA",
-                      "issueCount": 47
+                      "issueCount": 52
                     }
                   ]
                 },
@@ -2206,7 +2206,7 @@
                 }
               ],
               "summary": {
-                "totalIssueCount": 116,
+                "totalIssueCount": 123,
                 "levelIssueCounts": [
                   {
                     "name": "A",
@@ -2214,19 +2214,19 @@
                   },
                   {
                     "name": "AA",
-                    "issueCount": 62
+                    "issueCount": 69
                   }
                 ],
                 "elementCount": 92,
-                "elementWithViolationCount": 18,
-                "elementsWithNoViolationsPercentage": 0.8
+                "elementWithViolationCount": 24,
+                "elementsWithNoViolationsPercentage": 0.74
               }
             }
           ],
           "categoryIssueCounts": [
             {
               "name": "textAlternatives",
-              "totalIssueCount": 42,
+              "totalIssueCount": 61,
               "levelIssueCounts": [
                 {
                   "name": "A",
@@ -2234,31 +2234,31 @@
                 },
                 {
                   "name": "AA",
-                  "issueCount": 38
+                  "issueCount": 57
                 }
               ]
             },
             {
               "name": "logicalNavigationAndIntuitiveness",
-              "totalIssueCount": 402,
+              "totalIssueCount": 414,
               "levelIssueCounts": [
                 {
                   "name": "A",
-                  "issueCount": 270
+                  "issueCount": 280
                 },
                 {
                   "name": "AA",
-                  "issueCount": 132
+                  "issueCount": 134
                 }
               ]
             },
             {
               "name": "codingStandards",
-              "totalIssueCount": 84,
+              "totalIssueCount": 82,
               "levelIssueCounts": [
                 {
                   "name": "A",
-                  "issueCount": 84
+                  "issueCount": 82
                 },
                 {
                   "name": "AA",
@@ -2268,7 +2268,7 @@
             },
             {
               "name": "colorContrast",
-              "totalIssueCount": 307,
+              "totalIssueCount": 320,
               "levelIssueCounts": [
                 {
                   "name": "A",
@@ -2276,7 +2276,7 @@
                 },
                 {
                   "name": "AA",
-                  "issueCount": 307
+                  "issueCount": 320
                 }
               ]
             },
@@ -2310,27 +2310,27 @@
             }
           ],
           "summary": {
-            "totalIssueCount": 938,
+            "totalIssueCount": 980,
             "levelIssueCounts": [
               {
                 "name": "A",
-                "issueCount": 461
+                "issueCount": 469
               },
               {
                 "name": "AA",
-                "issueCount": 477
+                "issueCount": 511
               }
             ],
-            "elementCount": 697,
-            "elementWithViolationCount": 267,
-            "elementsWithNoViolationsPercentage": 0.62
+            "elementCount": 715,
+            "elementWithViolationCount": 283,
+            "elementsWithNoViolationsPercentage": 0.6
           }
         }
       ],
       "categoryIssueCounts": [
         {
           "name": "textAlternatives",
-          "totalIssueCount": 42,
+          "totalIssueCount": 61,
           "levelIssueCounts": [
             {
               "name": "A",
@@ -2338,31 +2338,31 @@
             },
             {
               "name": "AA",
-              "issueCount": 38
+              "issueCount": 57
             }
           ]
         },
         {
           "name": "logicalNavigationAndIntuitiveness",
-          "totalIssueCount": 402,
+          "totalIssueCount": 414,
           "levelIssueCounts": [
             {
               "name": "A",
-              "issueCount": 270
+              "issueCount": 280
             },
             {
               "name": "AA",
-              "issueCount": 132
+              "issueCount": 134
             }
           ]
         },
         {
           "name": "codingStandards",
-          "totalIssueCount": 84,
+          "totalIssueCount": 82,
           "levelIssueCounts": [
             {
               "name": "A",
-              "issueCount": 84
+              "issueCount": 82
             },
             {
               "name": "AA",
@@ -2372,7 +2372,7 @@
         },
         {
           "name": "colorContrast",
-          "totalIssueCount": 307,
+          "totalIssueCount": 320,
           "levelIssueCounts": [
             {
               "name": "A",
@@ -2380,7 +2380,7 @@
             },
             {
               "name": "AA",
-              "issueCount": 307
+              "issueCount": 320
             }
           ]
         },
@@ -2414,20 +2414,20 @@
         }
       ],
       "summary": {
-        "totalIssueCount": 938,
+        "totalIssueCount": 980,
         "levelIssueCounts": [
           {
             "name": "A",
-            "issueCount": 461
+            "issueCount": 469
           },
           {
             "name": "AA",
-            "issueCount": 477
+            "issueCount": 511
           }
         ],
-        "elementCount": 697,
-        "elementWithViolationCount": 267,
-        "elementsWithNoViolationsPercentage": 0.62
+        "elementCount": 715,
+        "elementWithViolationCount": 283,
+        "elementsWithNoViolationsPercentage": 0.6
       }
     }
   }

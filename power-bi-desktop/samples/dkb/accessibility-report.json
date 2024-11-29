@@ -2,7 +2,7 @@
   "report": {
     "url": "https://www.dkb.de",
     "logoUrl": "https://images.ctfassets.net/ffq4a833tw00/1UoEUrM7RXvH9NWQIz7vyb/fbe253e7034d3fc977c6f50b1c01ca09/DKB-Logo_1426x846.png",
-    "screenshotPath": "screenshots/www.dkb.de.png",
+    "screenshotUrl": "screenshots/www.dkb.de.png",
     "pageCount": 697,
     "pageReports": [
       {

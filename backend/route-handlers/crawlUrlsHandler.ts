@@ -31,7 +31,7 @@ export default async function crawlUrlsHandler(req: Request, res: Response) {
     return res.status(400).send({ data: null, formErrors: [formError], serverError: null })
   }
 
-  const crawledUrls = await crawlDomainUrlsRecursively(new Set([url.href]))
+  const crawledUrls = await crawlDomainUrlsRecursively(url.href)
   const data: Data = { urls: Array.from(crawledUrls.successes) }
 
   return res.send({ data, formErrors: null, serverError: null })

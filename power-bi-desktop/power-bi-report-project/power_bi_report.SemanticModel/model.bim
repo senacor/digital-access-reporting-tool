@@ -376,7 +376,7 @@
             "summarizeBy": "none"
           },
           {
-            "name": "screenshot_path",
+            "name": "screenshot_url",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -386,7 +386,7 @@
             "dataCategory": "ImageUrl",
             "dataType": "string",
             "lineageTag": "e9c61d68-41ae-41f2-aa6b-af8377aef0c0",
-            "sourceColumn": "screenshot_path",
+            "sourceColumn": "screenshot_url",
             "summarizeBy": "none"
           },
           {
@@ -401,6 +401,19 @@
             "lineageTag": "518462d6-cc30-4203-8c4b-ed99f3b8770b",
             "sourceColumn": "total_issue_count",
             "summarizeBy": "none"
+          },
+          {
+            "name": "page_count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "31123a25-3371-4961-87ee-0a23525a1904",
+            "sourceColumn": "page_count",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "1a9a340e-e459-40f3-8beb-12a175818766",
@@ -411,10 +424,10 @@
             "source": {
               "expression": [
                 "let",
-                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"url\", \"logoUrl\", \"screenshotPath\", \"summary\"}, {\"report.url\", \"report.logoUrl\", \"report.screenshotPath\", \"report.summary\"}),",
+                "    #\"Erweiterte report1\" = Table.ExpandRecordColumn(SourceTable, \"report\", {\"url\", \"logoUrl\", \"screenshotUrl\", \"pageCount\", \"summary\"}, {\"report.url\", \"report.logoUrl\", \"report.screenshotUrl\", \"report.pageCount\", \"report.summary\"}),",
                 "    #\"Erweiterte report.summary1\" = Table.ExpandRecordColumn(#\"Erweiterte report1\", \"report.summary\", {\"totalIssueCount\", \"elementCount\", \"elementWithViolationCount\", \"elementsWithNoViolationsPercentage\"}, {\"report.summary.totalIssueCount\", \"report.summary.elementCount\", \"report.summary.elementWithViolationCount\", \"report.summary.elementsWithNoViolationsPercentage\"}),",
-                "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte report.summary1\",{{\"report.url\", \"url\"}, {\"report.logoUrl\", \"logo_url\"}, {\"report.screenshotPath\", \"screenshot_path\"}, {\"report.summary.totalIssueCount\", \"total_issue_count\"}, {\"report.summary.elementCount\", \"element_count\"}, {\"report.summary.elementWithViolationCount\", \"element_with_no_violation_count\"}, {\"report.summary.elementsWithNoViolationsPercentage\", \"elements_with_no_violation_percentage\"}}),",
-                "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"logo_url\", type text}, {\"screenshot_path\", type text}})",
+                "    #\"Umbenannte Spalten\" = Table.RenameColumns(#\"Erweiterte report.summary1\",{{\"report.url\", \"url\"}, {\"report.logoUrl\", \"logo_url\"}, {\"report.screenshotUrl\", \"screenshot_url\"}, {\"report.pageCount\", \"page_count\"}, {\"report.summary.totalIssueCount\", \"total_issue_count\"}, {\"report.summary.elementCount\", \"element_count\"}, {\"report.summary.elementWithViolationCount\", \"element_with_no_violation_count\"}, {\"report.summary.elementsWithNoViolationsPercentage\", \"elements_with_no_violation_percentage\"}}),",
+                "    #\"Geänderter Typ\" = Table.TransformColumnTypes(#\"Umbenannte Spalten\",{{\"logo_url\", type text}, {\"screenshot_url\", type text}})",
                 "in",
                 "    #\"Geänderter Typ\""
               ],

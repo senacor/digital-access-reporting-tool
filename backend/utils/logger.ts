@@ -22,12 +22,12 @@ logger.print = function (level, message) {
   // Extract file path and line number from the caller line
   const match = callerLine?.match(/\((.*):(\d+):(\d+)\)$/)
   if (match) {
-    const filePath = match[1]
+    const file = match[1].replace(/^.*[\\/]/, "")
     const lineNumber = match[2]
 
     this.log({
       level,
-      message: `${filePath}:${lineNumber} - ${message}`,
+      message: `${file}:${lineNumber} - ${message}`,
     })
   } else {
     this.log({

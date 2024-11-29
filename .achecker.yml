@@ -71,5 +71,4 @@ baselineFolder: .accessibility-checker/test/baselines
 cacheFolder: .accessibility-checker/tmp
 
 headless: "shell"
-maxTabs: 7
 perfMetrics: false

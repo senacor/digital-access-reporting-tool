@@ -23,8 +23,6 @@ jobs:
           cacheHitVar: CACHE_RESTORED
       - script: npm ci
         displayName: 'Install'
-      - script: npx playwright install --with-deps chromium
-        displayName: 'Install Playwright browsers'
       - script: npm run gen
         displayName: 'Generate report'
       - publish: $(System.DefaultWorkingDirectory)/.accessibility-checker/accessibility-report.json

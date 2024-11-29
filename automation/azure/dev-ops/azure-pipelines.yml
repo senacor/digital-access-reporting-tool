@@ -5,13 +5,13 @@ resources:
     - repository: senacor-main
       type: github
       endpoint: senacor
-      ref: test/add-2-pipeline
+      ref: feature/add-automation
       name: senacor/digital-access-reporting-tool
     - repository: senacor-screenshots
       type: github
-      endpoint: pan-senacor
+      endpoint: senacor
       ref: feature/screenshots
-      name: pan-senacor/digital-access-reporting-tool
+      name: senacor/digital-access-reporting-tool
 
 trigger:
   branches:

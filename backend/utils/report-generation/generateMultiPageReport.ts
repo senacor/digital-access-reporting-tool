@@ -1,51 +1,94 @@
+import fs from "node:fs"
 import * as accessibilityChecker from "accessibility-checker"
 import { crawlDomainUrlsRecursively } from "./crawlDomainUrlsRecursively"
 import { createMultiPageReport } from "./report-aggregation/createMultiPageReport"
-import { AccessibilityCheckerReport } from "./types"
+import { cpuCount, AccessibilityCheckerReport } from "./types"
+
+/**
+ * Generic wait function- stops when either the condition is 'true' or the specified timeout has been reached.
+ * Inspired by (credits to Nick): https://stackoverflow.com/questions/76418895/is-there-a-way-to-use-await-to-wait-until-a-condition-returns-true
+ * @async
+ * @function waitUntilTrue
+ * @param () => boolean conditionFunction
+ * @param number [interval=5000]
+ * @param number [timeout=3600000]
+ * @param boolean [throwOnTimeout=false]
+ * @returns Promise<boolean>
+ */
+async function waitUntilTrue(
+  conditionFunction: any,
+  interval = 5000,
+  timeout = 3600000,
+  throwOnTimeout = false,
+) {
+  let timePassed = 0
+  return new Promise<boolean>(function poll(resolve, reject) {
+    if (timePassed >= timeout) {
+      return throwOnTimeout ? reject() : resolve(false)
+    }
+    if (conditionFunction()) {
+      return resolve(true)
+    }
+    timePassed += interval
+    const showMinutes = timePassed > 60000
+    console.log(
+      `🕒 After ${Math.round(timePassed / (showMinutes ? 60000 : 1000))} ${showMinutes ? "minute(s)" : "second(s)"} waiting for report generation to finish...`,
+    )
+    setTimeout(() => poll(resolve, reject), interval)
+  })
+}
 
 export default async function generateMultiPageReport(
   url: URL,
   logoUrl: URL,
-  screenshotPath: string | null,
+  screenshotUrl: string | null,
 ) {
   // List of all accessibility checker reports that are generated for each URL
   const accessibilityCheckerReports: AccessibilityCheckerReport[] = []
 
+  // The ReportCreationSet is passed to the recursive URL crawler which will add each crawled URL to it and thus automatically generate a report for it.
+  const crawledUrls = await crawlDomainUrlsRecursively(url.href)
   // Here we initialize a custom Set (=> ReportCreationSet) that automatically generates a report for each URL that is added to it.
   // The callback we pass to the Set will automatically fill the accessibilityCheckerReports array with the generated reports.
   const reportCreationSet = new ReportCreationSet({
     url,
     reportCallback: (report) => report && accessibilityCheckerReports.push(report),
   })
-
-  // The ReportCreationSet is passed to the recursive URL crawler which will add each crawled URL to it and thus automatically generate a report for it.
-  const crawledUrls = await crawlDomainUrlsRecursively(reportCreationSet)
+  crawledUrls.successes.forEach((cu) => reportCreationSet.add(cu))
 
   // The ReportCreationSet throttles the report creation and only a certain number of reports are generated in parallel.
   // This means when the crawling is finished, the report generation might still be running and we wait until all reports are created.
-  while (
-    reportCreationSet.queuedReportCreationsCount > 0 ||
-    reportCreationSet.runningReportCreationsCount > 0
-  ) {
-    console.log(
-      `🕒 Queued: ${reportCreationSet.queuedReportCreationsCount} / Running: ${reportCreationSet.runningReportCreationsCount}: Waiting for report generation to finish...`,
+  const allReportsGenerated = await waitUntilTrue(() => {
+    const percentage = `${Math.floor(((crawledUrls.succeeded() - reportCreationSet.queuedReportCreationsCount - reportCreationSet.runningReportCreationsCount) / crawledUrls.succeeded()) * 100)}% `
+    process.stdout.write(percentage)
+    return (
+      reportCreationSet.queuedReportCreationsCount +
+        reportCreationSet.runningReportCreationsCount ===
+      0
     )
+  })
 
-    // Wait for 5 seconds before checking again
-    await new Promise((resolve) => setTimeout(resolve, 5000))
-  }
-
-  console.log("🚪 All reports generated. Closing accessibility checker...")
+  console.log(
+    `🚪 ${allReportsGenerated ? "All" : "Not all (due to timeout)"} reports generated. Closing accessibility checker...`,
+  )
   await accessibilityChecker.close()
 
   console.log("📊 Aggregating reports...")
   const multiPageReport = createMultiPageReport(
     url,
     logoUrl,
-    screenshotPath,
+    screenshotUrl,
     accessibilityCheckerReports,
   )
-
+  await fs.writeFile(
+    "./.accessibility-checker/accessibility-report.json",
+    JSON.stringify({ report: multiPageReport }),
+    (error) => {
+      if (error) {
+        console.log(`🔥 Couldn't persist the accessibility report, reason: ${error}`)
+      }
+    },
+  )
   console.log("🚢 Shipping aggregated report!")
   return {
     multiPageReport,
@@ -81,7 +124,7 @@ class ReportCreationSet extends Set<string> {
    * @param reportCallback Callback function that is called with the generated report
    * @param parallelCreationsLimit Maximum number of parallel report creations that are being handled at any time
    */
-  constructor({ url, reportCallback, parallelCreationsLimit = 7 }: ReportCreationSetArgs) {
+  constructor({ url, reportCallback, parallelCreationsLimit = cpuCount * 2 }: ReportCreationSetArgs) {
     super()
     this.#reportCallback = reportCallback
     this.#parallelCreationsLimit = parallelCreationsLimit
@@ -113,23 +156,23 @@ class ReportCreationSet extends Set<string> {
     // Create the report creation for the passed URL
     const reportCreation = async () => {
       ++this.#runningReportCreationsCount
+      let reportCallbackParameter: any = null
       try {
         console.log(`📝 Creating report for ${url}...`)
         const { report } = await accessibilityChecker.getCompliance(url, url)
-
+        reportCallbackParameter = report
         // Sadly there's no better way to check if the report is an error
         const isReportError = "details" in report
         if (isReportError) {
           console.error(`Error in report for ${url}:`, report)
-          this.#reportCallback(null)
-          return
+          reportCallbackParameter = null
         }
-        this.#reportCallback(report)
       } catch (error) {
         console.log(`🔥 Error for ${url}: ${error}`)
-        this.#reportCallback(null)
       } finally {
         --this.#runningReportCreationsCount
+        this.#reportCallback(reportCallbackParameter)
+        console.log(`✔ Completed reporting for ${url}!`)
       }
     }
 

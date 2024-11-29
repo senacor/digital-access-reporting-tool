@@ -43,6 +43,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -179,6 +186,11 @@
           "selector": {
             "id": "default"
           }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
         }
       ]
     },

@@ -14,13 +14,13 @@ import { LevelIssueCount, MultiPageReport, SinglePageReport, TreePageReport } fr
 export const createMultiPageReport = (
   url: URL,
   logoUrl: URL,
-  screenshotPath: string | null,
+  screenshotUrl: string | null,
   accessibilityCheckerReports: AccessibilityCheckerReport[],
 ) => {
   const multiPageReport: MultiPageReport = {
     url: url.origin,
     logoUrl: logoUrl.href,
-    screenshotPath,
+    screenshotUrl,
     pageCount: 0,
     pageReports: [],
     categoryIssueCounts: [],
@@ -113,7 +113,6 @@ function aggregateLevelIssueCounts(
 }
 
 function createTreePageReport(pages: SinglePageReport[]) {
-
   const base: TreePageReport = emptyTreePageReport("/")
 
   for (const page of pages) {
@@ -127,16 +126,16 @@ function createTreePageReport(pages: SinglePageReport[]) {
 
     path?.forEach((_e, i) => {
       // prepend the protocl (e.g. https: and '/' to the current path)
-      const currPath = protocol + "/" + path?.slice(0, i+1).join("")
-      const child = curr.children.find(e => e.url === currPath)
+      const currPath = protocol + "/" + path?.slice(0, i + 1).join("")
+      const child = curr.children.find((e) => e.url === currPath)
 
       if (child) {
         curr = child
       } else {
         const treeReport = emptyTreePageReport(currPath)
         curr.children.push(treeReport)
-        curr = curr.children[curr.children.length-1]
-        curr.children = curr.children.sort((a,b) => a.url.localeCompare(b.url))
+        curr = curr.children[curr.children.length - 1]
+        curr.children = curr.children.sort((a, b) => a.url.localeCompare(b.url))
       }
       if (fullPath === currPath) {
         curr.page = page
@@ -161,7 +160,7 @@ function emptyTreePageReport(url: string): TreePageReport {
       levelIssueCounts: [],
       elementCount: 0,
       elementWithViolationCount: 0,
-      elementsWithNoViolationsPercentage: 0
+      elementsWithNoViolationsPercentage: 0,
     },
   }
 }
@@ -202,19 +201,14 @@ function calculateStats(treePage: TreePageReport) {
     // Here we aggregate the simpler values of the multi page report
     treePage.summary.totalIssueCount += child.summary.totalIssueCount
 
-    aggregateLevelIssueCounts(
-      treePage.summary.levelIssueCounts,
-      child.summary.levelIssueCounts,
-    )
+    aggregateLevelIssueCounts(treePage.summary.levelIssueCounts, child.summary.levelIssueCounts)
 
     treePage.summary.elementCount += child.summary.elementCount
-    treePage.summary.elementWithViolationCount +=
-      child.summary.elementWithViolationCount
+    treePage.summary.elementWithViolationCount += child.summary.elementWithViolationCount
   }
 
-  treePage.summary.elementsWithNoViolationsPercentage =
-    calculateElementsWithNoViolationsPercentage(
-      treePage.summary.elementCount,
-      treePage.summary.elementWithViolationCount,
-    )
+  treePage.summary.elementsWithNoViolationsPercentage = calculateElementsWithNoViolationsPercentage(
+    treePage.summary.elementCount,
+    treePage.summary.elementWithViolationCount,
+  )
 }

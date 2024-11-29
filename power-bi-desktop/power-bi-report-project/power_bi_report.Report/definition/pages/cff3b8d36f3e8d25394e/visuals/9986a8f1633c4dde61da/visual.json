@@ -23,11 +23,11 @@
                       "Entity": "report_summary"
                     }
                   },
-                  "Property": "screenshot_path"
+                  "Property": "screenshot_url"
                 }
               },
-              "queryRef": "report_summary.screenshot_path",
-              "nativeQueryRef": "screenshot_path"
+              "queryRef": "report_summary.screenshot_url",
+              "nativeQueryRef": "screenshot_url"
             }
           ]
         }
@@ -73,6 +73,13 @@
                   "Value": "1L"
                 }
               }
+            },
+            "lineWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
             }
           }
         }
@@ -81,6 +88,25 @@
         {
           "properties": {
             "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
               "expr": {
                 "Literal": {
                   "Value": "false"

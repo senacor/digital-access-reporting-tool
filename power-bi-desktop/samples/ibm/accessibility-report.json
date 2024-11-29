@@ -2,7 +2,7 @@
   "report": {
     "url": "https://alphagov.github.io",
     "logoUrl": "https://www.ibm.com/able/favicon.svg",
-    "screenshotPath": "screenshots/alphagov.github.io.png",
+    "screenshotUrl": "screenshots/alphagov.github.io.png",
     "pageCount": 230,
     "pageReports": [
       {
