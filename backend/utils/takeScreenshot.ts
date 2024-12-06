@@ -2,7 +2,9 @@ import puppeteer from "puppeteer-extra"
 import AdblockerPlugin from "puppeteer-extra-plugin-adblocker"
 import StealthPlugin from "puppeteer-extra-plugin-stealth"
 import * as accessibilityChecker from "accessibility-checker"
+
 import logger from "./logger"
+import { withProxy } from "./proxy"
 
 const SCREENSHOT_BASE_URL =
   "https://raw.githubusercontent.com/senacor/digital-access-reporting-tool/refs/heads/feature/screenshots"
@@ -19,9 +21,13 @@ export default async function takeScreenshot(url: URL) {
   try {
     const screenshotPath = createScreenshotPath(url)
     const acConfig = await accessibilityChecker.getConfigUnsupported()
+    const args: string[] = ["--ignore-certificate-errors"]
+    const proxy = await withProxy()
+    proxy && args.push(`--proxy-server=${proxy.host}:${proxy.port}`)
     const browser = await puppeteer.launch({
       headless: acConfig.headless,
       defaultViewport: { width: 1920, height: 1080 },
+      args: args,
     })
     const page = await browser.newPage()
     await page.goto(url.href, { waitUntil: "domcontentloaded" })

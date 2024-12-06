@@ -1,10 +1,12 @@
-import * as cheerio from "cheerio"
 import http from "node:http"
 import https from "node:https"
-import { cpuCount } from "./types"
-import getValidUrlOrNull from "../getValidUrlOrNull"
-import logger from "../logger"
 import axios, { AxiosError } from "axios"
+import * as cheerio from "cheerio"
+
+//import { cpuCount } from "./types"
+import getValidUrlOrNull from "../getValidUrlOrNull"
+import { withProxy } from "../proxy"
+import logger from "../logger"
 
 /**
  * The actual response.
@@ -50,13 +52,12 @@ class CrawledUrls {
  */
 const httpAgent = new http.Agent({
   keepAlive: true,
-  maxSockets: cpuCount * 5,
   scheduling: "fifo",
 })
 const httpsAgent = new https.Agent({
   keepAlive: true,
-  maxSockets: cpuCount * 5,
   scheduling: "fifo",
+  rejectUnauthorized: false,
 })
 
 /**
@@ -92,12 +93,12 @@ export async function crawlDomainUrlsRecursively(
     crawledUrls.success(url)
     // Find all domain URLs on the page and add them to the Set of URLs to crawl.
     const references = await findSameDomainUrls(url, html, seenReferences)
-    references.forEach((r) => {
+    references.forEach((u) => {
       promises.push(
         crawlDomainUrlsRecursively(
-          r,
+          u,
           crawledUrls,
-          seenReferences.add(r),
+          seenReferences.add(u),
           references.size > 24 ? delay * 4 : delay,
         ),
       )
@@ -109,10 +110,11 @@ export async function crawlDomainUrlsRecursively(
   return Promise.all<Promise<CrawledUrls>>(promises)
     .then(() => crawledUrls)
     .finally(() => {
-      if (topLevel)
+      if (topLevel) {
         console.log(
           `🕷️ Finished crawling URLs, succeeded: ${crawledUrls.succeeded()}, failed: ${crawledUrls.failed()}`,
         )
+      }
     })
 }
 
@@ -120,6 +122,7 @@ const fetchHtmlFromUrl = async (url: string) => {
   const accept = "text/html,application/xhtml+xml,application/xml"
   // select a random user agent from the list
   const ua = userAgents[Math.floor(Math.random() * userAgents.length)]
+  const proxy = await withProxy()
   const options = {
     // Set to accept HTML-like responses only since some sites return docs w/o extensions
     // see also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation/List_of_default_Accept_values
@@ -148,7 +151,7 @@ const fetchHtmlFromUrl = async (url: string) => {
       options.headers["Cookie"] = cookies
     },
     httpAgent: httpAgent,
-    httpsAgent: httpsAgent,
+    httpsAgent: proxy?.agent || httpsAgent,
     //Aborts request after 10 minutes
     signal: newAbortSignal(600000),
     validateStatus: (status: number) => {

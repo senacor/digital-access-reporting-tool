@@ -6,12 +6,8 @@ type CustomLogger = winston.Logger & {
 
 const logger = winston.createLogger({
   level: "info",
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.Console({
-      format: winston.format.simple(),
-    }),
-  ],
+  format: winston.format.combine(winston.format.splat(), winston.format.simple()),
+  transports: [new winston.transports.Console()],
 }) as CustomLogger
 
 logger.print = function (level, message) {
@@ -22,6 +18,7 @@ logger.print = function (level, message) {
   // Extract file path and line number from the caller line
   const match = callerLine?.match(/\((.*):(\d+):(\d+)\)$/)
   if (match) {
+    // shorten the path to the file name
     const file = match[1].replace(/^.*[\\/]/, "")
     const lineNumber = match[2]
 

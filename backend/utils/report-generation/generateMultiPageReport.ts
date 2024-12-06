@@ -1,8 +1,10 @@
 import fs from "node:fs"
 import * as accessibilityChecker from "accessibility-checker"
+
 import { crawlDomainUrlsRecursively } from "./crawlDomainUrlsRecursively"
 import { createMultiPageReport } from "./report-aggregation/createMultiPageReport"
 import { cpuCount, AccessibilityCheckerReport } from "./types"
+import { withProxy } from "../proxy"
 
 /**
  * Generic wait function- stops when either the condition is 'true' or the specified timeout has been reached.
@@ -17,24 +19,26 @@ import { cpuCount, AccessibilityCheckerReport } from "./types"
  */
 async function waitUntilTrue(
   conditionFunction: any,
-  interval = 5000,
+  interval = 10000,
   timeout = 3600000,
   throwOnTimeout = false,
 ) {
   let timePassed = 0
   return new Promise<boolean>(function poll(resolve, reject) {
+    let timeoutId: undefined | ReturnType<typeof setTimeout>
     if (timePassed >= timeout) {
-      return throwOnTimeout ? reject() : resolve(false)
+      clearTimeout(timeoutId)
+      return throwOnTimeout ? reject() : resolve(true)
     }
     if (conditionFunction()) {
-      return resolve(true)
+      return resolve(false)
     }
     timePassed += interval
     const showMinutes = timePassed > 60000
     console.log(
       `🕒 After ${Math.round(timePassed / (showMinutes ? 60000 : 1000))} ${showMinutes ? "minute(s)" : "second(s)"} waiting for report generation to finish...`,
     )
-    setTimeout(() => poll(resolve, reject), interval)
+    timeoutId = setTimeout(() => poll(resolve, reject), interval)
   })
 }
 
@@ -54,22 +58,24 @@ export default async function generateMultiPageReport(
     url,
     reportCallback: (report) => report && accessibilityCheckerReports.push(report),
   })
+
   crawledUrls.successes.forEach((cu) => reportCreationSet.add(cu))
 
   // The ReportCreationSet throttles the report creation and only a certain number of reports are generated in parallel.
   // This means when the crawling is finished, the report generation might still be running and we wait until all reports are created.
-  const allReportsGenerated = await waitUntilTrue(() => {
-    const percentage = `${Math.floor(((crawledUrls.succeeded() - reportCreationSet.queuedReportCreationsCount - reportCreationSet.runningReportCreationsCount) / crawledUrls.succeeded()) * 100)}% `
+  const timedOut = await waitUntilTrue(() => {
+    const percentage = `${crawledUrls.succeeded() == 0 ? 0 : Math.floor(((crawledUrls.succeeded() - reportCreationSet.queuedReportCreationsCount - reportCreationSet.runningReportCreationsCount) / crawledUrls.succeeded()) * 100)}% `
     process.stdout.write(percentage)
     return (
+      crawledUrls.succeeded() == 0 ||
       reportCreationSet.queuedReportCreationsCount +
         reportCreationSet.runningReportCreationsCount ===
-      0
+        0
     )
   })
 
   console.log(
-    `🚪 ${allReportsGenerated ? "All" : "Not all (due to timeout)"} reports generated. Closing accessibility checker...`,
+    `🚪 ${timedOut ? "Not all (due to timeout)" : "All"} reports generated. Closing accessibility checker...`,
   )
   await accessibilityChecker.close()
 
@@ -124,7 +130,7 @@ class ReportCreationSet extends Set<string> {
    * @param reportCallback Callback function that is called with the generated report
    * @param parallelCreationsLimit Maximum number of parallel report creations that are being handled at any time
    */
-  constructor({ url, reportCallback, parallelCreationsLimit = cpuCount * 2 }: ReportCreationSetArgs) {
+  constructor({ url, reportCallback, parallelCreationsLimit = cpuCount }: ReportCreationSetArgs) {
     super()
     this.#reportCallback = reportCallback
     this.#parallelCreationsLimit = parallelCreationsLimit
@@ -159,6 +165,8 @@ class ReportCreationSet extends Set<string> {
       let reportCallbackParameter: any = null
       try {
         console.log(`📝 Creating report for ${url}...`)
+        const proxy = await withProxy()
+        if (proxy) process.env["HTTP_PROXY"] = `https://${proxy.host}:${proxy.port}`
         const { report } = await accessibilityChecker.getCompliance(url, url)
         reportCallbackParameter = report
         // Sadly there's no better way to check if the report is an error
