@@ -71,5 +71,4 @@ baselineFolder: .accessibility-checker/test/baselines
 cacheFolder: .accessibility-checker/tmp
 
 headless: "shell"
-ignoreHTTPSErrors: true
 perfMetrics: false

@@ -15,28 +15,28 @@ const createScreenshotPath = (url: URL) => {
   return screenshotPath + url.hostname + "." + screenshotType
 }
 
+// register the Stealth and Ad-Blocker plugins with Puppeteer
+puppeteer.use(AdblockerPlugin()).use(StealthPlugin())
+
 export default async function takeScreenshot(url: URL) {
-  // register the Stealth and Ad-Blocker plugins with Puppeteer
-  puppeteer.use(AdblockerPlugin()).use(StealthPlugin())
+  let browser
   try {
     const screenshotPath = createScreenshotPath(url)
     const acConfig = await accessibilityChecker.getConfigUnsupported()
     const args: string[] = ["--ignore-certificate-errors"]
     const proxy = await withProxy()
     proxy && args.push(`--proxy-server=${proxy.host}:${proxy.port}`)
-    const browser = await puppeteer.launch({
+    browser = await puppeteer.launch({
       headless: acConfig.headless,
       defaultViewport: { width: 1920, height: 1080 },
       args: args,
     })
-    const page = await browser.newPage()
+    const [page] = await browser.pages()
     await page.goto(url.href, { waitUntil: "domcontentloaded" })
     await acceptCookies(page)
     await page.screenshot({ path: screenshotPath, type: screenshotType })
-    await browser.close()
 
     console.log("📸 Screenshot taken")
-
     return `${SCREENSHOT_BASE_URL}/${screenshotPath}`
   } catch (error) {
     logger.print("error", "Failed to take screenshot")
@@ -51,6 +51,10 @@ export default async function takeScreenshot(url: URL) {
     }
 
     return null
+  } finally {
+    if (browser) {
+      await browser.close()
+    }
   }
 }
 
@@ -60,12 +64,13 @@ async function acceptCookies(page: any) {
       .locator(
         `a::-p-text(uswählen),
           :scope >>> tkds-button::-p-text(uswählen),
-          a::-p-text(kzeptieren),
           :scope >>> a::-p-text(kzeptieren),
           :scope >>> a::-p-text(ustimmen),
           a::-p-text(eht klar),
           :scope >>> button::-p-text(ustimmen),
           :scope >>> button::-p-text(inverstanden),
+          a::-p-text(kzeptieren),
+          button::-p-text(kzeptieren),
           :scope >>> button::-p-text(kzeptieren),
           :scope >>> button::-p-text(ccept)
         `,

@@ -1,10 +1,19 @@
 import fs from "node:fs"
+import puppeteer from "puppeteer-extra"
+import AdblockerPlugin from "puppeteer-extra-plugin-adblocker"
+import StealthPlugin from "puppeteer-extra-plugin-stealth"
 import * as accessibilityChecker from "accessibility-checker"
 
 import { crawlDomainUrlsRecursively } from "./crawlDomainUrlsRecursively"
 import { createMultiPageReport } from "./report-aggregation/createMultiPageReport"
-import { cpuCount, AccessibilityCheckerReport } from "./types"
+import { cpuCount, acBrowserManager, AccessibilityCheckerReport } from "./types"
 import { withProxy } from "../proxy"
+
+// register the Stealth and Ad-Blocker plugins with Puppeteer
+puppeteer.use(AdblockerPlugin()).use(StealthPlugin())
+// call to initialize AC configuration
+acBrowserManager.getBrowserChrome(true)
+acBrowserManager.close()
 
 /**
  * Generic wait function- stops when either the condition is 'true' or the specified timeout has been reached.
@@ -50,12 +59,13 @@ export default async function generateMultiPageReport(
   // List of all accessibility checker reports that are generated for each URL
   const accessibilityCheckerReports: AccessibilityCheckerReport[] = []
 
+  await reopenBrowser()
+
   // The ReportCreationSet is passed to the recursive URL crawler which will add each crawled URL to it and thus automatically generate a report for it.
   const crawledUrls = await crawlDomainUrlsRecursively(url.href)
   // Here we initialize a custom Set (=> ReportCreationSet) that automatically generates a report for each URL that is added to it.
   // The callback we pass to the Set will automatically fill the accessibilityCheckerReports array with the generated reports.
   const reportCreationSet = new ReportCreationSet({
-    url,
     reportCallback: (report) => report && accessibilityCheckerReports.push(report),
   })
 
@@ -103,8 +113,21 @@ export default async function generateMultiPageReport(
   }
 }
 
+async function reopenBrowser() {
+  // handover proxy to accessibility checker's browser instance(s)
+  const args: string[] = ["--ignore-certificate-errors"]
+  const proxy = await withProxy(true)
+  if (proxy) {
+    await acBrowserManager.close()
+    args.push(`--proxy-server=${proxy.host}:${proxy.port}`)
+    acBrowserManager.browserP = puppeteer.launch({
+      headless: acBrowserManager.config.headless,
+      args: args,
+    })
+  }
+}
+
 type ReportCreationSetArgs = {
-  url: URL
   reportCallback: (report: AccessibilityCheckerReport | null) => void
   parallelCreationsLimit?: number
 }
@@ -126,20 +149,13 @@ class ReportCreationSet extends Set<string> {
   /**
    * Creates an extended custom Set that automatically generates a report for each URL that is added to the Set.
    * The report generation is throttled to a certain number of parallel creations.
-   * @param url URL to generate a report for
    * @param reportCallback Callback function that is called with the generated report
    * @param parallelCreationsLimit Maximum number of parallel report creations that are being handled at any time
    */
-  constructor({ url, reportCallback, parallelCreationsLimit = cpuCount }: ReportCreationSetArgs) {
+  constructor({ reportCallback, parallelCreationsLimit = cpuCount }: ReportCreationSetArgs) {
     super()
     this.#reportCallback = reportCallback
     this.#parallelCreationsLimit = parallelCreationsLimit
-
-    // We call add() manually after our class was initialized completely
-    // because super([url.href]) would cause an error since the Set class
-    // calls add() internally which would fail because #reportCallback and #throttler
-    // would not be set at that time yet.
-    this.add(url.href)
   }
 
   /**
@@ -165,8 +181,6 @@ class ReportCreationSet extends Set<string> {
       let reportCallbackParameter: any = null
       try {
         console.log(`📝 Creating report for ${url}...`)
-        const proxy = await withProxy()
-        if (proxy) process.env["HTTP_PROXY"] = `https://${proxy.host}:${proxy.port}`
         const { report } = await accessibilityChecker.getCompliance(url, url)
         reportCallbackParameter = report
         // Sadly there's no better way to check if the report is an error
@@ -177,6 +191,7 @@ class ReportCreationSet extends Set<string> {
         }
       } catch (error) {
         console.log(`🔥 Error for ${url}: ${error}`)
+        await reopenBrowser()
       } finally {
         --this.#runningReportCreationsCount
         this.#reportCallback(reportCallbackParameter)

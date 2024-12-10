@@ -179,20 +179,14 @@ const fetchHtmlFromUrl = async (url: string) => {
             // The request was made and the server responded with a status code
             // that falls out of the range of 2xx
             logger.print("info", `On URL: ${url}: responded with status ${error.response.status}`)
-          } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            logger.print(
-              "error",
-              `On URL: ${url}: ${JSON.stringify({ message: error.message, cause: error.cause, code: error.code, status: error.status }, null, 2)}`,
-            )
           } else {
+            //ECONNRESET or similar
             // Something happened in setting up the request that triggered an Error
             logger.print(
               "error",
               `On URL: ${url}: ${JSON.stringify({ message: error.message, cause: error.cause, code: error.code, status: error.status }, null, 2)}`,
             )
+            withProxy(true) // rotate proxy
           }
         }
 

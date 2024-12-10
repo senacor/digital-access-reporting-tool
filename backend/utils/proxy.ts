@@ -16,13 +16,15 @@ type Proxy = {
   host: string
   port: number
   secure: boolean
+  elite: boolean
   alive: boolean
   age: ProxyAge
   agent?: Agent
 }
 
 const PROXIES_LIST_URL = new URL("https://www.sslproxies.org")
-const REFRESH_INTERVAL = 40000
+const PROXY_REQUEST_TIMEOUT = 5000
+const REFRESH_INTERVAL = 60000
 
 let refreshIntervalId: undefined | ReturnType<typeof setInterval>
 
@@ -30,7 +32,7 @@ let proxies: Proxy[] = []
 
 let currentProxy: undefined | Proxy
 
-export async function withProxy() {
+export async function withProxy(force: boolean = false) {
   if (!process.env.USE_PROXY) {
     return null
   }
@@ -38,10 +40,14 @@ export async function withProxy() {
     await refreshLoop()
   }
   if (currentProxy) {
-    currentProxy = await testProxy(currentProxy)
+    if (force) {
+      forgetCurrentProxy()
+    } else {
+      currentProxy = await testProxy(currentProxy)
+    }
   }
   if (!currentProxy) {
-    const youngProxies = proxies.filter((p) => p.age < ProxyAge.adult)
+    const youngProxies = proxies.filter((p) => p.age < ProxyAge.aged && p.elite === true)
     currentProxy = await pickProxy(youngProxies)
     logger.info(
       "picked up fresh proxy: %s(age: %s) from the latest list of: %d",
@@ -82,7 +88,14 @@ async function refreshProxies(proxiesListUrl: URL) {
   htmlTable.find("tr").each((i, row: any) => {
     // skip the header row
     if (i === 0) return
-    const proxy: Proxy = { host: "", port: 0, secure: false, alive: false, age: ProxyAge.aged }
+    const proxy: Proxy = {
+      host: "",
+      port: 0,
+      secure: false,
+      elite: false,
+      alive: false,
+      age: ProxyAge.aged,
+    }
     $(row)
       .find("td, th")
       .each((j, cell) => {
@@ -93,6 +106,10 @@ async function refreshProxies(proxiesListUrl: URL) {
             break
           case 1:
             proxy.port = +value
+            break
+          case 4:
+            const anonymity = value.toLowerCase()
+            proxy.elite = anonymity.includes("elite")
             break
           case 6:
             proxy.secure = value.toLowerCase() == "yes"
@@ -126,7 +143,7 @@ async function testProxy(proxy: Proxy) {
       Accept: "application/json",
     },
     timeout: {
-      request: REFRESH_INTERVAL - 2 * 1000,
+      request: PROXY_REQUEST_TIMEOUT,
     },
     agent: {
       https: tunnel.httpsOverHttp({
@@ -140,9 +157,29 @@ async function testProxy(proxy: Proxy) {
   try {
     await got("https://httpbin.org/ip", options).json()
     proxy.alive = true
-    proxy.agent = options.agent.https
+    // the timeout sticks at the first TLS socket level,
+    // therefore create the new, clean agent
+    proxy.agent = tunnel.httpsOverHttp({
+      proxy: {
+        host: proxy.host,
+        port: proxy.port,
+      },
+      rejectUnauthorized: false,
+    }) as Agent
     return proxy
   } catch (error: any) {
     throw error
   }
+}
+
+function forgetCurrentProxy() {
+  // remove the prev proxy
+  proxies.filter((p, index, arr) => {
+    if (p.host === currentProxy?.host) {
+      arr.splice(index, 1)
+      return true
+    }
+    return false
+  })
+  currentProxy = undefined
 }

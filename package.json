@@ -16,7 +16,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prettier:check": "npx prettier . --check",
     "prettier:fix": "npx prettier . --write",
-    "gen": "npx tsc && NODE_OPTIONS='--max-old-space-size=8192' DEBUG=puppeteer:*,-puppeteer:protocol:* mocha --exit backend/gen/generateReport.spec.ts",
+    "gen": "npx tsc && NODE_OPTIONS='--max-old-space-size=8192' mocha --exit backend/gen/generateReport.spec.ts",
     "proxy": "USE_PROXY=true mocha --exit backend/test/proxy.spec.ts",
     "setup": "npm install"
   },
