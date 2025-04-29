@@ -3,7 +3,6 @@ import https from "node:https"
 import axios, { AxiosError } from "axios"
 import * as cheerio from "cheerio"
 
-//import { cpuCount } from "./types"
 import getValidUrlOrNull from "../getValidUrlOrNull"
 import { withProxy } from "../proxy"
 import logger from "../logger"
@@ -73,7 +72,7 @@ export async function crawlDomainUrlsRecursively(
   url: string,
   crawledUrls = new CrawledUrls(),
   seenReferences = new Set<string>(),
-  delay: number = 1000,
+  delay: number = 5000,
 ) {
   const topLevel = crawledUrls.isEmpty()
   if (topLevel) {
@@ -81,25 +80,28 @@ export async function crawlDomainUrlsRecursively(
   }
   const promises: Promise<CrawledUrls>[] = []
   // Fetch the HTML of the URL with a random delay to not bomb the server too much.
-  const html = await new Promise<string | null>((resolve) =>
-    setTimeout(
-      async () => await fetchHtmlFromUrl(url).then(resolve),
-      Math.floor(Math.random() * delay),
-    ),
-  )
+  const html =
+    !skipUrl(url, crawledUrls) &&
+    (await new Promise<string | null>((resolve) =>
+      setTimeout(
+        async () => await fetchHtmlFromUrl(url).then(resolve),
+        Math.floor(Math.random() * delay),
+      ),
+    ))
   // Go down the page tree, using children references,
   // stop scraping if the referred link doesn't resolve to HTML
   if (html) {
     crawledUrls.success(url)
     // Find all domain URLs on the page and add them to the Set of URLs to crawl.
     const references = await findSameDomainUrls(url, html, seenReferences)
+    console.log(`${url}: seen: ${seenReferences.size} URLs, children: ${references.size}`)
     references.forEach((u) => {
       promises.push(
         crawlDomainUrlsRecursively(
           u,
           crawledUrls,
           seenReferences.add(u),
-          references.size > 24 ? delay * 4 : delay,
+          references.size > 80 ? delay * 2 : delay,
         ),
       )
     })
@@ -180,14 +182,17 @@ const fetchHtmlFromUrl = async (url: string) => {
             // that falls out of the range of 2xx
             logger.print("info", `On URL: ${url}: responded with status ${error.response.status}`)
           } else {
-            //ECONNRESET or similar
+            //ECONNRESET, ETIMEDOUT, ERR_BAD_RESPONSE or similar
             // Something happened in setting up the request that triggered an Error
             logger.print(
               "error",
               `On URL: ${url}: ${JSON.stringify({ message: error.message, cause: error.cause, code: error.code, status: error.status }, null, 2)}`,
             )
-            withProxy(true) // rotate proxy
           }
+          // rotate proxy
+          ;(async () => {
+            await withProxy(true)
+          })()
         }
 
         resolve(null)
@@ -204,64 +209,69 @@ const findSameDomainUrls = async (
   const $ = cheerio.load(pageHtml)
   const urlsFoundOnPage = new Set<string>()
 
-  $("a").each((_, anchor) => {
-    let href = $(anchor).attr("href")
-    if (!href) {
-      return
-    }
-    // cleanse the reference - all kind of documents can sneak through otherwise
-    href = href.trim()
+  // try to avoid honeypot traps
+  $("a")
+    .filter(() => {
+      return $(this).css("visibility") != "hidden" && $(this).css("display") != "none"
+    })
+    .each((_, anchor) => {
+      let href = $(anchor).attr("href")
+      if (!href) {
+        return
+      }
+      // cleanse the reference - all kind of documents can sneak through otherwise
+      href = href.trim()
 
-    // If the href is a relative URL, skip some common prefixes.
-    if (excludedPrefixes.some((prefix) => href?.toLowerCase().startsWith(prefix))) {
-      return
-    }
+      // If the href is a relative URL, skip some common prefixes.
+      if (excludedPrefixes.some((prefix) => href?.toLowerCase().startsWith(prefix))) {
+        return
+      }
 
-    // The anchor as a prefix was already excluded before.
-    // Check if the href contains an anchor and simply use the URL without it
-    // to avoid crawling the same page multiple times.
-    if (href.includes("#")) {
-      href = href.split("#")[0]
-    }
+      // The anchor as a prefix was already excluded before.
+      // Check if the href contains an anchor and simply use the URL without it
+      // to avoid crawling the same page multiple times.
+      if (href.includes("#")) {
+        href = href.split("#")[0]
+      }
 
-    // For simplicity reasons we remove query parameters to avoid crawling the same page multiple times.
-    if (href.includes("?")) {
-      href = href.split("?")[0]
-    }
+      // For simplicity reasons we remove query parameters to avoid crawling the same page multiple times.
+      if (href.includes("?")) {
+        href = href.split("?")[0]
+      }
 
-    // Some URLs contain session IDs or other parameters separated by a semicolon.
-    // E.g. https://example.com/page;jsessionid=1234 -> https://javarevisited.blogspot.com/2012/08/what-is-jsessionid-in-j2ee-web.html
-    // While crawling we might end up with the same link with different session IDs, so we cut them off.
-    if (href.includes(";")) {
-      href = href.split(";")[0]
-    }
+      // Some URLs contain session IDs or other parameters separated by a semicolon.
+      // E.g. https://example.com/page;jsessionid=1234 -> https://javarevisited.blogspot.com/2012/08/what-is-jsessionid-in-j2ee-web.html
+      // While crawling we might end up with the same link with different session IDs, so we cut them off.
+      if (href.includes(";")) {
+        href = href.split(";")[0]
+      }
 
-    // We want to avoid to crawl files like images, PDFs, etc.
-    if (fileExtensions.some((ext) => href.toLowerCase().endsWith(ext))) {
-      return
-    }
+      // We want to avoid to crawl files like images, PDFs, etc.
+      if (fileExtensions.some((ext) => href.toLowerCase().endsWith(ext))) {
+        return
+      }
 
-    const validUrl = getValidUrlOrNull(href, pageUrl)
-    if (!validUrl) {
-      logger.print(
-        "info",
-        `Invalid URL found on page (${pageUrl}) in an anchor: ${JSON.stringify({ anchorAttributes: anchor.attributes }, null, 2)}`,
-      )
-      return
-    }
+      const validUrl = getValidUrlOrNull(href, pageUrl)
+      if (!validUrl) {
+        logger.print(
+          "info",
+          `Invalid URL found on page (${pageUrl}) in an anchor: ${JSON.stringify({ anchorAttributes: anchor.attributes }, null, 2)}`,
+        )
+        return
+      }
 
-    // We only want to crawl URLs from the same domain.
-    if (validUrl.hostname !== pageHostname) {
-      return
-    }
+      // We only want to crawl URLs from the same domain.
+      if (validUrl.hostname !== pageHostname) {
+        return
+      }
 
-    // Skip URLs that were already found on the page or that were already crawled.
-    if (urlsFoundOnPage.has(validUrl.href) || seenReferences.has(validUrl.href)) {
-      return
-    }
+      // Skip URLs that were already found on the page or that were already crawled.
+      if (urlsFoundOnPage.has(validUrl.href) || seenReferences.has(validUrl.href)) {
+        return
+      }
 
-    urlsFoundOnPage.add(validUrl.href)
-  })
+      urlsFoundOnPage.add(validUrl.href)
+    })
 
   return urlsFoundOnPage
 }
@@ -334,4 +344,17 @@ function acceptContentType(accept: string, contentType: string) {
     return accept.includes(contentType.trim().replace(regEx, "$1"))
   }
   return false
+}
+
+/**
+ * Skip scraping if already done by siblings or
+ * if the path is configured to be excluded from scraping
+ * (like huge banking product pages).
+ */
+function skipUrl(url: string, crawledUrls: CrawledUrls) {
+  const excludePath = process.env.EXCLUDE_PATH
+  if (excludePath) {
+    return url.includes(excludePath)
+  }
+  return crawledUrls.has(url)
 }
