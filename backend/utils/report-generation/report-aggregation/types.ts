@@ -119,7 +119,7 @@ export type SinglePageReport = {
 // }
 export type MultiPageReport = SinglePageReport & {
   logoUrl: string
-  screenshotPath: string | null
+  screenshotUrl: string | null
   pageCount: number
   pageReports: SinglePageReport[]
   treePageReport: TreePageReport | null

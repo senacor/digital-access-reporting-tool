@@ -1,6 +1,9 @@
 # folders
 public
 node_modules
+power-bi-desktop
+automation
+.vscode
 
 # files
 *.html

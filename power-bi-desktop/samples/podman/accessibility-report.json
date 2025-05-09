@@ -1,0 +1,2434 @@
+{
+  "report": {
+    "url": "https://podman.io",
+    "logoUrl": "https://podman.io/images/raw/podman-selkie-385w-358h.png",
+    "screenshotUrl": "https://raw.githubusercontent.com/senacor/digital-access-reporting-tool/refs/heads/feature/screenshots/screenshots/podman.io.png",
+    "pageCount": 7,
+    "pageReports": [
+      {
+        "url": "https://podman.io/",
+        "categoryIssueCounts": [
+          {
+            "name": "textAlternatives",
+            "totalIssueCount": 61,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 4
+              },
+              {
+                "name": "AA",
+                "issueCount": 57
+              }
+            ]
+          },
+          {
+            "name": "logicalNavigationAndIntuitiveness",
+            "totalIssueCount": 414,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 280
+              },
+              {
+                "name": "AA",
+                "issueCount": 134
+              }
+            ]
+          },
+          {
+            "name": "codingStandards",
+            "totalIssueCount": 82,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 82
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "colorContrast",
+            "totalIssueCount": 320,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 320
+              }
+            ]
+          },
+          {
+            "name": "inputAssistance",
+            "totalIssueCount": 99,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 99
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "keyboardOperability",
+            "totalIssueCount": 4,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 4
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "totalIssueCount": 980,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 469
+            },
+            {
+              "name": "AA",
+              "issueCount": 511
+            }
+          ],
+          "elementCount": 715,
+          "elementWithViolationCount": 283,
+          "elementsWithNoViolationsPercentage": 0.6
+        }
+      },
+      {
+        "url": "https://podman.io/docs/checkpoint",
+        "categoryIssueCounts": [
+          {
+            "name": "textAlternatives",
+            "totalIssueCount": 3,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 3
+              }
+            ]
+          },
+          {
+            "name": "logicalNavigationAndIntuitiveness",
+            "totalIssueCount": 23,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 12
+              },
+              {
+                "name": "AA",
+                "issueCount": 11
+              }
+            ]
+          },
+          {
+            "name": "codingStandards",
+            "totalIssueCount": 7,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 7
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "colorContrast",
+            "totalIssueCount": 4,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 4
+              }
+            ]
+          },
+          {
+            "name": "inputAssistance",
+            "totalIssueCount": 9,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 9
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "keyboardOperability",
+            "totalIssueCount": 0,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "totalIssueCount": 46,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 28
+            },
+            {
+              "name": "AA",
+              "issueCount": 18
+            }
+          ],
+          "elementCount": 32,
+          "elementWithViolationCount": 5,
+          "elementsWithNoViolationsPercentage": 0.84
+        }
+      },
+      {
+        "url": "https://podman.io/features",
+        "categoryIssueCounts": [
+          {
+            "name": "textAlternatives",
+            "totalIssueCount": 25,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 4
+              },
+              {
+                "name": "AA",
+                "issueCount": 21
+              }
+            ]
+          },
+          {
+            "name": "logicalNavigationAndIntuitiveness",
+            "totalIssueCount": 51,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 45
+              },
+              {
+                "name": "AA",
+                "issueCount": 6
+              }
+            ]
+          },
+          {
+            "name": "codingStandards",
+            "totalIssueCount": 21,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 21
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "colorContrast",
+            "totalIssueCount": 23,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 23
+              }
+            ]
+          },
+          {
+            "name": "inputAssistance",
+            "totalIssueCount": 1,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 1
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "keyboardOperability",
+            "totalIssueCount": 4,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 4
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "totalIssueCount": 125,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 75
+            },
+            {
+              "name": "AA",
+              "issueCount": 50
+            }
+          ],
+          "elementCount": 91,
+          "elementWithViolationCount": 20,
+          "elementsWithNoViolationsPercentage": 0.78
+        }
+      },
+      {
+        "url": "https://podman.io/community",
+        "categoryIssueCounts": [
+          {
+            "name": "textAlternatives",
+            "totalIssueCount": 14,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 14
+              }
+            ]
+          },
+          {
+            "name": "logicalNavigationAndIntuitiveness",
+            "totalIssueCount": 85,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 68
+              },
+              {
+                "name": "AA",
+                "issueCount": 17
+              }
+            ]
+          },
+          {
+            "name": "codingStandards",
+            "totalIssueCount": 15,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 15
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "colorContrast",
+            "totalIssueCount": 14,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 14
+              }
+            ]
+          },
+          {
+            "name": "inputAssistance",
+            "totalIssueCount": 1,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 1
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "keyboardOperability",
+            "totalIssueCount": 0,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "totalIssueCount": 129,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 84
+            },
+            {
+              "name": "AA",
+              "issueCount": 45
+            }
+          ],
+          "elementCount": 99,
+          "elementWithViolationCount": 18,
+          "elementsWithNoViolationsPercentage": 0.82
+        }
+      },
+      {
+        "url": "https://podman.io/get-started",
+        "categoryIssueCounts": [
+          {
+            "name": "textAlternatives",
+            "totalIssueCount": 7,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 7
+              }
+            ]
+          },
+          {
+            "name": "logicalNavigationAndIntuitiveness",
+            "totalIssueCount": 48,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 38
+              },
+              {
+                "name": "AA",
+                "issueCount": 10
+              }
+            ]
+          },
+          {
+            "name": "codingStandards",
+            "totalIssueCount": 6,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 6
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "colorContrast",
+            "totalIssueCount": 52,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 52
+              }
+            ]
+          },
+          {
+            "name": "inputAssistance",
+            "totalIssueCount": 10,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 10
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "keyboardOperability",
+            "totalIssueCount": 0,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "totalIssueCount": 123,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 54
+            },
+            {
+              "name": "AA",
+              "issueCount": 69
+            }
+          ],
+          "elementCount": 92,
+          "elementWithViolationCount": 24,
+          "elementsWithNoViolationsPercentage": 0.74
+        }
+      },
+      {
+        "url": "https://podman.io/docs",
+        "categoryIssueCounts": [
+          {
+            "name": "textAlternatives",
+            "totalIssueCount": 9,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 9
+              }
+            ]
+          },
+          {
+            "name": "logicalNavigationAndIntuitiveness",
+            "totalIssueCount": 180,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 87
+              },
+              {
+                "name": "AA",
+                "issueCount": 93
+              }
+            ]
+          },
+          {
+            "name": "codingStandards",
+            "totalIssueCount": 31,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 31
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "colorContrast",
+            "totalIssueCount": 213,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 213
+              }
+            ]
+          },
+          {
+            "name": "inputAssistance",
+            "totalIssueCount": 86,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 86
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "keyboardOperability",
+            "totalIssueCount": 0,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "totalIssueCount": 519,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 204
+            },
+            {
+              "name": "AA",
+              "issueCount": 315
+            }
+          ],
+          "elementCount": 368,
+          "elementWithViolationCount": 216,
+          "elementsWithNoViolationsPercentage": 0.41
+        }
+      },
+      {
+        "url": "https://podman.io/docs/installation",
+        "categoryIssueCounts": [
+          {
+            "name": "textAlternatives",
+            "totalIssueCount": 3,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 3
+              }
+            ]
+          },
+          {
+            "name": "logicalNavigationAndIntuitiveness",
+            "totalIssueCount": 119,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 58
+              },
+              {
+                "name": "AA",
+                "issueCount": 61
+              }
+            ]
+          },
+          {
+            "name": "codingStandards",
+            "totalIssueCount": 17,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 17
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "colorContrast",
+            "totalIssueCount": 198,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 198
+              }
+            ]
+          },
+          {
+            "name": "inputAssistance",
+            "totalIssueCount": 58,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 58
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          },
+          {
+            "name": "keyboardOperability",
+            "totalIssueCount": 0,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 0
+              },
+              {
+                "name": "AA",
+                "issueCount": 0
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "totalIssueCount": 395,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 133
+            },
+            {
+              "name": "AA",
+              "issueCount": 262
+            }
+          ],
+          "elementCount": 287,
+          "elementWithViolationCount": 199,
+          "elementsWithNoViolationsPercentage": 0.31
+        }
+      }
+    ],
+    "categoryIssueCounts": [
+      {
+        "name": "textAlternatives",
+        "totalIssueCount": 61,
+        "levelIssueCounts": [
+          {
+            "name": "A",
+            "issueCount": 4
+          },
+          {
+            "name": "AA",
+            "issueCount": 57
+          }
+        ]
+      },
+      {
+        "name": "logicalNavigationAndIntuitiveness",
+        "totalIssueCount": 414,
+        "levelIssueCounts": [
+          {
+            "name": "A",
+            "issueCount": 280
+          },
+          {
+            "name": "AA",
+            "issueCount": 134
+          }
+        ]
+      },
+      {
+        "name": "codingStandards",
+        "totalIssueCount": 82,
+        "levelIssueCounts": [
+          {
+            "name": "A",
+            "issueCount": 82
+          },
+          {
+            "name": "AA",
+            "issueCount": 0
+          }
+        ]
+      },
+      {
+        "name": "colorContrast",
+        "totalIssueCount": 320,
+        "levelIssueCounts": [
+          {
+            "name": "A",
+            "issueCount": 0
+          },
+          {
+            "name": "AA",
+            "issueCount": 320
+          }
+        ]
+      },
+      {
+        "name": "inputAssistance",
+        "totalIssueCount": 99,
+        "levelIssueCounts": [
+          {
+            "name": "A",
+            "issueCount": 99
+          },
+          {
+            "name": "AA",
+            "issueCount": 0
+          }
+        ]
+      },
+      {
+        "name": "keyboardOperability",
+        "totalIssueCount": 4,
+        "levelIssueCounts": [
+          {
+            "name": "A",
+            "issueCount": 4
+          },
+          {
+            "name": "AA",
+            "issueCount": 0
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "totalIssueCount": 980,
+      "levelIssueCounts": [
+        {
+          "name": "A",
+          "issueCount": 469
+        },
+        {
+          "name": "AA",
+          "issueCount": 511
+        }
+      ],
+      "elementCount": 715,
+      "elementWithViolationCount": 283,
+      "elementsWithNoViolationsPercentage": 0.6
+    },
+    "treePageReport": {
+      "url": "/",
+      "page": null,
+      "children": [
+        {
+          "url": "https://podman.io",
+          "page": {
+            "url": "https://podman.io/",
+            "categoryIssueCounts": [
+              {
+                "name": "textAlternatives",
+                "totalIssueCount": 61,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 4
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 57
+                  }
+                ]
+              },
+              {
+                "name": "logicalNavigationAndIntuitiveness",
+                "totalIssueCount": 414,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 280
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 134
+                  }
+                ]
+              },
+              {
+                "name": "codingStandards",
+                "totalIssueCount": 82,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 82
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 0
+                  }
+                ]
+              },
+              {
+                "name": "colorContrast",
+                "totalIssueCount": 320,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 0
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 320
+                  }
+                ]
+              },
+              {
+                "name": "inputAssistance",
+                "totalIssueCount": 99,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 99
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 0
+                  }
+                ]
+              },
+              {
+                "name": "keyboardOperability",
+                "totalIssueCount": 4,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 4
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 0
+                  }
+                ]
+              }
+            ],
+            "summary": {
+              "totalIssueCount": 980,
+              "levelIssueCounts": [
+                {
+                  "name": "A",
+                  "issueCount": 469
+                },
+                {
+                  "name": "AA",
+                  "issueCount": 511
+                }
+              ],
+              "elementCount": 715,
+              "elementWithViolationCount": 283,
+              "elementsWithNoViolationsPercentage": 0.6
+            }
+          },
+          "children": [
+            {
+              "url": "https://podman.io/docs",
+              "page": {
+                "url": "https://podman.io/docs",
+                "categoryIssueCounts": [
+                  {
+                    "name": "textAlternatives",
+                    "totalIssueCount": 9,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 9
+                      }
+                    ]
+                  },
+                  {
+                    "name": "logicalNavigationAndIntuitiveness",
+                    "totalIssueCount": 180,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 87
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 93
+                      }
+                    ]
+                  },
+                  {
+                    "name": "codingStandards",
+                    "totalIssueCount": 31,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 31
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "colorContrast",
+                    "totalIssueCount": 213,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 213
+                      }
+                    ]
+                  },
+                  {
+                    "name": "inputAssistance",
+                    "totalIssueCount": 86,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 86
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "keyboardOperability",
+                    "totalIssueCount": 0,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  }
+                ],
+                "summary": {
+                  "totalIssueCount": 519,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 204
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 315
+                    }
+                  ],
+                  "elementCount": 368,
+                  "elementWithViolationCount": 216,
+                  "elementsWithNoViolationsPercentage": 0.41
+                }
+              },
+              "children": [
+                {
+                  "url": "https://podman.io/docs/checkpoint",
+                  "page": {
+                    "url": "https://podman.io/docs/checkpoint",
+                    "categoryIssueCounts": [
+                      {
+                        "name": "textAlternatives",
+                        "totalIssueCount": 3,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 0
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 3
+                          }
+                        ]
+                      },
+                      {
+                        "name": "logicalNavigationAndIntuitiveness",
+                        "totalIssueCount": 23,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 12
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 11
+                          }
+                        ]
+                      },
+                      {
+                        "name": "codingStandards",
+                        "totalIssueCount": 7,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 7
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 0
+                          }
+                        ]
+                      },
+                      {
+                        "name": "colorContrast",
+                        "totalIssueCount": 4,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 0
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 4
+                          }
+                        ]
+                      },
+                      {
+                        "name": "inputAssistance",
+                        "totalIssueCount": 9,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 9
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 0
+                          }
+                        ]
+                      },
+                      {
+                        "name": "keyboardOperability",
+                        "totalIssueCount": 0,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 0
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 0
+                          }
+                        ]
+                      }
+                    ],
+                    "summary": {
+                      "totalIssueCount": 46,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 28
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 18
+                        }
+                      ],
+                      "elementCount": 32,
+                      "elementWithViolationCount": 5,
+                      "elementsWithNoViolationsPercentage": 0.84
+                    }
+                  },
+                  "children": [],
+                  "categoryIssueCounts": [
+                    {
+                      "name": "textAlternatives",
+                      "totalIssueCount": 3,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 0
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "logicalNavigationAndIntuitiveness",
+                      "totalIssueCount": 23,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 12
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 11
+                        }
+                      ]
+                    },
+                    {
+                      "name": "codingStandards",
+                      "totalIssueCount": 7,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 7
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "colorContrast",
+                      "totalIssueCount": 4,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 0
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 4
+                        }
+                      ]
+                    },
+                    {
+                      "name": "inputAssistance",
+                      "totalIssueCount": 9,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 9
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "keyboardOperability",
+                      "totalIssueCount": 0,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 0
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 0
+                        }
+                      ]
+                    }
+                  ],
+                  "summary": {
+                    "totalIssueCount": 46,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 28
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 18
+                      }
+                    ],
+                    "elementCount": 32,
+                    "elementWithViolationCount": 5,
+                    "elementsWithNoViolationsPercentage": 0.84
+                  }
+                },
+                {
+                  "url": "https://podman.io/docs/installation",
+                  "page": {
+                    "url": "https://podman.io/docs/installation",
+                    "categoryIssueCounts": [
+                      {
+                        "name": "textAlternatives",
+                        "totalIssueCount": 3,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 0
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 3
+                          }
+                        ]
+                      },
+                      {
+                        "name": "logicalNavigationAndIntuitiveness",
+                        "totalIssueCount": 119,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 58
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 61
+                          }
+                        ]
+                      },
+                      {
+                        "name": "codingStandards",
+                        "totalIssueCount": 17,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 17
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 0
+                          }
+                        ]
+                      },
+                      {
+                        "name": "colorContrast",
+                        "totalIssueCount": 198,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 0
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 198
+                          }
+                        ]
+                      },
+                      {
+                        "name": "inputAssistance",
+                        "totalIssueCount": 58,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 58
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 0
+                          }
+                        ]
+                      },
+                      {
+                        "name": "keyboardOperability",
+                        "totalIssueCount": 0,
+                        "levelIssueCounts": [
+                          {
+                            "name": "A",
+                            "issueCount": 0
+                          },
+                          {
+                            "name": "AA",
+                            "issueCount": 0
+                          }
+                        ]
+                      }
+                    ],
+                    "summary": {
+                      "totalIssueCount": 395,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 133
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 262
+                        }
+                      ],
+                      "elementCount": 287,
+                      "elementWithViolationCount": 199,
+                      "elementsWithNoViolationsPercentage": 0.31
+                    }
+                  },
+                  "children": [],
+                  "categoryIssueCounts": [
+                    {
+                      "name": "textAlternatives",
+                      "totalIssueCount": 3,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 0
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "logicalNavigationAndIntuitiveness",
+                      "totalIssueCount": 119,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 58
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 61
+                        }
+                      ]
+                    },
+                    {
+                      "name": "codingStandards",
+                      "totalIssueCount": 17,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 17
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "colorContrast",
+                      "totalIssueCount": 198,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 0
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 198
+                        }
+                      ]
+                    },
+                    {
+                      "name": "inputAssistance",
+                      "totalIssueCount": 58,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 58
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "keyboardOperability",
+                      "totalIssueCount": 0,
+                      "levelIssueCounts": [
+                        {
+                          "name": "A",
+                          "issueCount": 0
+                        },
+                        {
+                          "name": "AA",
+                          "issueCount": 0
+                        }
+                      ]
+                    }
+                  ],
+                  "summary": {
+                    "totalIssueCount": 395,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 133
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 262
+                      }
+                    ],
+                    "elementCount": 287,
+                    "elementWithViolationCount": 199,
+                    "elementsWithNoViolationsPercentage": 0.31
+                  }
+                }
+              ],
+              "categoryIssueCounts": [
+                {
+                  "name": "textAlternatives",
+                  "totalIssueCount": 9,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 9
+                    }
+                  ]
+                },
+                {
+                  "name": "logicalNavigationAndIntuitiveness",
+                  "totalIssueCount": 180,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 87
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 93
+                    }
+                  ]
+                },
+                {
+                  "name": "codingStandards",
+                  "totalIssueCount": 31,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 31
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "colorContrast",
+                  "totalIssueCount": 213,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 213
+                    }
+                  ]
+                },
+                {
+                  "name": "inputAssistance",
+                  "totalIssueCount": 86,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 86
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "keyboardOperability",
+                  "totalIssueCount": 0,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                }
+              ],
+              "summary": {
+                "totalIssueCount": 519,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 204
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 315
+                  }
+                ],
+                "elementCount": 368,
+                "elementWithViolationCount": 216,
+                "elementsWithNoViolationsPercentage": 0.41
+              }
+            },
+            {
+              "url": "https://podman.io/features",
+              "page": {
+                "url": "https://podman.io/features",
+                "categoryIssueCounts": [
+                  {
+                    "name": "textAlternatives",
+                    "totalIssueCount": 25,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 4
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 21
+                      }
+                    ]
+                  },
+                  {
+                    "name": "logicalNavigationAndIntuitiveness",
+                    "totalIssueCount": 51,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 45
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 6
+                      }
+                    ]
+                  },
+                  {
+                    "name": "codingStandards",
+                    "totalIssueCount": 21,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 21
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "colorContrast",
+                    "totalIssueCount": 23,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 23
+                      }
+                    ]
+                  },
+                  {
+                    "name": "inputAssistance",
+                    "totalIssueCount": 1,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 1
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "keyboardOperability",
+                    "totalIssueCount": 4,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 4
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  }
+                ],
+                "summary": {
+                  "totalIssueCount": 125,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 75
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 50
+                    }
+                  ],
+                  "elementCount": 91,
+                  "elementWithViolationCount": 20,
+                  "elementsWithNoViolationsPercentage": 0.78
+                }
+              },
+              "children": [],
+              "categoryIssueCounts": [
+                {
+                  "name": "textAlternatives",
+                  "totalIssueCount": 25,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 4
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 21
+                    }
+                  ]
+                },
+                {
+                  "name": "logicalNavigationAndIntuitiveness",
+                  "totalIssueCount": 51,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 45
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "codingStandards",
+                  "totalIssueCount": 21,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 21
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "colorContrast",
+                  "totalIssueCount": 23,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 23
+                    }
+                  ]
+                },
+                {
+                  "name": "inputAssistance",
+                  "totalIssueCount": 1,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 1
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "keyboardOperability",
+                  "totalIssueCount": 4,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 4
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                }
+              ],
+              "summary": {
+                "totalIssueCount": 125,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 75
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 50
+                  }
+                ],
+                "elementCount": 91,
+                "elementWithViolationCount": 20,
+                "elementsWithNoViolationsPercentage": 0.78
+              }
+            },
+            {
+              "url": "https://podman.io/community",
+              "page": {
+                "url": "https://podman.io/community",
+                "categoryIssueCounts": [
+                  {
+                    "name": "textAlternatives",
+                    "totalIssueCount": 14,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 14
+                      }
+                    ]
+                  },
+                  {
+                    "name": "logicalNavigationAndIntuitiveness",
+                    "totalIssueCount": 85,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 68
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 17
+                      }
+                    ]
+                  },
+                  {
+                    "name": "codingStandards",
+                    "totalIssueCount": 15,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 15
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "colorContrast",
+                    "totalIssueCount": 14,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 14
+                      }
+                    ]
+                  },
+                  {
+                    "name": "inputAssistance",
+                    "totalIssueCount": 1,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 1
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "keyboardOperability",
+                    "totalIssueCount": 0,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  }
+                ],
+                "summary": {
+                  "totalIssueCount": 129,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 84
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 45
+                    }
+                  ],
+                  "elementCount": 99,
+                  "elementWithViolationCount": 18,
+                  "elementsWithNoViolationsPercentage": 0.82
+                }
+              },
+              "children": [],
+              "categoryIssueCounts": [
+                {
+                  "name": "textAlternatives",
+                  "totalIssueCount": 14,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 14
+                    }
+                  ]
+                },
+                {
+                  "name": "logicalNavigationAndIntuitiveness",
+                  "totalIssueCount": 85,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 68
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 17
+                    }
+                  ]
+                },
+                {
+                  "name": "codingStandards",
+                  "totalIssueCount": 15,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 15
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "colorContrast",
+                  "totalIssueCount": 14,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 14
+                    }
+                  ]
+                },
+                {
+                  "name": "inputAssistance",
+                  "totalIssueCount": 1,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 1
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "keyboardOperability",
+                  "totalIssueCount": 0,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                }
+              ],
+              "summary": {
+                "totalIssueCount": 129,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 84
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 45
+                  }
+                ],
+                "elementCount": 99,
+                "elementWithViolationCount": 18,
+                "elementsWithNoViolationsPercentage": 0.82
+              }
+            },
+            {
+              "url": "https://podman.io/get-started",
+              "page": {
+                "url": "https://podman.io/get-started",
+                "categoryIssueCounts": [
+                  {
+                    "name": "textAlternatives",
+                    "totalIssueCount": 7,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 7
+                      }
+                    ]
+                  },
+                  {
+                    "name": "logicalNavigationAndIntuitiveness",
+                    "totalIssueCount": 48,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 38
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 10
+                      }
+                    ]
+                  },
+                  {
+                    "name": "codingStandards",
+                    "totalIssueCount": 6,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 6
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "colorContrast",
+                    "totalIssueCount": 52,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 52
+                      }
+                    ]
+                  },
+                  {
+                    "name": "inputAssistance",
+                    "totalIssueCount": 10,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 10
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  },
+                  {
+                    "name": "keyboardOperability",
+                    "totalIssueCount": 0,
+                    "levelIssueCounts": [
+                      {
+                        "name": "A",
+                        "issueCount": 0
+                      },
+                      {
+                        "name": "AA",
+                        "issueCount": 0
+                      }
+                    ]
+                  }
+                ],
+                "summary": {
+                  "totalIssueCount": 123,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 54
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 69
+                    }
+                  ],
+                  "elementCount": 92,
+                  "elementWithViolationCount": 24,
+                  "elementsWithNoViolationsPercentage": 0.74
+                }
+              },
+              "children": [],
+              "categoryIssueCounts": [
+                {
+                  "name": "textAlternatives",
+                  "totalIssueCount": 7,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 7
+                    }
+                  ]
+                },
+                {
+                  "name": "logicalNavigationAndIntuitiveness",
+                  "totalIssueCount": 48,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 38
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 10
+                    }
+                  ]
+                },
+                {
+                  "name": "codingStandards",
+                  "totalIssueCount": 6,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 6
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "colorContrast",
+                  "totalIssueCount": 52,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 52
+                    }
+                  ]
+                },
+                {
+                  "name": "inputAssistance",
+                  "totalIssueCount": 10,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 10
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "keyboardOperability",
+                  "totalIssueCount": 0,
+                  "levelIssueCounts": [
+                    {
+                      "name": "A",
+                      "issueCount": 0
+                    },
+                    {
+                      "name": "AA",
+                      "issueCount": 0
+                    }
+                  ]
+                }
+              ],
+              "summary": {
+                "totalIssueCount": 123,
+                "levelIssueCounts": [
+                  {
+                    "name": "A",
+                    "issueCount": 54
+                  },
+                  {
+                    "name": "AA",
+                    "issueCount": 69
+                  }
+                ],
+                "elementCount": 92,
+                "elementWithViolationCount": 24,
+                "elementsWithNoViolationsPercentage": 0.74
+              }
+            }
+          ],
+          "categoryIssueCounts": [
+            {
+              "name": "textAlternatives",
+              "totalIssueCount": 61,
+              "levelIssueCounts": [
+                {
+                  "name": "A",
+                  "issueCount": 4
+                },
+                {
+                  "name": "AA",
+                  "issueCount": 57
+                }
+              ]
+            },
+            {
+              "name": "logicalNavigationAndIntuitiveness",
+              "totalIssueCount": 414,
+              "levelIssueCounts": [
+                {
+                  "name": "A",
+                  "issueCount": 280
+                },
+                {
+                  "name": "AA",
+                  "issueCount": 134
+                }
+              ]
+            },
+            {
+              "name": "codingStandards",
+              "totalIssueCount": 82,
+              "levelIssueCounts": [
+                {
+                  "name": "A",
+                  "issueCount": 82
+                },
+                {
+                  "name": "AA",
+                  "issueCount": 0
+                }
+              ]
+            },
+            {
+              "name": "colorContrast",
+              "totalIssueCount": 320,
+              "levelIssueCounts": [
+                {
+                  "name": "A",
+                  "issueCount": 0
+                },
+                {
+                  "name": "AA",
+                  "issueCount": 320
+                }
+              ]
+            },
+            {
+              "name": "inputAssistance",
+              "totalIssueCount": 99,
+              "levelIssueCounts": [
+                {
+                  "name": "A",
+                  "issueCount": 99
+                },
+                {
+                  "name": "AA",
+                  "issueCount": 0
+                }
+              ]
+            },
+            {
+              "name": "keyboardOperability",
+              "totalIssueCount": 4,
+              "levelIssueCounts": [
+                {
+                  "name": "A",
+                  "issueCount": 4
+                },
+                {
+                  "name": "AA",
+                  "issueCount": 0
+                }
+              ]
+            }
+          ],
+          "summary": {
+            "totalIssueCount": 980,
+            "levelIssueCounts": [
+              {
+                "name": "A",
+                "issueCount": 469
+              },
+              {
+                "name": "AA",
+                "issueCount": 511
+              }
+            ],
+            "elementCount": 715,
+            "elementWithViolationCount": 283,
+            "elementsWithNoViolationsPercentage": 0.6
+          }
+        }
+      ],
+      "categoryIssueCounts": [
+        {
+          "name": "textAlternatives",
+          "totalIssueCount": 61,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 4
+            },
+            {
+              "name": "AA",
+              "issueCount": 57
+            }
+          ]
+        },
+        {
+          "name": "logicalNavigationAndIntuitiveness",
+          "totalIssueCount": 414,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 280
+            },
+            {
+              "name": "AA",
+              "issueCount": 134
+            }
+          ]
+        },
+        {
+          "name": "codingStandards",
+          "totalIssueCount": 82,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 82
+            },
+            {
+              "name": "AA",
+              "issueCount": 0
+            }
+          ]
+        },
+        {
+          "name": "colorContrast",
+          "totalIssueCount": 320,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 0
+            },
+            {
+              "name": "AA",
+              "issueCount": 320
+            }
+          ]
+        },
+        {
+          "name": "inputAssistance",
+          "totalIssueCount": 99,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 99
+            },
+            {
+              "name": "AA",
+              "issueCount": 0
+            }
+          ]
+        },
+        {
+          "name": "keyboardOperability",
+          "totalIssueCount": 4,
+          "levelIssueCounts": [
+            {
+              "name": "A",
+              "issueCount": 4
+            },
+            {
+              "name": "AA",
+              "issueCount": 0
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "totalIssueCount": 980,
+        "levelIssueCounts": [
+          {
+            "name": "A",
+            "issueCount": 469
+          },
+          {
+            "name": "AA",
+            "issueCount": 511
+          }
+        ],
+        "elementCount": 715,
+        "elementWithViolationCount": 283,
+        "elementsWithNoViolationsPercentage": 0.6
+      }
+    }
+  }
+}

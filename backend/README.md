@@ -3,7 +3,7 @@
 The Backend uses the following technologies:
 
 - [Express.js](https://expressjs.com/de/): Used to provide an API.
-- [Playwright](https://playwright.dev/): Used to create a screenshot of a given website.
+- [Puppeteer](https://pptr.dev/): Used to create a screenshot of a given website and is underlying library for Accessibility Checker
 - [IBM's Accessibility Checker](https://www.npmjs.com/package/accessibility-checker): Used to check that a source (can be a URL, a file or simply an HTML string) complies with the WCAG.
 - [Cheerio.js](https://cheerio.js.org/): Used for crawling the HTML of a website.
 

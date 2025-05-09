@@ -1,0 +1,2 @@
+# Declare PowerBI Desktop files that will always have CRLF line endings on checkout.
+text eol=crlf

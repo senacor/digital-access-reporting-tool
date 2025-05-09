@@ -1,0 +1,91 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.2.0/schema.json",
+  "name": "3496d9667a8f1494f737",
+  "displayName": "Seite 1",
+  "displayOption": "ActualSize",
+  "height": 1123,
+  "width": 794,
+  "pageBinding": {
+    "name": "a375342e898aefc0de86",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "197L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "e48e708cbab72b79c79d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "d6529e141bd64812d9f7",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "cfa11cafc901bdab58ba",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "b518b9fb3e4110dea632",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "b3cfe0a18b98306d2396",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "c94f8ab91da500ca0896",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "07b52e1d404f8576c4b2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "bbe078ae6266777b0d00",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "7e1b67a68a706e6eb148",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "bfbd6f8e7223226eaf9c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "3207671b968e0cc75030",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d083878a27a1187e8016",
+      "target": "fb8c99d1bbd2fb9be81b",
+      "type": "NoFilter"
+    }
+  ]
+}

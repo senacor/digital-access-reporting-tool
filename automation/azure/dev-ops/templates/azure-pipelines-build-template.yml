@@ -1,0 +1,33 @@
+parameters:
+  name: ''
+jobs:
+  - job: ${{ parameters.name }}
+    pool:
+      vmImage: 'ubuntu-latest'
+      demands:
+        - npm
+        - node.js
+    variables:
+      npm_config_cache: $(Pipeline.Workspace)/.npm
+    steps:
+      - checkout: senacor-main
+      - task: UseNode@1
+        displayName: 'Use Node 23.x'
+        inputs:
+          version: 23.x
+          checkLatest: true
+      - task: Cache@2
+        inputs:
+          key: npm | $(Agent.OS) | package-lock.json
+          path: $(npm_config_cache)
+          cacheHitVar: CACHE_RESTORED
+      - script: npm ci
+        displayName: 'Install'
+      - script: npm run gen
+        displayName: 'Generate report'
+      - publish: $(System.DefaultWorkingDirectory)/.accessibility-checker/accessibility-report.json
+        artifact: reports
+        displayName: 'Publish Reports to the Pipeline'
+      - publish: $(System.DefaultWorkingDirectory)/screenshots
+        artifact: screenshots
+        displayName: 'Publish Screenshots to the Pipeline'

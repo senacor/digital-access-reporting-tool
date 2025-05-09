@@ -47,12 +47,12 @@ export default async function createAccessibilityReportHandler(
     return res.status(400).send({ data: null, formErrors: [formError], serverError })
   }
 
-  const screenshotPath = await takeScreenshot(url)
-  if (!screenshotPath) {
+  const screenshotUrl = await takeScreenshot(url)
+  if (!screenshotUrl) {
     serverError = { message: "Failed to create screenshot for URL " + url.href }
   }
 
-  const { multiPageReport } = await generateMultiPageReport(url, logoUrl, screenshotPath)
+  const { multiPageReport } = await generateMultiPageReport(url, logoUrl, screenshotUrl)
   const data: Data = { report: multiPageReport }
 
   return res.send({ data, formErrors: null, serverError })

@@ -148,6 +148,32 @@
             "width": 234
           },
           "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 3036.3616394153596,
+            "y": 184
+          },
+          "nodeIndex": "Source",
+          "nodeLineageTag": "898d1c47-eb7d-43bf-b91e-f91b570d8251",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3320.3616394153596,
+            "y": 196
+          },
+          "nodeIndex": "SourceTable",
+          "nodeLineageTag": "155e5f03-9662-4de8-9c28-317daee63f74",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Alle Tabellen",
